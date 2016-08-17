@@ -1,0 +1,177 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% datoteka diploma-vzorec.tex
+%
+% vzorčna datoteka za pisanje diplomskega dela v formatu LaTeX
+% na UL Fakulteti za računalništvo in informatiko
+%
+% vkup spravil Gašper Fijavž, december 2010
+% množica popravkov v januarju, februarju marcu 2011
+% verzija 29. marec 2011
+
+\documentclass[a4paper, 12pt]{book}
+
+\usepackage[utf8x]{inputenc}   % omogoča uporabo slovenskih črk kodiranih v formatu UTF-8 
+\usepackage{hyperref}
+\usepackage[slovene,english]{babel}    % naloži, med drugim, slovenske delilne vzorcecd
+\usepackage[pdftex]{graphicx}  % omogoča vlaganje slik različnih formatov 
+\usepackage{fancyhdr}          % poskrbi, na primer, za glave strani
+\usepackage{amssymb}           % dodatni simboli
+\usepackage{amsmath}           % eqref, npr.
+\usepackage{inconsolata}
+\usepackage{emptypage}
+
+
+\renewcommand{\baselinestretch}{1.3} % ustrezen razmik med vrsticami
+
+%oznake strani
+\renewcommand{\chaptermark}[1]%
+{\markboth{\MakeUppercase{\thechapter.\ #1}}{}} \renewcommand{\sectionmark}[1]%
+{\markright{\MakeUppercase{\thesection.\ #1}}} \renewcommand{\headrulewidth}{0.5pt} \renewcommand{\footrulewidth}{0pt} 
+\fancyhf{}
+\fancyhead[LE,RO]{\sl \thepage} \fancyhead[LO]{\sl \rightmark} \fancyhead[RE]{\sl \leftmark}
+
+\newcommand{\BibTeX}{{\sc Bib}\TeX}
+
+\newcommand{\autfont}{\Large}
+\newcommand{\titfont}{\LARGE\bf}
+\newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}}
+\setcounter{tocdepth}{1}	      % globina kazala
+
+% konstrukti
+\newtheorem{izrek}{Izrek}[chapter]
+%\newtheorem{trditev}{Trditev}[izrek]
+\newenvironment{dokaz}{\emph{Dokaz.}\ }{\hspace{\fill}{$\Box$}}
+
+\begin{document}
+\selectlanguage{slovene}
+\frontmatter
+\setcounter{page}{1} %
+\renewcommand{\thepage}{}       % preprecimo težave s številkami strani v kazalu 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%naslovnica
+ \thispagestyle{empty}%
+   \begin{center}
+    {\large\sc Univerza v Ljubljani\\%
+      Fakulteta za računalništvo in informatiko}%
+    \vskip 10em%
+    {\autfont Miha Zidar \par}%
+    {\titfont Dostop do podatkov Svetovne banke v orodju Orange \par}%
+    {\vskip 2em \textsc{DIPLOMSKO DELO\\[2mm] 
+    UNIVERZITETNI ŠTUDIJSKI PROGRAM RAČUNALNIŠTVO IN INFORMATIKA}\par}%
+    \vfill\null%
+    {\large \textsc{Mentor}: prof. dr. Bla"z Zupan \par}%
+    {\vskip 2em \large Ljubljana, 2016 \par}%
+\end{center}
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%copyright stran
+\thispagestyle{empty}
+\vspace*{8cm}
+{\small \noindent
+Rezultati diplomskega dela so intelektualna lastnina avtorja in Fakultete za ra\-čunalništvo in informatiko Univerze v Ljubljani. 
+Za objavljanje ali izkoriščanje rezultatov di\-plom\-ske\-ga dela je potrebno pisno soglasje avtorja, Fakultete za ra\-ču\-nal\-niš\-tvo in 
+informatiko ter mentorja.}
+
+
+
+\begin{center} 
+\mbox{}\vfill
+\emph{Besedilo je oblikovano z urejevalnikom besedil \LaTeX.} 
+\end{center}
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% stran 3 med uvodnimi listi
+\noindent
+Namesto te strani {\bf vstavite} original izdane teme diplomskega 
+dela s podpisom mentorja in dekana ter žigom fakultete, ki ga diplomant
+dvigne v študent\-skem referatu, preden odda izdelek v vezavo!
+
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% izjava o avtorstvu
+\vspace*{1cm}
+\begin{center} 
+{\Large \textbf{\sc Izjava o avtorstvu diplomskega dela}}
+\end{center}
+
+\vspace{1cm}
+\noindent Spodaj podpisani Miha Zidar,
+z vpisno številko \textbf{63060317}, sem avtor  diplomskega dela z naslovom:
+   
+\vspace{0.5cm}
+\emph{Dostop do podatkov Svetovne banke v orodju Orange}
+
+\vspace{1.5cm}
+\noindent S svojim podpisom zagotavljam, da:
+\begin{itemize}
+	\item sem diplomsko delo izdelal samostojno pod mentorstvom 
+        prof.\ dr.\ Bla"za Zupana,
+
+	\item so elektronska oblika diplomskega dela, naslov (slov., angl.), povzetek (slov., angl.) ter ključne besede (slov., angl.) identični s tiskano obliko diplomskega dela
+	\item soglašam z javno objavo elektronske oblike diplomskega dela v zbirki ''Dela FRI''.
+\end{itemize}
+
+\vspace{1cm}
+\selectlanguage{slovene}
+\noindent V Ljubljani, dne \today \hfill Podpis avtorja:
+
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% zahvala
+\thispagestyle{empty}\mbox{}\vfill\null\it%
+Zahvalil bi se mentorju, prof.\ dr.\ Bla"za Zupana, za pomoč in usmerjanje med izdelavo diplomskega dela. Prav tako bi se za spodbudo zahvalil svojim staršem in prijateljem.
+\rm\normalfont
+
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% posvetilo
+\thispagestyle{empty}\mbox{}{\vskip0.20\textheight}\mbox{}\hfill\begin{minipage}{0.55\textwidth}%
+    % bubi
+\normalfont\end{minipage}
+ 
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% kazalo
+\def\thepage{}% preprecimo tezave s stevilkami strani v kazalu 
+\tableofcontents{}
+
+
+% prazna stran
+\clearemptydoublepage
+
+\include{abstract}
+
+\selectlanguage{slovene}
+% prazna stran
+\clearemptydoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mainmatter
+\setcounter{page}{1}
+\pagestyle{fancy}
+
+
+
+\include{uvod}
+\include{apis}
+\include{addon}
+\include{usage}
+\include{sklep}
+\include{literatura}
+
+
+\end{document}
+
