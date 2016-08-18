@@ -1,17 +1,41 @@
 \chapter{Spletni viri indikatorjev držav sveta}
 
-Na spletu je mnogo prosto dostopnih virov podatkov. Tukaj se bomo osredoto"cili
-na dva programska vmesnika za dostop podatkov Svetovne banke. Prvi programski
-vmesnik je za indikatorje razvoja dr"zav, drugi pa za dostop do vremenskih
-meritev po dr"zavah. Dostop do podatkov je omogo"cen preko REST vmesnika, ki
-ponuja veliko moznosti za iskanje in filtriranje rezultatov.
+Na spletu je mnogo prosto dostopnih virov podatkov. Te vmesniki ponujajo dostop
+do zelo raznolikih podatkov, kot so seznami stopnje ogrozenosti zivali po
+drzavah (1), Nasini podatki meritev in slike vesolja (2), seznam knjig z 
+ocenami in povezavami med uporabniki (3), zgodovina meteorolo"skih meritev (4),
+razni indikatorji stopnje razvoja drzav (5).
+
+
+
+% 1 IUCN 2016. IUCN Red List of Threatened Species. Version 2016-1 <www.iucnredlist.org>
+% http://apiv3.iucnredlist.org/api/v3/docs
+% 
+% 2 https://api.nasa.gov/#getting-started
+% 
+% 3 https://www.goodreads.com/api
+% 
+% 4 http://climatedataapi.worldbank.org/
+% 
+% 5 http://api.worldbank.org/
+
+
+
+
+Tukaj se bomo osredoto"cili
+na dva programska vmesnika za dostop podatkov Svetovne banke. Za Svetovno banko
+smo se odlo"cili, ker zdru"zuje in na enovit na"cin predstavi podatke z ve"c
+razli"cnih virov. Prvi programski vmesnik je za indikatorje razvoja dr"zav,
+drugi pa za dostop do vremenskih meritev po dr"zavah. Dostop do podatkov je
+omogo"cen preko REST vmesnika, ki ponuja veliko moznosti za iskanje in
+filtriranje rezultatov.
 
 
 \section{Indikatorji razvoja dr"zav}
 
-Programski vmesnik indikatorjev razvoja drzav Svetovne banke omogo"ca dostop
+Programski vmesnik indikatorjev razvoja dr"zav Svetovne banke omogo"ca dostop
 do preko 18000 raznih indikatorjev. Vsi podatki indikatorjev so merjeni v
-obdobju od leta 1940 do trenutnega leta. 
+obdobju od 1940 do trenutnega leta. 
 
 Podatke iz naslednjih virov:
 World Development Indicators, 
@@ -53,5 +77,14 @@ Tukaj najdemo vmesnike za iskanje indikatorjev (indicators), dr"zav in regij
 - Pomankljiva dokumentacija
     - polje za datum je opisano vendar ni dokumentirano kaksne so vse mozne
       vrednosti. 
+
+- manjkajoci identifikatoriji za polja na nakljucnih indikatorjih.
+  primer (drzava ima le ime in prazno id polje)
+- datum vsebuje naklju"cne vrednosti ("last known value" "2001 - 2015", "2040")
+- nedokumentira meja stevila izbranih lokacij 250
+- slabo definirano delovanje filtrov podatkov (mrv in date in fill)
+- Nemogoce ugotoviti ali ima indikator letne, cetrtlente ali mesecne vrednosti.
+
+
 
 CCCCC
