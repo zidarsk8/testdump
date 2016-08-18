@@ -32,11 +32,34 @@ pa s climate programskega vmesnika.
 % moznost razsiritve z dedovanjem dataset razreda.
 % 
 
+- omogo"ca pridobivanje vrednosti za filtre:
+    - indicator api: drzave in agregati, indikatorji
+    - climate api: drzave, tipi podatkov, meritveno obdobje 
+
+- Zahteva za podatke vraca dataset objekt ki ponuja surove podatke, ali pa eno
+  drugo obliko. 2D array ali pa dict.
+
+- Dataset razred lahko tudi poljubno razsirimo.
+
 
 
 \subsection{Pom"cnik IndicatorAPI}
 
-IndicatorAPI je razred namenjen pridobivanju 
+IndicatorAPI je razred namenjen pridobivanju podatkov indikatorjev razvoja.
+Vrednosti teh podatkov so (dolocene/ oznake s katerimi lahko do vrednosti
+dostopamo) z dr"zavo, casovno komponento, in imenom indikatorja. Te podatke
+lahko predstavimo na dva glavna na"cina:
+
+ - kot gnezdeni slovar, kjer je na prvem nivoju ime indikatorja, na drugem
+   drzava, in na tretjem nivoju casovna komponenta.
+
+ - Kot dvo-dimenzionalno polje, kjer imamo v vrsticah eno oznako, v stolpcih
+   pa kartezicni produkt ostalih dveh. ponujene moznosti so:
+   - vrstice = drzava, stolpci = cas x indikator
+   - vrstice = cas, stolpci = drzava x indikator
+
+
+
 
 
 
@@ -61,6 +84,7 @@ IndicatorAPI je razred namenjen pridobivanju
 IndicatorAPI je 
 
 
+
 % notes:
 % 3 dimenzije: cas (decade,year,month), drzava, tip (pr/ tas)
 % 
@@ -75,5 +99,27 @@ IndicatorAPI je
 % doda "as orange table" in "as numpy" obema indikator apiju in climate apiju.
 
 
+razsiritev simple wbd vmesnikov z dedovanjem pravega dataset razreda.
+
+\begin{verbatim}
+class ClimateDataset(simple_wbd.ClimateDataset):
+    
+    def as_numpy(self):
+        raise NotImplemented()
+    
+    def as_orange_table(self):
+        raise NotImplemented()
+
+class ClimateAPI(simple_wbd.ClimateAPI):
+
+    def __init__(self):
+        super().__init__(ClimateDataset)
+\end{verbatim}
+
+
+
+
+
+\section{Grafi"cni vmesnik}
 
 
