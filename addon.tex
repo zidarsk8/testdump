@@ -79,6 +79,37 @@ lahko predstavimo na dva glavna na"cina:
 % 
 
 
+indicator response:
+
+\begin{verbatim}
+[
+
+    {
+        "page": 1,
+        "pages": 1,
+        "per_page": "50",
+        "total": 1
+    },
+    [
+        {
+            "indicator": {
+                "id": "PA.NUS.PPP.05",
+                "value": "2005 PPP conversion factor, GDP (LCU per international \$)"
+            },
+            "country": {
+                "id": "SI",
+                "value": "Slovenia"
+            },
+            "value": "0.611602841",
+            "decimal": "2",
+            "date": "2005"
+        }
+    ]
+
+]
+\end{verbatim}
+
+
 \subsection{Pom"cnik ClimateAPI}
 
 IndicatorAPI je 
@@ -123,3 +154,6 @@ class ClimateAPI(simple_wbd.ClimateAPI):
 \section{Grafi"cni vmesnik}
 
 
+- Lazja uporaba.
+- Vecja preglednost,
+- lazje iskanje (text search filter)
