@@ -1,11 +1,20 @@
-\chapter{Spletni viri indikatorjev držav sveta}
+\chapter{Spletni viri indikatorjev drzav sveta}
 
-Na spletu je mnogo prosto dostopnih virov podatkov. Te vmesniki ponujajo dostop
-do zelo raznolikih podatkov, kot so seznami stopnje ogrozenosti zivali po
-drzavah (1), Nasini podatki meritev in slike vesolja (2), seznam knjig z 
-ocenami in povezavami med uporabniki (3), zgodovina meteorolo"skih meritev (4),
-razni indikatorji stopnje razvoja drzav (5).
-
+Na spletu je mnogo prosto dostopnih virov oz. baz podatkov. Ti imajo programske
+vmesnike, ki omogocajo dostop do raznovrstnih podatkov, kot so npr. seznami 
+stopnje ogrozenosti zivali po drzavah 
+\fnurl{http://apiv3.iucnredlist.org/api/v3/docs},
+Nasini podatki meritev in slike vesolja
+\fnurl{https://api.nasa.gov/#getting-started},
+seznam knjig z ocenami in povezavami med uporabniki
+\fnurl{https://www.goodreads.com/api},
+zgodovina meteoroloskih meritev
+\fnurl{http://climatedataapi.worldbank.org/},
+razni indikatorji stopnje razvoja drzav
+\fnurl{http://api.worldbank.org/}.
+Pri nalogi smo se osredotocili na dva programska vmesnika za dostop podatkov 
+Svetovne banke, to sta zgodovina meteoroloskih meritev (4) in razni 
+indikatorji stopnje razvoja drzav (5).
 
 
 % 1 IUCN 2016. IUCN Red List of Threatened Species. Version 2016-1 <www.iucnredlist.org>
@@ -20,57 +29,72 @@ razni indikatorji stopnje razvoja drzav (5).
 % 5 http://api.worldbank.org/
 
 
+Za podatkovno bazo Svetovno banko smo se odlocili, ker zdruzuje in na enovit
+nacin predstavi podatke iz vec razlicnih virov. Podatkovni viri za indikatorje
+stopnje razvoja drzav so:
+
+- World Development Indicators, 
+- Global Development Finance, 
+- African development Indicators, 
+- Doing Business,
+- Enterprise Surveys, 
+- Millennium Development Goals, 
+- Education Statistics, 
+- Gender Statistics,
+- Health and Nutrition Statistics, 
+- IDA Results Measurement System.
+
+Podatkovni viri za klimatske meritve so pridobljeni s svetovnih meteoroloskih 
+postaj.
 
 
-Tukaj se bomo osredoto"cili
-na dva programska vmesnika za dostop podatkov Svetovne banke. Za Svetovno banko
-smo se odlo"cili, ker zdru"zuje in na enovit na"cin predstavi podatke z ve"c
-razli"cnih virov. Prvi programski vmesnik je za indikatorje razvoja dr"zav,
-drugi pa za dostop do vremenskih meritev po dr"zavah. Dostop do podatkov je
-omogo"cen preko vmesnika REST, ki ponuja veliko mo"znosti za iskanje in
-filtriranje rezultatov.
+Dostop do podatkov je omogocen prek vmesnika REST, ki ponuja veliko moznosti 
+za iskanje in presejanje rezultatov.
 
 
-\section{Indikatorji razvoja dr"zav}
-
-Programski vmesnik indikatorjev razvoja dr"zav Svetovne banke omogo"ca dostop
-do preko 18000 raznih indikatorjev. Vsi podatki indikatorjev so merjeni v
-obdobju od 1940 do trenutnega leta. 
-
-Podatke iz naslednjih virov:
-World Development Indicators, 
-Global Development Finance, 
-African development Indicators, 
-Doing Business,
-Enterprise Surveys, 
-Millennium Development Goals, 
-Education Statistics, 
-Gender Statistics,
-Health and Nutrition Statistics, 
-IDA Results Measurement System.
 
 
-vsebuje filtre za
-MRV = most rescent value
-date
+
+Indikatorji razvoja drzav
+
+Programski vmesnik indikatorjev razvoja drzav Svetovne banke omogoca dostop
+do prek 16.000 raznih indikatorjev. Vsi podatki indikatorjev so merjeni od leta
+1960 dalje. Ta vmesnik omogoca filtriranje po naslednjih poljih:
+
+- MRV (most rescent value) - nekaj zadnjih meritev
+- frequency - pogostost vzorcenja (letno, cetrtletno, mesecno)
+- gapfill - manjkajoce vrednosti prejsnjih meritev
+- date - datum ali obdobje
+- page - stran
+- per\_page - stevilo elementov na stran
 
 
+
+
+
+% programski vsebuje filtre za
+% MRV = most rescent value
+% frequency 
+% gapfill
+% date
+% page
+% per\_page
 
 
 
 \subsection{Opis programskega vmesnika indikatorjev}
 
 
-Programsk vmesik za podatke o indikatorjih razvoja omogo"ca 
+Programsk vmesik za podatke o indikatorjih razvoja omogoca 
 
 
 \subsection{Dostop do podatkov indikatorjev}
 
-Dostop do podatkov je omogo"cen preko dostopne to"cke
+Dostop do podatkov je omogocen prek dostopne tocke
 
 http://api.worldbank.org
 
-Tukaj najdemo vmesnike za iskanje indikatorjev (indicators), dr"zav in regij
+Tukaj najdemo vmesnike za iskanje indikatorjev (indicators), drzav in regij
 (countries), raven dohodka (Income level), vrsta posojila (lending type), tem
 (topic), virov (sources).
 
@@ -86,9 +110,9 @@ Tukaj najdemo vmesnike za iskanje indikatorjev (indicators), dr"zav in regij
     - polje za datum je opisano vendar ni dokumentirano kaksne so vse mozne
       vrednosti. 
 
-- manjkajo"ci identifikatoriji za polja na naklju"cnih indikatorjih.
+- manjkajoci identifikatoriji za polja na nakljucnih indikatorjih.
   primer (drzava ima le ime in prazno id polje)
-- datum vsebuje naklju"cne vrednosti ("last known value" "2001 - 2015", "2040")
+- datum vsebuje nakljucne vrednosti (last known value 2001 - 2015, 2040)
 - nedokumentira meja stevila izbranih lokacij 250
 - slabo definirano delovanje filtrov podatkov (mrv in date in fill)
 - Nemogoce ugotoviti ali ima indikator letne, cetrtlente ali mesecne vrednosti.
