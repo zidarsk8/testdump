@@ -1,17 +1,17 @@
-\chapter{Knji"znica in gradniki za Orange}
+\chapter{Knjiznica in gradniki za Orange}
 
-V okviru diplomske naloge smo razvili tri lo"cene komponente za programerje in
-kon"cne uporabnike. Prva komponenta je programska knji"znica simple\_wbd, ki
-omogo"ca enostaven dostop do programskega vmesnika indikatorjev in klimatskih
-podatkov Svetovne banke. Ta knji"znica je narejena s "cim manj odvisnosti
-(dependencies, requirements?) in je namenjena splo"sni uporabi v python
-programih. Poudarek na knji"znici simple\_wbd je predvsevm enostavnost 
-raz"siritve in zanesljivost. Drugi sestavni del, je raz"siritev knji"znice
-simple\_wbd s funkcionalnostmi potrebnimi za la"zje delo v programu Orange.
+V okviru diplomske naloge smo razvili tri locene komponente za programerje in
+koncne uporabnike. Prva komponenta je programska knjiznica simple\_wbd, ki
+omogoca enostaven dostop do programskega vmesnika indikatorjev in klimatskih
+podatkov Svetovne banke. Ta knjiznica je narejena s cim manj odvisnosti
+(dependencies, requirements?) in je namenjena splosni uporabi v python
+programih. Poudarek na knjiznici simple\_wbd je predvsevm enostavnost 
+razsiritve in zanesljivost. Drugi sestavni del, je razsiritev knjiznice
+simple\_wbd s funkcionalnostmi potrebnimi za lazje delo v programu Orange.
 To predvsem zavzema pretvorbo pridobljenih podatkov v Orange in numpy tabele.
 Ta sklop je namenjen skriptnemu delu s programom Orange in je dostopen kot
-api\_wrapper python modul. Tretji sestavni del pa je grafi"cni vmesnik za
-uporabo api\_wrapper modula. Namen grafi"cnega vmesnika je omogo"citi ne
+api\_wrapper python modul. Tretji sestavni del pa je graficni vmesnik za
+uporabo api\_wrapper modula. Namen graficnega vmesnika je omogociti ne
 programerjem dostop do podatkov programskega vmesnika Svetovne banke znotraj
 programa za analizo in ... .
 
@@ -19,10 +19,10 @@ programa za analizo in ... .
 
 Simple\_wbd je knjiznica, ki programerjem olajsa dostop do podatkov
 programskega vmesnika svetovne banke. Glavna lastnost te knjiznice je
-zdruzevanje ve"cjega "stevila zahtev po podatkih, in enostavna predstavitev
+zdruzevanje vecjega stevila zahtev po podatkih, in enostavna predstavitev
 dobljenih podatkov. Druga lastnost je pretvorba podatkov iz vec dimenzij, v
 dvo-dimenzionalno polje, ki je primerno za uporabo v programu Orange. Dva
-glavna vmesnika te knji"znice sta IndicatorAPI in ClimateAPI. Prvi omogoca
+glavna vmesnika te knjiznice sta IndicatorAPI in ClimateAPI. Prvi omogoca
 pridobivanje podatkov z indikator programskega vmesnika Svetovne banke, drugi
 pa s climate programskega vmesnika.
 
@@ -32,7 +32,7 @@ pa s climate programskega vmesnika.
 % moznost razsiritve z dedovanjem dataset razreda.
 % 
 
-- omogo"ca pridobivanje vrednosti za filtre:
+- omogoca pridobivanje vrednosti za filtre:
     - indicator api: drzave in agregati, indikatorji
     - climate api: drzave, tipi podatkov, meritveno obdobje 
 
@@ -43,12 +43,12 @@ pa s climate programskega vmesnika.
 
 
 
-\subsection{Pom"cnik IndicatorAPI}
+\subsection{Pomcnik IndicatorAPI}
 
 IndicatorAPI je razred namenjen pridobivanju podatkov indikatorjev razvoja.
 Vrednosti teh podatkov so (dolocene/ oznake s katerimi lahko do vrednosti
-dostopamo) z dr"zavo, casovno komponento, in imenom indikatorja. Te podatke
-lahko predstavimo na dva glavna na"cina:
+dostopamo) z drzavo, casovno komponento, in imenom indikatorja. Te podatke
+lahko predstavimo na dva glavna nacina:
 
  - kot gnezdeni slovar, kjer je na prvem nivoju ime indikatorja, na drugem
    drzava, in na tretjem nivoju casovna komponenta.
@@ -57,8 +57,6 @@ lahko predstavimo na dva glavna na"cina:
    pa kartezicni produkt ostalih dveh. ponujene moznosti so:
    - vrstice = drzava, stolpci = cas x indikator
    - vrstice = cas, stolpci = drzava x indikator
-
-
 
 
 
@@ -79,38 +77,9 @@ lahko predstavimo na dva glavna na"cina:
 % 
 
 
-indicator response:
-
-\begin{verbatim}
-[
-
-    {
-        "page": 1,
-        "pages": 1,
-        "per_page": "50",
-        "total": 1
-    },
-    [
-        {
-            "indicator": {
-                "id": "PA.NUS.PPP.05",
-                "value": "2005 PPP conversion factor, GDP (LCU per international \$)"
-            },
-            "country": {
-                "id": "SI",
-                "value": "Slovenia"
-            },
-            "value": "0.611602841",
-            "decimal": "2",
-            "date": "2005"
-        }
-    ]
-
-]
-\end{verbatim}
 
 
-\subsection{Pom"cnik ClimateAPI}
+\subsection{Pomcnik ClimateAPI}
 
 IndicatorAPI je 
 
@@ -127,7 +96,7 @@ IndicatorAPI je
 
 \section{api\_wrapper}
 
-% doda "as orange table" in "as numpy" obema indikator apiju in climate apiju.
+% doda as orange table in as numpy obema indikator apiju in climate apiju.
 
 
 razsiritev simple wbd vmesnikov z dedovanjem pravega dataset razreda.
@@ -151,7 +120,7 @@ class ClimateAPI(simple_wbd.ClimateAPI):
 
 
 
-\section{Grafi"cni vmesnik}
+\section{Graficni vmesnik}
 
 
 - Lazja uporaba.
