@@ -2,16 +2,16 @@
 \chapter{Uvod}
 
 Na svetovnem spletu je dosegljivih vedno vec prosto dostopnih programskih
-vmesnikov (API, ang. application programming interface). Ti vmesniki omogocajo dostop
+vmesnikov (API, ang. application programming interface). Ti vmesniki omogo"cajo dostop
 do zelo raznolikih baz podatkov. Nekateri primeri baz so                          
-seznami stopnje ogrozenosti zivali po drzavah \fnurl{http://apiv3.iucnredlist.org/api/v3/docs},    
+seznami stopnje ogro"zenosti "zivali po dr"zavah \fnurl{http://apiv3.iucnredlist.org/api/v3/docs},    
 nasini podatki meritev in slike vesolja  \fnurl{https://api.nasa.gov/},
 seznam knjig z ocenami in povezavami med uporabniki \fnurl{https://www.goodreads.com/api},
-zgodovina meteoroloskih meritev, \fnurl{http://climatedataapi.worldbank.org/},
-razni indikatorji stopenj razvoja drzav \fnurl{http://api.worldbank.org/}.
+zgodovina meteorolo"skih meritev, \fnurl{http://climatedataapi.worldbank.org/},
+razni indikatorji stopenj razvoja dr"zav \fnurl{http://api.worldbank.org/}.
 
-Programski vmesniki so oblikovani tako, da je omogocena raznolika uporaba 
-podatkov iz podatkovnh baz. To pa ima tudi slabost, ki je v tem, da je podatke 
+Programski vmesniki so oblikovani tako, da je omogo"cena raznolika uporaba 
+podatkov iz podatkovnih baz. To pa ima tudi slabost, ki je v tem, da je podatke 
 potrebno predhodno obdelati za vsak namen posebej. Tako bi na primer moral vsak
 uporabnik programa Orange podatke predhodno pretvoriti v obliko, primerno za 
 njegovo konkretno analizo.
@@ -20,31 +20,31 @@ njegovo konkretno analizo.
 \section{Motivacija}
 
 Povezava programskega vmesnika in orodja za analizo podatkov je pogosto    
-prezapletena za navadnega uporabnika. Z dodatkom ODS zelimo podatke
-programske vmesnika Svetovne banke spraviti v obliko, primerno za nadaljno 
-uporabo v orodju Orange. Ta dodatek bi pomagal zdruziti programe za obdelavo 
-podatkov in prosto dostopnih baz podatkov. S tem dobimo enostavnejsi dostop do
-podatkov iz prek 16.000 indikatorjev in stevilnik klimatskih meritev, 
-s cimer bomo lazje analizirali in iskali morebitne zakonitosti med podatki.
+prezapletena za navadnega uporabnika. Z dodatkom ODS "zelimo podatke
+programske vmesnika Svetovne banke spraviti v obliko, primerno za nadaljnjo 
+uporabo v orodju Orange. Ta dodatek bi pomagal zdru"ziti programe za obdelavo 
+podatkov in prosto dostopnih baz podatkov. S tem dobimo enostavnej"si dostop do
+podatkov iz prek 16.000 indikatorjev in "stevilnih klimatskih meritev, 
+s "cimer bomo la"zje analizirali in iskali morebitne zakonitosti med podatki.
 V kolikor bi imeli en sam ustrezen dodatek (add-on) za dostop do podatkov 
 programskega vmesnika Svetovne banke, bi poenostavili posodabljanje in 
-vzdrzevanje kode v primeru sprememb programskega vmesnika za vse uporabnike
+vzdr"zevanje kode v primeru sprememb programskega vmesnika za vse uporabnike
 istega orodja hkrati. S tem odpravimo potrebo, da bi moral vsak uporabnik sam
 skrbeti za uskladitvene posodobitve.
 
 
 \section{Cilji in struktura diplomske naloge}
 
-Cilj diplomske naloge je izdelati knjiznico za uporabo programskega vmesnika
+Cilj diplomske naloge je izdelati knji"znico za uporabo programskega vmesnika
 Svetovne banke ter izdelati dodatek za program Orange, ki s pomocjo omenjene
-knjiznice omogoca uporabniku dostop do podatkov SB preko graficnega vmesnika.
+knji"znice omogo"ca uporabniku dostop do podatkov SB preko graficnega vmesnika.
 
 
 V drugem poglavju diplomskega dela predstavimo spletne vire indikatorjev
-drzav sveta. Nato bomo podrobneje opisali programski vmesnik za dostop do 
-podatkov Svetovne banke (API SB). V cetrtem poglavju sledi predstavitev 
-knjiznice in gradnikov za Orange in nato se konkretni primeri uporabe. Na koncu
-bomo popisali opravljeno delo, navedli vire kode in opisali nadaljne moznosti
+dr"zav sveta. Nato bomo podrobneje opisali programski vmesnik za dostop do 
+podatkov Svetovne banke (API SB). V "cetrtem poglavju sledi predstavitev 
+knji"znice in gradnikov za Orange in nato "se konkretni primeri uporabe. Na koncu
+bomo popisali opravljeno delo, navedli vire kode in opisali nadaljnje mo"znosti
 nadgradnje dodatka.
 
 
@@ -110,9 +110,9 @@ nadgradnje dodatka.
 %% Branje podatkov z raznih programskih vmesnikov je lahko zelo zamudno delo.
 %% Programski vmesnik se lahko s "casom spremeni, in podatki ki jih dobimo z
 %% vmesnika so lahko pokvarjeni. Trenutni pristop, kjer moramo podatke vsaki"c ro"cno
-%% obilkovati da so primerni za analizo, ima mnogo pomanjkljivosti. Prejeti podatki
+%% oblikovati da so primerni za analizo, ima mnogo pomanjkljivosti. Prejeti podatki
 %% lahko vsebujejo nepravilnosti, ali pa so celo nedostopni. Z dodatkom ki bi
-%% poskrbel za prenos podatkov in pretovrbo v uporabno obliko, hkrati pa bi znal
+%% poskrbel za prenos podatkov in pretvorbo v uporabno obliko, hkrati pa bi znal
 %% popraviti ali odstraniti pokvarjene podatke, bi lahko ve"c pozornosti posvetili
 %% sami analizi in obdelavi. Poleg tega, pa ve"cina knji"znic za delo z odprtimi
 %% programskimi vmesniki, nudi zelo dobre na"cine za iskanje posameznih podatkov,
@@ -125,6 +125,6 @@ nadgradnje dodatka.
 %% 
 %% Cilj diplomske naloge je izdelati knji"znico, ki omogo"ca enostaven dostop do
 %% podatkov Svetovne banke in interaktivni gradnik v programu Orange za dostop in
-%% uporabo teh podatkov. S tem bomo omogo"cili raziskovanje teh podtakov "sir"si
+%% uporabo teh podatkov. S tem bomo omogo"cili raziskovanje teh podatkov "sir"si
 %% javnosti. Knji"znica bo poenostavila prenos ve"cjega "stevila podatkov, in
 %% predstavila te podatke v obliki primerni za orodje Orange. k<

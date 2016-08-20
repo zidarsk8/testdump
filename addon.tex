@@ -5,7 +5,7 @@ kon"cne uporabnike. Prva komponenta je programska knji"znica simple\_wbd, ki
 omogo"ca enostaven dostop do programskega vmesnika indikatorjev in klimatskih
 podatkov Svetovne banke. Ta knji"znica je narejena s "cim manj odvisnosti
 (dependencies, requirements?) in je namenjena splo"sni uporabi v python
-programih. Poudarek na knji"znici simple\_wbd je predvsevm enostavnost 
+programih. Poudarek na knji"znici simple\_wbd je predvsem enostavnost 
 raz"siritve in zanesljivost. Drugi sestavni del, je raz"siritev knji"znice
 simple\_wbd s funkcionalnostmi potrebnimi za la"zje delo v programu Orange.
 To predvsem zavzema pretvorbo pridobljenih podatkov v Orange in numpy tabele.
@@ -15,7 +15,7 @@ uporabo api\_wrapper modula. Namen grafi"cnega vmesnika je omogo"citi ne
 programerjem dostop do podatkov programskega vmesnika Svetovne banke znotraj
 programa za analizo in ... .
 
-\section{Knjiznica simple\_wbd}
+\section{Knji"znica simple\_wbd}
 
 Simple\_wbd je knji"znica, ki programerjem olaj"sa dostop do podatkov
 programskega vmesnika Svetovne banke. Glavna lastnost te knji"znice je
@@ -33,30 +33,30 @@ pa s programskega vmesnika climate.
 % 
 
 - omogo"ca pridobivanje vrednosti za filtre:
-    - indicator api: drzave in agregati, indikatorji
-    - climate api: drzave, tipi podatkov, meritveno obdobje 
+    - indicator api: dr"zave in agregati, indikatorji
+    - climate api: dr"zave, tipi podatkov, meritveno obdobje 
 
-- Zahteva za podatke vraca dataset objekt ki ponuja surove podatke, ali pa eno
+- Zahteva za podatke vra"ca objekt dataset ki ponuja surove podatke, ali pa eno
   drugo obliko. 2D array ali pa dict.
 
-- Dataset razred lahko tudi poljubno razsirimo.
+- razred Dataset lahko tudi poljubno raz"sirimo.
 
 
 
-\subsection{Pom"cnik IndicatorAPI}
+\subsection{Pomo"cnik IndicatorAPI}
 
 IndicatorAPI je razred namenjen pridobivanju podatkov indikatorjev razvoja.
-Vrednosti teh podatkov so (dolocene/ oznake s katerimi lahko do vrednosti
-dostopamo) z dr"zavo, casovno komponento, in imenom indikatorja. Te podatke
+Vrednosti teh podatkov so (dolo"cene/ oznake s katerimi lahko do vrednosti
+dostopamo) z dr"zavo, "casovno komponento, in imenom indikatorja. Te podatke
 lahko predstavimo na dva glavna na"cina:
 
  - kot gnezdeni slovar, kjer je na prvem nivoju ime indikatorja, na drugem
-   drzava, in na tretjem nivoju casovna komponenta.
+   dr"zava, in na tretjem nivoju "casovna komponenta.
 
  - Kot dvo-dimenzionalno polje, kjer imamo v vrsticah eno oznako, v stolpcih
-   pa kartezicni produkt ostalih dveh. ponujene moznosti so:
-   - vrstice = drzava, stolpci = cas x indikator
-   - vrstice = cas, stolpci = drzava x indikator
+   pa kartezi"cni produkt ostalih dveh. ponujene mo"znosti so:
+   - vrstice = drzava, stolpci = "cas x indikator
+   - vrstice = "cas, stolpci = dr"zava x indikator
 
 
 
@@ -130,7 +130,7 @@ IndicatorAPI je
 % doda "as orange table" in "as numpy" obema indikator apiju in climate apiju.
 
 
-razsiritev simple wbd vmesnikov z dedovanjem pravega dataset razreda.
+raz"siritev simple wbd vmesnikov z dedovanjem pravega razreda dataset.
 
 \begin{verbatim}
 class ClimateDataset(simple_wbd.ClimateDataset):
@@ -154,6 +154,6 @@ class ClimateAPI(simple_wbd.ClimateAPI):
 \section{Grafi"cni vmesnik}
 
 
-- Lazja uporaba.
-- Vecja preglednost,
-- lazje iskanje (text search filter)
+- La"zja uporaba.
+- Ve"cja preglednost,
+- la"zje iskanje (text search filter)
