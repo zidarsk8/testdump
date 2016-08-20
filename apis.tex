@@ -33,16 +33,18 @@ Za podatkovno bazo Svetovno banko smo se odlocili, ker zdruzuje in na enovit
 nacin predstavi podatke iz vec razlicnih virov. Podatkovni viri za indikatorje
 stopnje razvoja drzav so:
 
-- World Development Indicators, 
-- Global Development Finance, 
-- African development Indicators, 
-- Doing Business,
-- Enterprise Surveys, 
-- Millennium Development Goals, 
-- Education Statistics, 
-- Gender Statistics,
-- Health and Nutrition Statistics, 
-- IDA Results Measurement System.
+\begin{itemize}  
+\item World Development Indicators, 
+\item Global Development Finance, 
+\item African development Indicators, 
+\item Doing Business,
+\item Enterprise Surveys, 
+\item Millennium Development Goals, 
+\item Education Statistics, 
+\item Gender Statistics,
+\item Health and Nutrition Statistics, 
+\item IDA Results Measurement System.
+\end{itemize}  
 
 Podatkovni viri za klimatske meritve so pridobljeni s svetovnih meteoroloskih 
 postaj.
@@ -62,8 +64,8 @@ format zahtev:
 
     {
         "page": 1,
-        "pages": 6,
-        "per\_page": "2000",
+        "pages": 7,
+        "per\_page": "50",
         "total": 304
     },
     [
@@ -231,25 +233,23 @@ napake v samih pridobljenih podatkih.
 
 Tezave prve skupine:
 
-- ob posodabljanju spletne strani SB se izgubijo posamezne povezave do 
+\begin{itemize}  
+\item ob posodabljanju spletne strani SB se izgubijo posamezne povezave do 
   primerov, dokumentacije in opisov API-ja,
-- nepopolna dokumentacija:
-  - polje za datum je opisano, vendar ni dokumentirano, kaksne so vse mozne 
+\item nepopolna dokumentacija:
+\subitem polje za datum je opisano, vendar ni dokumentirano, kaksne so vse mozne 
     vrednosti,
-  - delovanje polj za obdobje (date), zadnje vrednosti (mrv) in za mankjajoce
+\subitem delovanje polj za obdobje (date), zadnje vrednosti (mrv) in za mankjajoce
     vrednosti (gapfill) ni ustrezno opisano.
+\end{itemize}  
 
 Tezave druge skupine:
 
 
-- manjkajoci identifikatoriji za polja na posameznih indikatorjih (primer je
+\begin{itemize}  
+\item manjkajoci identifikatoriji za polja na posameznih indikatorjih (primer je
   manjkajoca vrednost v polju id drzave),
-- datum vsebuje nakljucne vrednosti ("last known value", "2001 - 2015", "2040"),
-- zgornja meja stevila izbranih lokacij na 250 ni navedena,
-- nemogoce je ugotoviti pogostost vzorcenja indikatorja (frequency).
-
-
-
-
-
-CCCCC
+\item datum vsebuje nakljucne vrednosti ("last known value", "2001 - 2015", "2040"),
+\item zgornja meja stevila izbranih lokacij na 250 ni navedena,
+\item nemogoce je ugotoviti pogostost vzorcenja indikatorja (frequency).
+\end{itemize}  
