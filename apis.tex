@@ -5,7 +5,7 @@ vmesnike, ki omogocajo dostop do raznovrstnih podatkov, kot so npr. seznami
 stopnje ogrozenosti zivali po drzavah 
 \fnurl{http://apiv3.iucnredlist.org/api/v3/docs},
 Nasini podatki meritev in slike vesolja
-\fnurl{https://api.nasa.gov/#getting-started},
+\fnurl{https://api.nasa.gov/}
 seznam knjig z ocenami in povezavami med uporabniki
 \fnurl{https://www.goodreads.com/api},
 zgodovina meteoroloskih meritev
@@ -49,54 +49,174 @@ postaj.
 
 
 Dostop do podatkov je omogocen prek vmesnika REST, ki ponuja veliko moznosti 
-za iskanje in presejanje rezultatov.
+za iskanje in presejanje rezultatov. 
+
+
+Note: vse zahteve so omejene s kolicino podatkov na stran in za dostop do vseh
+se moramo sami sprehoditi cez vse strani.
+
+format zahtev:
+
+\begin{lstlisting}
+[
+
+    {
+        "page": 1,
+        "pages": 6,
+        "per\_page": "2000",
+        "total": 304
+    },
+    [
+        {<podatki>}
+	]
+]
+\end{lstlisting}
 
 
 
 
 
-\section{Indikatorji razvoja drzav}
+\section{Podatki indikatorjev razvoja drzav}
 
 Programski vmesnik indikatorjev razvoja drzav Svetovne banke omogoca dostop
 do prek 16.000 raznih indikatorjev. Podatki indikatorjev so merjeni od leta
-1960 dalje. Ta vmesnik omogoca filtriranje po naslednjih poljih:
-
-- MRV (most rescent value) - nekaj zadnjih meritev
-- frequency - pogostost vzorcenja (letno, cetrtletno, mesecno)
-- gapfill - manjkajoce vrednosti prejsnjih meritev
-- date - datum ali obdobje
-- page - stran
-- per\_page - stevilo elementov na stran
+1960 dalje v mesecnem, cetrtletnem ali letnem intervalu. 
 
 
-
-
-
-% programski vsebuje filtre za
-% MRV = most rescent value
-% frequency 
-% gapfill
-% date
-% page
-% per\_page
-
+Za dostop do podatkov posameznega indikatorja, potrebujemo identifikator (id)
+indikatorja in kodo drzave ali regije. 
 
 
 \subsection{Opis programskega vmesnika indikatorjev}
+Seznam vseh indikatorjev z imeni, opisi, in identifikatorji lahko dobimo na 
+naslovu http://api.worldbank.org/indicators.
+
+\ \\
+Primer podatkov indikatorja "Poverty Headcount (\$2.50 a day)" (stopnja revscine
+pri dohodku 2,5 dolarja na dan) v obliki JSON.
+
+\begin{lstlisting}
+{
+    "id": "1.0.HCount.2.5usd",
+    "name": "Poverty Headcount (\$2.50 a day)",
+    "source": {
+        "id": "37",
+        "value": "LAC Equity Lab"
+    },
+    "sourceNote": "The poverty headcount index measures the proportion of the 
+                   population with daily per capita income (in 2005 PPP) below
+                   the poverty line.",
+    "sourceOrganization": "LAC Equity Lab tabulations of SEDLAC (CEDLAS and the
+                           World Bank).",
+    "topics": [
+        {
+            "id": "11",
+            "value": "Poverty "
+        }
+    ]
+}
+\end{lstlisting}
 
 
-Programsk vmesik za podatke o indikatorjih razvoja omogoca 
+\subsection{Opis programskega vmesnika drzav}
+Seznam kod drzav in regij se nahaja na naslovu 
+http://api.worldbank.org/countries.
+
+Primer
+
+\begin{lstlisting}
+{
+    "id": "ABW",
+    "iso2Code": "AW",
+    "name": "Aruba",
+    "region": {
+        "id": "LCN",
+        "value": "Latin America & Caribbean "
+    },
+    "adminregion": {
+        "id": "",
+        "value": ""
+    },
+    "incomeLevel": {
+        "id": "HIC",
+        "value": "High income"
+    },
+    "lendingType": {
+        "id": "LNX",
+        "value": "Not classified"
+    },
+    "capitalCity": "Oranjestad",
+    "longitude": "-70.0167",
+    "latitude": "12.5167"
+},
+\end{lstlisting}
+
+Kode drzav, ki jih lahko uporabimo v poizvedbah, ustrezajo standardu ISO 
+3166-1 \fnurl{http://www.iso.org/iso/country_codes.htm} 
+alpha-2 ali ISO 3166-1 alpha-3.
+Poleg tega gornji seznam drzav vsebuje tudi dodatne kode za agregate, kot so:
+- regije
+- skupine drzav po visini dohodka
+- nekatere izjeme drzav, kot je trenutno Kosovo.
+
 
 
 \subsection{Dostop do podatkov indikatorjev}
+Dostop do podatkov posameznega indikatorja je mogoc na naslovu
+http://api.worldbank.org/countries/<country\_list>/indicators/<indicator\_id>,
+kjer je:
 
-Dostop do podatkov je omogocen prek dostopne tocke
+- country\_list; z podpicjem locen seznam kod drzav, ki jih dobimo v polju "id"
+ali "iso2Code" v zgoraj opisanem seznamu drzav,
+- indicator\_id; identifikacijska koda (id) indikatorja.
 
-http://api.worldbank.org
 
-Tukaj najdemo vmesnike za iskanje indikatorjev (indicators), drzav in regij
-(countries), raven dohodka (Income level), vrsta posojila (lending type), tem
-(topic), virov (sources).
+Izsek podatkov:
+\begin{lstlisting}
+...
+{
+
+    "indicator": {
+        "id": "SP.POP.TOTL",
+        "value": "Population, total"
+    },
+    "country": {
+        "id": "IL",
+        "value": "Israel"
+    },
+    "value": "6289000",
+    "decimal": "0",
+    "date": "2000"
+},
+{
+    "indicator": {
+        "id": "SP.POP.TOTL",
+        "value": "Population, total"
+    },
+    "country": {
+        "id": "IT",
+        "value": "Italy"
+    },
+    "value": "56974100",
+    "decimal": "0",
+    "date": "2001"
+
+},
+...
+\end{lstlisting}
+
+
+Vmesnik indikatorjev SB omogoca poizvedbe z naslednjimi parametri:
+
+\begin{itemize}  
+\item MRV (most rescent value) - nekaj zadnjih meritev
+\item frequency - pogostost vzorcenja (letno, cetrtletno, mesecno)
+\item gapfill - manjkajoce vrednosti prejsnjih meritev
+\item date - datum ali obdobje
+\item page - stran
+\item per\_page - stevilo elementov na stran
+\end{itemize}
+
 
 
 
@@ -104,18 +224,31 @@ Tukaj najdemo vmesnike za iskanje indikatorjev (indicators), drzav in regij
 
 \section{Tezave pri dostopu}
 
-- posodobitve spletne strani ter podatkovnega vmesnika, 404 vecina strani.
 
-- Pomanjkljiva dokumentacija
-    - polje za datum je opisano vendar ni dokumentirano kaksne so vse mozne
-      vrednosti. 
+Tezave pri uporabi SB API-ja lahko razdelimo v dve skupini. Prva skupino
+sestavljajo tezave pri dokumentaciji in z manjkajocimi podatki, drugo pa
+napake v samih pridobljenih podatkih.
 
-- manjkajoci identifikatoriji za polja na nakljucnih indikatorjih.
-  primer (drzava ima le ime in prazno id polje)
-- datum vsebuje nakljucne vrednosti (last known value 2001 - 2015, 2040)
-- nedokumentira meja stevila izbranih lokacij 250
-- slabo definirano delovanje filtrov podatkov (mrv in date in fill)
-- Nemogoce ugotoviti ali ima indikator letne, cetrtlente ali mesecne vrednosti.
+Tezave prve skupine:
+
+- ob posodabljanju spletne strani SB se izgubijo posamezne povezave do 
+  primerov, dokumentacije in opisov API-ja,
+- nepopolna dokumentacija:
+  - polje za datum je opisano, vendar ni dokumentirano, kaksne so vse mozne 
+    vrednosti,
+  - delovanje polj za obdobje (date), zadnje vrednosti (mrv) in za mankjajoce
+    vrednosti (gapfill) ni ustrezno opisano.
+
+Tezave druge skupine:
+
+
+- manjkajoci identifikatoriji za polja na posameznih indikatorjih (primer je
+  manjkajoca vrednost v polju id drzave),
+- datum vsebuje nakljucne vrednosti ("last known value", "2001 - 2015", "2040"),
+- zgornja meja stevila izbranih lokacij na 250 ni navedena,
+- nemogoce je ugotoviti pogostost vzorcenja indikatorja (frequency).
+
+
 
 
 
