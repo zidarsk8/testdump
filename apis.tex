@@ -173,6 +173,11 @@ ali "iso2Code" v zgoraj opisanem seznamu drzav,
 - indicator\_id; identifikacijska koda (id) indikatorja.
 
 
+note: API omogoca dostop do podatkev vecih drzav hkrati. "svn;usa;..." ali pa
+z "all"
+
+
+
 Izsek podatkov:
 \begin{lstlisting}
 ...
@@ -220,10 +225,6 @@ Vmesnik indikatorjev SB omogoca poizvedbe z naslednjimi parametri:
 \end{itemize}
 
 
-
-
-
-
 \section{Tezave pri dostopu}
 
 
@@ -253,3 +254,54 @@ Tezave druge skupine:
 \item zgornja meja stevila izbranih lokacij na 250 ni navedena,
 \item nemogoce je ugotoviti pogostost vzorcenja indikatorja (frequency).
 \end{itemize}  
+
+
+
+
+
+
+
+\section{Podatki podnebnih meritev}
+
+Programski vmesnik SB za podnebne podatke, omogoca dostop do podatkov 
+napovednih modelov in zgodovinskih meritev meteoroloskih postaj. V tej 
+diplomski nalogi smo se odlocili uporabiti le podatke zgodovinskih meritev, 
+zato da lahko z njimi uporabnik programa Orange naredi svoje napovedne modele.
+
+Za razliko od uporabe programskega vmesnika indikatorjev, lahko pri tem
+programskem vmesniku uporabljamo veljavne ISO 3166-1 alpha-2 ali ISO 3166-1 
+alpha-3 kode drzav, ali pa stevilski identifikator (TODO link)vodotocnega 
+obmocja.
+
+Ta programski vmesnik nam omogoca dostop do podatkov o povprecnih temperaturah 
+in padavinah, v casovnih obdobjih enega leta, desetletja ali mesecna povprecja 
+skozi vsa leta meritev.
+
+
+
+\subsection{Dostop do podatkov podnebnih meritev}
+
+Dostop do podatkov podnebnih meritev je mogoc na naslovu
+http://climatedataapi.worldbank.org/climateweb/rest/v1/<loc\_type>/cru/<data\_type>/<interval>/<location>"  
+kjer je:
+
+- loc\_type; vrsta identifikatorja obmocja ("basin" za vodotocno obmocje, 
+  "country" za drzave),
+- data\_type; vrsta meritev ("pr" za padavine, "tas" za temperature),
+- interval; vrsta meritvenega obdobja ("month" za mesecno, "year" za letno in
+  "decade" za desetletno),
+- location; identifikator drzave ali vodotocnega obmocja.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
