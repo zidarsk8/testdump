@@ -9,9 +9,9 @@ Nasini podatki meritev in slike vesolja
 seznam knjig z ocenami in povezavami med uporabniki
 \fnurl{https://www.goodreads.com/api},
 zgodovina meteoroloskih meritev
-\footnote{\label{climate_api} \url{http://climatedataapi.worldbank.org/}},
+\footnote{\label{climate_api}\url{http://climatedataapi.worldbank.org/}},
 razni indikatorji stopnje razvoja drzav
-\footnote{\label{indicator_api} \url{http://api.worldbank.org/}}.
+\footnote{\label{indicator_api}\url{http://api.worldbank.org/}}.
 
 Pri nalogi smo se osredotocili na dva programska vmesnika za dostop podatkov 
 Svetovne banke, to sta zgodovina meteoroloskih meritev \ref{climate_api} in 
@@ -73,20 +73,27 @@ Te seznami metapodatkov so:
 \item viri podatkov in njihovi opisi (Catalog Source Queries
 	\fnurl{http://api.worldbank.org/sources}),
 \item seznam drzav in regij z identifikatorji (Country Queries
-	\footnote{\label{country_list} \url{http://api.worldbank.org/countries}}),
+	\footnote{\label{country_list}\url{http://api.worldbank.org/countries}}),
 \item razdelitev visin dohodkov z identifikatorji (Income Level Queries
 	\fnurl{http://api.worldbank.org/incomeLevels}),
 \item seznam vseh indikatorjev (Indicator Queries
-    \footnote{\label{indicators_list} 
-		\url{http://api.worldbank.org/indicators}}),
+    \footnote{\label{indicators_list}\url{http://api.worldbank.org/indicators}}),
 \item seznam tipov posojil (Lending Type Queries
 	\fnurl{http://api.worldbank.org/lendingTypes}),
 \item seznam tem (Topics \fnurl{http://api.worldbank.org/topics}).
 \end{itemize}
 
 
-Za dostop do podatkov posameznega indikatorja, potrebujemo identifikator (id)
-indikatorja in kodo drzave ali regije. 
+Za dostop do podatkov posameznega indikatorja, potrebujemo identifikator
+indikatorja s seznama vseh indikatorjev\textsuperscript{\ref{indicators_list}} in kodo ene ali vec
+drzav oziroma regij s seznama drzav\textsuperscript{\ref{country_list}}. Privzeta vrednost za
+kolicino podatkov na stran je 50, Zgornja meja pa ni strogo dolocena, vendar
+je odvisna od velikosti odgovora. Ugotovili smo tudi da se zanesljivost
+programskega vmesnika manjsa z vecjo kolicino podatkov na stran. V nasem 
+programu smo se omejili na 1000 podatkov na stran, ki se je izkazalo za 
+uporabno razmerje med hitrostjo in zanesljivostjo prenosa. Vsi seznami in 
+metapodatki, ki so na voljo s programskim vmesnikom indikatorjev razvoja imajo
+enako osnovno obliko (Primer \ref{basic_response}).
 
 
 \begin{snippet}
@@ -94,10 +101,10 @@ indikatorja in kodo drzave ali regije.
 \begin{lstlisting}
 [
     {
-        "page": 3,
-        "pages": 7,
-        "per_page": "50",
-        "total": 304
+    	"page": 4,
+		"pages": 137,
+		"per_page": "50",
+		"total": 6831
     },
     [
         {<podatki>},
@@ -106,6 +113,7 @@ indikatorja in kodo drzave ali regije.
 ]
 \end{lstlisting}
 \end{center}
+% http://api.worldbank.org/en/countries/all/indicators/16.1\_TRANS.ENERGY.INTENSITY?format=json\&page=4
 \caption{Osnovna oblika odgovora programskega vmesnika Svetovne banke v obliki
 JSON, ob veljavni poizvedbi. Prvi element opisuje kolicino dobljenih in vseh 
 podatkov, drugi element pa vsebuje s stranjo in stevilom podatkov na stran 
@@ -115,8 +123,13 @@ doloceni izsek celotnih podatkov.}
 
 
 
-\subsection{Opis programskega vmesnika indikatorjev}
-Seznam vseh indikatorjev z imeni, opisi, in identifikatorji lahko dobimo na 
+\subsection{Opis seznama indikatorjev}
+
+Programski vmesnik Svetovne banke za indikatorje razvoja nam ponuja seznam 
+vseh indikatorjev\textsuperscript{\ref{indicators_list}} z imeni, opisi, in 
+identifikatorji. Programski vmesnik nam omogoca presejanje podatkov glede na
+vir podatkove indikatorja (source)
+
 naslovu http://api.worldbank.org/indicators.
 
 \ \\
