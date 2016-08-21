@@ -9,13 +9,16 @@ Nasini podatki meritev in slike vesolja
 seznam knjig z ocenami in povezavami med uporabniki
 \fnurl{https://www.goodreads.com/api},
 zgodovina meteoroloskih meritev
-\fnurl{http://climatedataapi.worldbank.org/},
+\footnote{\label{climate_api} \url{http://climatedataapi.worldbank.org/}},
 razni indikatorji stopnje razvoja drzav
-\fnurl{http://api.worldbank.org/}.
-Pri nalogi smo se osredotocili na dva programska vmesnika za dostop podatkov 
-Svetovne banke, to sta zgodovina meteoroloskih meritev (4) in razni 
-indikatorji stopnje razvoja drzav (5).
+\footnote{\label{indicator_api} \url{http://api.worldbank.org/}}.
 
+Pri nalogi smo se osredotocili na dva programska vmesnika za dostop podatkov 
+Svetovne banke, to sta zgodovina meteoroloskih meritev \ref{climate_api} in 
+razni indikatorji stopnje razvoja drzav \ref{indicator_api}.
+Za podatkovno bazo Svetovno banko smo se odlocili, ker zdruzuje in na enovit
+nacin predstavi podatke iz vec razlicnih virov. Podatkovni viri za indikatorje
+stopnje razvoja drzav so:
 
 % 1 IUCN 2016. IUCN Red List of Threatened Species. Version 2016-1 <www.iucnredlist.org>
 % http://apiv3.iucnredlist.org/api/v3/docs
@@ -29,9 +32,6 @@ indikatorji stopnje razvoja drzav (5).
 % 5 http://api.worldbank.org/
 
 
-Za podatkovno bazo Svetovno banko smo se odlocili, ker zdruzuje in na enovit
-nacin predstavi podatke iz vec razlicnih virov. Podatkovni viri za indikatorje
-stopnje razvoja drzav so:
 
 \begin{itemize}  
 \item World Development Indicators, 
@@ -50,43 +50,69 @@ Podatkovni viri za klimatske meritve so pridobljeni s svetovnih meteoroloskih
 postaj.
 
 
-Dostop do podatkov je omogocen prek vmesnika REST, ki ponuja veliko moznosti 
-za iskanje in presejanje rezultatov. 
-
-
-Note: vse zahteve so omejene s kolicino podatkov na stran in za dostop do vseh
-se moramo sami sprehoditi cez vse strani.
-
-format zahtev:
-
-\begin{lstlisting}
-[
-
-    {
-        "page": 1,
-        "pages": 7,
-        "per\_page": "50",
-        "total": 304
-    },
-    [
-        {<podatki>}
-	]
-]
-\end{lstlisting}
-
-
+Svetovna banka omogoca dostop do podatkov je prek vmesnika REST, ki ponuja 
+veliko moznosti za iskanje in presejanje rezultatov. Pri vsaki REST poizvedbi
+lahko dolocimo zeljeno obliko odgovora. Za poizvedbe o informacijah 
+indikatorjev sta na voljo obliki XML in JSON. Programski vmesnik meteoroloskih
+meritev pa ponuja samo obliko JSON. Za konsistentnost in lazjo berljivost smo
+na obeh vmesnikih uporabili obliko JSON. 
 
 
 
 \section{Podatki indikatorjev razvoja drzav}
 
+
+
 Programski vmesnik indikatorjev razvoja drzav Svetovne banke omogoca dostop
-do prek 16.000 raznih indikatorjev. Podatki indikatorjev so merjeni od leta
-1960 dalje v mesecnem, cetrtletnem ali letnem intervalu. 
+do podatkov od prek 16.000 raznih indikatorjev. Podatki indikatorjev so merjeni
+od leta 1960 dalje v mesecnem, cetrtletnem ali letnem intervalu. Poleg podatkov
+indikatorjev nam ta programski vmesni omogoca tudi dostop do vecine
+metapodatkov s katerimi lahko presejamo in natancneje dolocimon naso poizvedbo.
+Te seznami metapodatkov so:
+\begin{itemize}
+\item viri podatkov in njihovi opisi (Catalog Source Queries
+	\fnurl{http://api.worldbank.org/sources}),
+\item seznam drzav in regij z identifikatorji (Country Queries
+	\footnote{\label{country_list} \url{http://api.worldbank.org/countries}}),
+\item razdelitev visin dohodkov z identifikatorji (Income Level Queries
+	\fnurl{http://api.worldbank.org/incomeLevels}),
+\item seznam vseh indikatorjev (Indicator Queries
+    \footnote{\label{indicators_list} 
+		\url{http://api.worldbank.org/indicators}}),
+\item seznam tipov posojil (Lending Type Queries
+	\fnurl{http://api.worldbank.org/lendingTypes}),
+\item seznam tem (Topics \fnurl{http://api.worldbank.org/topics}).
+\end{itemize}
 
 
 Za dostop do podatkov posameznega indikatorja, potrebujemo identifikator (id)
 indikatorja in kodo drzave ali regije. 
+
+
+\begin{snippet}
+\begin{center}
+\begin{lstlisting}
+[
+    {
+        "page": 3,
+        "pages": 7,
+        "per_page": "50",
+        "total": 304
+    },
+    [
+        {<podatki>},
+        ...
+    ]
+]
+\end{lstlisting}
+\end{center}
+\caption{Osnovna oblika odgovora programskega vmesnika Svetovne banke v obliki
+JSON, ob veljavni poizvedbi. Prvi element opisuje kolicino dobljenih in vseh 
+podatkov, drugi element pa vsebuje s stranjo in stevilom podatkov na stran 
+doloceni izsek celotnih podatkov.}
+\label{basic_response}
+\end{snippet} 
+
 
 
 \subsection{Opis programskega vmesnika indikatorjev}
@@ -94,9 +120,11 @@ Seznam vseh indikatorjev z imeni, opisi, in identifikatorji lahko dobimo na
 naslovu http://api.worldbank.org/indicators.
 
 \ \\
-Primer podatkov indikatorja "Poverty Headcount (\$2.50 a day)" (stopnja revscine
-pri dohodku 2,5 dolarja na dan) v obliki JSON.
+Primer 
 
+
+\begin{snippet}
+\begin{center}
 \begin{lstlisting}
 {
     "id": "1.0.HCount.2.5usd",
@@ -105,10 +133,12 @@ pri dohodku 2,5 dolarja na dan) v obliki JSON.
         "id": "37",
         "value": "LAC Equity Lab"
     },
-    "sourceNote": "The poverty headcount index measures the proportion of the 
-                   population with daily per capita income (in 2005 PPP) below
-                   the poverty line.",
-    "sourceOrganization": "LAC Equity Lab tabulations of SEDLAC (CEDLAS and the
+    "sourceNote": "The poverty headcount index measures 
+                   the proportion of the population
+                   with daily per capita income (in 
+                   2005 PPP) below the poverty line.",
+    "sourceOrganization": "LAC Equity Lab tabulations
+                           of SEDLAC (CEDLAS and the
                            World Bank).",
     "topics": [
         {
@@ -118,6 +148,12 @@ pri dohodku 2,5 dolarja na dan) v obliki JSON.
     ]
 }
 \end{lstlisting}
+\end{center}
+\caption{Podatki indikatorja stopnja revscine pri dohodku 2,5 dolarja na dan
+("Poverty Headcount (\$2.50 a day)") v obliki JSON.}
+\label{indicator_response}
+\end{snippet} 
+
 
 
 \subsection{Opis programskega vmesnika drzav}
@@ -126,6 +162,8 @@ http://api.worldbank.org/countries.
 
 Primer
 
+\begin{snippet}
+\begin{center}
 \begin{lstlisting}
 {
     "id": "ABW",
@@ -152,6 +190,12 @@ Primer
     "latitude": "12.5167"
 },
 \end{lstlisting}
+\end{center}
+\caption[some]{Izsek podatkov veljavne poizvedbe  drzav v obliki JSON.
+}
+
+\label{country_response}
+\end{snippet} 
 
 Kode drzav, ki jih lahko uporabimo v poizvedbah, ustrezajo standardu ISO 
 3166-1 \fnurl{http://www.iso.org/iso/country_codes.htm} 
@@ -177,12 +221,10 @@ note: API omogoca dostop do podatkev vecih drzav hkrati. "svn;usa;..." ali pa
 z "all"
 
 
-
-Izsek podatkov:
+\begin{snippet}
+\begin{center}
 \begin{lstlisting}
-...
 {
-
     "indicator": {
         "id": "SP.POP.TOTL",
         "value": "Population, total"
@@ -194,23 +236,13 @@ Izsek podatkov:
     "value": "6289000",
     "decimal": "0",
     "date": "2000"
-},
-{
-    "indicator": {
-        "id": "SP.POP.TOTL",
-        "value": "Population, total"
-    },
-    "country": {
-        "id": "IT",
-        "value": "Italy"
-    },
-    "value": "56974100",
-    "decimal": "0",
-    "date": "2001"
-
-},
-...
+}
 \end{lstlisting}
+\end{center}
+\caption{Podatki za indikator SP.POP.TOTL (populacija drzave) za Izrael leta
+2000.}
+\label{country_response}
+\end{snippet} 
 
 
 Vmesnik indikatorjev SB omogoca poizvedbe z naslednjimi parametri:
