@@ -114,8 +114,7 @@ enako osnovno obliko (Primer \ref{basic_response}).
 \end{lstlisting}
 \end{center}
 % http://api.worldbank.org/en/countries/all/indicators/16.1\_TRANS.ENERGY.INTENSITY?format=json\&page=4
-\caption{Osnovna oblika odgovora programskega vmesnika Svetovne banke v obliki
-JSON, ob veljavni poizvedbi. Prvi element opisuje kolicino dobljenih in vseh 
+\caption{Osnovna oblika odgovora programskega vmesnika Svetovne banke, ob veljavni poizvedbi. Prvi element opisuje kolicino dobljenih in vseh 
 podatkov, drugi element pa vsebuje s stranjo in stevilom podatkov na stran 
 doloceni izsek celotnih podatkov.}
 \label{basic_response}
@@ -126,15 +125,10 @@ doloceni izsek celotnih podatkov.}
 \subsection{Opis seznama indikatorjev}
 
 Programski vmesnik Svetovne banke za indikatorje razvoja nam ponuja seznam 
-vseh indikatorjev\textsuperscript{\ref{indicators_list}} z imeni, opisi, in 
-identifikatorji (Primer \ref{indicator_response}). Programski vmesnik nam tudi
-omogoca presejanje podatkov glede na vir podatkove indikatorja (source).
-
-naslovu http://api.worldbank.org/indicators.
-
-\ \\
-Primer 
-
+vseh indikatorjev\textsuperscript{\ref{indicators_list}} z imeni, opisi, 
+identifikatorji in drugimi metapodatki (Primer \ref{indicator_response}).
+Programski vmesnik nam tudi omogoca presejanje podatkov glede na vir podatkov
+indikatorja (source).
 
 \begin{snippet}
 \begin{center}
@@ -162,18 +156,28 @@ Primer
 }
 \end{lstlisting}
 \end{center}
-\caption{Podatki indikatorja stopnja revscine pri dohodku 2,5 dolarja na dan v 
-obliki JSON.}
+\caption{Podatki indikatorja stopnja revscine pri dohodku 2,5 dolarja na dan.}
 \label{indicator_response}
 \end{snippet} 
 
+\subsection{Opis seznama drzav}
 
+Seznam drzav\textsuperscript{\ref{country_list}}  na programskem vmesniku SB 
+vsebuje podatke o imenih, opisih, ISO-3166-1 alpha kodah, regijah in druge 
+metapodatke (Primer \ref{country_response}). Seznam drzav lahko presejamo po
+naslednjih poljih:
+\begin{itemize}
+\item id - koda,
+\item region - regija,
+\item incomeLevel - visina dohodka,
+\item lendingType - tipov posoji (preveri prevod???).
+\end{itemize}
 
-\subsection{Opis programskega vmesnika drzav}
-Seznam kod drzav in regij se nahaja na naslovu 
-http://api.worldbank.org/countries.
-
-Primer
+Ta seznam ne vsebuje zgolj samo drzav, ampak tudi regije in skupine drzav, 
+zdruzenih glede na razlicne kriterije (visine dohodka, velikost, stopnja
+razvoja). Poleg tega gornji seznam vsebuje tudi nekatere izjeme kot je trenutno
+Kosovo. V nadaljevanju bomo za vse nastete tipe lokacijskih podatkov
+uporabljali besedo "drzave".
 
 \begin{snippet}
 \begin{center}
@@ -204,34 +208,43 @@ Primer
 },
 \end{lstlisting}
 \end{center}
-\caption[some]{Izsek podatkov veljavne poizvedbe  drzav v obliki JSON.
-}
-
+\caption[some]{Izsek podatkov veljavne poizvedbe drzav.}
 \label{country_response}
 \end{snippet} 
 
-Kode drzav, ki jih lahko uporabimo v poizvedbah, ustrezajo standardu ISO 
-3166-1 \fnurl{http://www.iso.org/iso/country_codes.htm} 
-alpha-2 ali ISO 3166-1 alpha-3.
-Poleg tega gornji seznam drzav vsebuje tudi dodatne kode za agregate, kot so:
-- regije
-- skupine drzav po visini dohodka
-- nekatere izjeme drzav, kot je trenutno Kosovo.
-
-
 
 \subsection{Dostop do podatkov indikatorjev}
-Dostop do podatkov posameznega indikatorja je mogoc na naslovu
+
+
+Za pridobivanje podatkov indikatorjev se uporablja dostopna tocka
 http://api.worldbank.org/countries/<country\_list>/indicators/<indicator\_id>,
 kjer je:
 
-- country\_list; z podpicjem locen seznam kod drzav, ki jih dobimo v polju "id"
-ali "iso2Code" v zgoraj opisanem seznamu drzav,
-- indicator\_id; identifikacijska koda (id) indikatorja.
 
+\begin{itemize}
+\item country\_list; z podpicjem locen seznam kod izbranih drzav, ki jih 
+	  preberemo iz polja "id" ali "iso2Code" \ref{country_response}, ali pa 
+      kljucna beseda "all",
+\item indicator\_id; polje "id" indikatorja \ref{idicators_response} s seznama
+      indikatorjev.
+\end{itemize}
 
-note: API omogoca dostop do podatkev vecih drzav hkrati. "svn;usa;..." ali pa
-z "all"
+API omogoca ze z eno samo poizvedbo dostop do podatkev ene drzave, vec izbranih 
+drzav hkrati ali pa do podatkov vseh drzav dostopamo s kljucno besedo "all".
+Slabost API-ja SB je v tem, da ne moreme z eno poizvedbo dostopati do podatkov
+vec indikatorjev hkrati. Podatke lahko presejamo po naslednjih poljih:
+\begin{itemize}  
+\item MRV (most rescent value) - stevilo zadnjih meritev
+\item frequency - pogostost vzorcenja (letno, cetrtletno, mesecno)
+\item gapfill - manjkajoce vrednosti prejsnjih meritev
+\item date - datum ali obdobje
+\item page - stran
+\item per\_page - stevilo elementov na stran
+\end{itemize}
+
+Privzeto bo programski vmesnik vrnil podatke za vse mozne casovne 
+vrednosti. V odgovoru API-ja dobimo seznam objektov (Primer
+\ref{dataset_response}) z datumom, indikatorjem, drzavo in vrednostjo.
 
 
 \begin{snippet}
@@ -254,61 +267,13 @@ z "all"
 \end{center}
 \caption{Podatki za indikator SP.POP.TOTL (populacija drzave) za Izrael leta
 2000.}
-\label{country_response}
+\label{dataset_response}
 \end{snippet} 
-
-
-Vmesnik indikatorjev SB omogoca poizvedbe z naslednjimi parametri:
-
-\begin{itemize}  
-\item MRV (most rescent value) - nekaj zadnjih meritev
-\item frequency - pogostost vzorcenja (letno, cetrtletno, mesecno)
-\item gapfill - manjkajoce vrednosti prejsnjih meritev
-\item date - datum ali obdobje
-\item page - stran
-\item per\_page - stevilo elementov na stran
-\end{itemize}
-
-
-\section{Tezave pri dostopu}
-
-
-Tezave pri uporabi SB API-ja lahko razdelimo v dve skupini. Prva skupino
-sestavljajo tezave pri dokumentaciji in z manjkajocimi podatki, drugo pa
-napake v samih pridobljenih podatkih.
-
-Tezave prve skupine:
-
-\begin{itemize}  
-\item ob posodabljanju spletne strani SB se izgubijo posamezne povezave do 
-  primerov, dokumentacije in opisov API-ja,
-\item nepopolna dokumentacija:
-\subitem polje za datum je opisano, vendar ni dokumentirano, kaksne so vse mozne 
-    vrednosti,
-\subitem delovanje polj za obdobje (date), zadnje vrednosti (mrv) in za mankjajoce
-    vrednosti (gapfill) ni ustrezno opisano.
-\end{itemize}  
-
-Tezave druge skupine:
-
-
-\begin{itemize}  
-\item manjkajoci identifikatoriji za polja na posameznih indikatorjih (primer je
-  manjkajoca vrednost v polju id drzave),
-\item datum vsebuje nakljucne vrednosti ("last known value", "2001 - 2015", "2040"),
-\item zgornja meja stevila izbranih lokacij na 250 ni navedena,
-\item nemogoce je ugotoviti pogostost vzorcenja indikatorja (frequency).
-\end{itemize}  
-
-
-
-
-
 
 
 \section{Podatki podnebnih meritev}
 
-Programski vmesnik SB za podnebne podatke, omogoca dostop do podatkov 
+Programski vmesnik SB za podnebne podatke omogoca dostop do podatkov 
 napovednih modelov in zgodovinskih meritev meteoroloskih postaj. V tej 
 diplomski nalogi smo se odlocili uporabiti le podatke zgodovinskih meritev, 
 zato da lahko z njimi uporabnik programa Orange naredi svoje napovedne modele.
@@ -321,7 +286,6 @@ obmocja.
 Ta programski vmesnik nam omogoca dostop do podatkov o povprecnih temperaturah 
 in padavinah, v casovnih obdobjih enega leta, desetletja ali mesecna povprecja 
 skozi vsa leta meritev.
-
 
 
 \subsection{Dostop do podatkov podnebnih meritev}
@@ -360,6 +324,42 @@ http://climatedataapi.worldbank.org/climateweb/rest/v1/country/cru/pr/month/SVN
 
 
 
+
+
+
+
+
+
+
+\section{Tezave pri dostopu}
+
+
+Tezave pri uporabi SB API-ja lahko razdelimo v dve skupini. Prva skupino
+sestavljajo tezave pri dokumentaciji in z manjkajocimi podatki, drugo pa
+napake v samih pridobljenih podatkih.
+
+Tezave prve skupine:
+
+\begin{itemize}  
+\item ob posodabljanju spletne strani SB se izgubijo posamezne povezave do 
+  primerov, dokumentacije in opisov API-ja,
+\item nepopolna dokumentacija:
+\subitem polje za datum je opisano, vendar ni dokumentirano, kaksne so vse mozne 
+    vrednosti,
+\subitem delovanje polj za obdobje (date), zadnje vrednosti (mrv) in za mankjajoce
+    vrednosti (gapfill) ni ustrezno opisano.
+\end{itemize}  
+
+Tezave druge skupine:
+
+
+\begin{itemize}  
+\item manjkajoci identifikatoriji za polja na posameznih indikatorjih (primer je
+  manjkajoca vrednost v polju id drzave),
+\item datum vsebuje nakljucne vrednosti ("last known value", "2001 - 2015", "2040"),
+\item zgornja meja stevila izbranih lokacij na 250 ni navedena,
+\item nemogoce je ugotoviti pogostost vzorcenja indikatorja (frequency).
+\end{itemize}  
 
 
 
