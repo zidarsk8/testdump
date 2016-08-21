@@ -162,22 +162,22 @@ indikatorja (source).
 
 \subsection{Opis seznama drzav}
 
-Seznam drzav\textsuperscript{\ref{country_list}}  na programskem vmesniku SB 
-vsebuje podatke o imenih, opisih, ISO-3166-1 alpha kodah, regijah in druge 
-metapodatke (Primer \ref{country_response}). Seznam drzav lahko presejamo po
-naslednjih poljih:
-\begin{itemize}
-\item id - koda,
-\item region - regija,
-\item incomeLevel - visina dohodka,
-\item lendingType - tipov posoji (preveri prevod???).
-\end{itemize}
+Seznam drzav\textsuperscript{\ref{country_list}}  na programskem vmesniku 
+Svetovne banke vsebuje podatke o imenih, opisih, ISO-3166-1 alpha kodah, 
+regijah in druge metapodatke (Primer \ref{country_response}). Programski
+vmesnik nam tudi omogoca presejanje seznama drzav po naslednjih poljih:
+\begin{description}
+\item [id] koda,
+\item [region] regija,
+\item [incomeLevel] visina dohodka,
+\item [lendingType] tipov posoji (preveri prevod???).
+\end{description}
 
 Ta seznam ne vsebuje zgolj samo drzav, ampak tudi regije in skupine drzav, 
 zdruzenih glede na razlicne kriterije (visine dohodka, velikost, stopnja
 razvoja). Poleg tega gornji seznam vsebuje tudi nekatere izjeme kot je trenutno
 Kosovo. V nadaljevanju bomo za vse nastete tipe lokacijskih podatkov
-uporabljali besedo "drzave".
+uporabljali besedo ``drzave''
 
 \begin{snippet}
 \begin{center}
@@ -223,14 +223,14 @@ kjer je:
 
 \begin{itemize}
 \item country\_list; z podpicjem locen seznam kod izbranih drzav, ki jih 
-	  preberemo iz polja "id" ali "iso2Code" \ref{country_response}, ali pa 
-      kljucna beseda "all",
-\item indicator\_id; polje "id" indikatorja \ref{idicators_response} s seznama
+	  preberemo iz polja ``id'' ali ``iso2Code'' \ref{country_response}, ali pa 
+      kljucna beseda ``all''
+\item indicator\_id; polje ``id'' indikatorja \ref{idicators_response} s seznama
       indikatorjev.
 \end{itemize}
 
 API omogoca ze z eno samo poizvedbo dostop do podatkev ene drzave, vec izbranih 
-drzav hkrati ali pa do podatkov vseh drzav dostopamo s kljucno besedo "all".
+drzav hkrati ali pa do podatkov vseh drzav dostopamo s kljucno besedo ``all''
 Slabost API-ja SB je v tem, da ne moreme z eno poizvedbo dostopati do podatkov
 vec indikatorjev hkrati. Podatke lahko presejamo po naslednjih poljih:
 \begin{itemize}  
@@ -273,14 +273,15 @@ vrednosti. V odgovoru API-ja dobimo seznam objektov (Primer
 
 \section{Podatki podnebnih meritev}
 
-Programski vmesnik SB za podnebne podatke omogoca dostop do podatkov 
-napovednih modelov in zgodovinskih meritev meteoroloskih postaj. V tej 
-diplomski nalogi smo se odlocili uporabiti le podatke zgodovinskih meritev, 
-zato da lahko z njimi uporabnik programa Orange naredi svoje napovedne modele.
+Programski vmesnik Svetovne banke za podnebne podatke omogoca dostop do 
+podatkov napovednih modelov in zgodovinskih meritev meteoroloskih postaj. V tej 
+diplomski nalogi smo se odlocili uporabiti samo podatke zgodovinskih meritev, 
+saj si z temi podatki lahko uporabnik programa Orange sam sestavi svoje 
+napovedne modele.
 
 Za razliko od uporabe programskega vmesnika indikatorjev, lahko pri tem
 programskem vmesniku uporabljamo veljavne ISO 3166-1 alpha-2 ali ISO 3166-1 
-alpha-3 kode drzav, ali pa stevilski identifikator (TODO link)vodotocnega 
+alpha-3 kode drzav, ali pa stevilski identifikator (TODO link) vodotocnega 
 obmocja.
 
 Ta programski vmesnik nam omogoca dostop do podatkov o povprecnih temperaturah 
@@ -290,16 +291,18 @@ skozi vsa leta meritev.
 
 \subsection{Dostop do podatkov podnebnih meritev}
 
-Dostop do podatkov podnebnih meritev je mogoc na naslovu
-http://climatedataapi.worldbank.org/climateweb/rest/v1/<loc\_type>/cru/<data\_type>/<interval>/<location>"  
+Dostop do podatkov podnebnih meritev je mogoc na naslovu \\
+http://climatedataapi.worldbank.org/climateweb/rest/\\
+v1/\textbf{loc\_type}/cru/\textbf{data\_type}/\textbf{interval}/\textbf{location}\\
 kjer je:
-
-- loc\_type; vrsta identifikatorja obmocja ("basin" za vodotocno obmocje, 
-  "country" za drzave),
-- data\_type; vrsta meritev ("pr" za padavine, "tas" za temperature),
-- interval; vrsta meritvenega obdobja ("month" za mesecno, "year" za letno in
-  "decade" za desetletno),
-- location; identifikator drzave ali vodotocnega obmocja.
+\begin{description}
+\item [loc\_type] vrsta identifikatorja obmocja (``basin'' za vodotocno obmocje, 
+  ``country'' za drzave),
+\item [data\_type] vrsta meritev (``pr'' za padavine, ``tas'' za temperature),
+\item [interval] vrsta meritvenega obdobja (``month'' za mesecno, ``year'' za letno in
+  ``decade'' za desetletno),
+\item [location] identifikator drzave ali vodotocnega obmocja.
+\end{description}
 
 
 Izsek podatkov (primer za mesecno povprecje kolicine padavin za Slovenijo):
@@ -356,7 +359,7 @@ Tezave druge skupine:
 \begin{itemize}  
 \item manjkajoci identifikatoriji za polja na posameznih indikatorjih (primer je
   manjkajoca vrednost v polju id drzave),
-\item datum vsebuje nakljucne vrednosti ("last known value", "2001 - 2015", "2040"),
+\item datum vsebuje nakljucne vrednosti (``last known value'' ``2001 - 2015'' ``2040''
 \item zgornja meja stevila izbranih lokacij na 250 ni navedena,
 \item nemogoce je ugotoviti pogostost vzorcenja indikatorja (frequency).
 \end{itemize}  
