@@ -1,54 +1,82 @@
+
 \chapter{Knjiznica in gradniki za Orange}
 
 V okviru diplomske naloge smo razvili tri locene komponente za programerje in
-koncne uporabnike. Prva komponenta je programska knjiznica simple\_wbd, ki
+koncne uporabnike programa Orange. 
+
+Prva komponenta je programska knjiznica simple\_wbd, ki
 omogoca enostaven dostop do programskega vmesnika indikatorjev in klimatskih
-podatkov Svetovne banke. Ta knjiznica je narejena s cim manj odvisnosti
-(dependencies, requirements?) in je namenjena splosni uporabi v python
-programih. Poudarek na knjiznici simple\_wbd je predvsevm enostavnost 
-razsiritve in zanesljivost. Drugi sestavni del, je razsiritev knjiznice
-simple\_wbd s funkcionalnostmi potrebnimi za lazje delo v programu Orange.
-To predvsem zavzema pretvorbo pridobljenih podatkov v Orange in numpy tabele.
-Ta sklop je namenjen skriptnemu delu s programom Orange in je dostopen kot
-api\_wrapper python modul. Tretji sestavni del pa je graficni vmesnik za
-uporabo api\_wrapper modula. Namen graficnega vmesnika je omogociti ne
-programerjem dostop do podatkov programskega vmesnika Svetovne banke znotraj
-programa za analizo in ... .
+podatkov Svetovne banke. Ta knjiznica je narejena s cim manj odvisnosti in je 
+namenjena splosni uporabi v python programih. Poudarka pri zasnovi knjiznice 
+simple\_wbd sta predvsem enostavnost razsiritve in zanesljivost. Ta cilja
+dosezemo z mehanizmom za vkljucevanje lastne kode v komponente knjiznice
+in mehanizmi za popravljanje ali odstranjevanje pokvarjenih podatkov.
+
+Drugi sestavni del je razsiritev knjiznice simple\_wbd s funkcionalnostmi, 
+potrebnimi za lazje delo v programu Orange. To predvsem zavzema pretvorbo
+pridobljenih podatkov v Orange in numpy tabele. Ta sklop je namenjen skriptnemu
+delu s programom Orange in je dostopen kot api\_wrapper python modul. 
+
+Tretji sestavni del je graficni vmesnik za uporabo api\_wrapper modula. Namen
+graficnega vmesnika je omogociti ne-programerjem dostop do podatkov 
+programskega vmesnika Svetovne banke znotraj programa Orange za namen obdelave,
+analize in iskanja zakonitosti med podatki.
 
 \section{Knjiznica simple\_wbd}
 
-Simple\_wbd je knjiznica, ki programerjem olajsa dostop do podatkov
-programskega vmesnika svetovne banke. Glavna lastnost te knjiznice je
-zdruzevanje vecjega stevila zahtev po podatkih, in enostavna predstavitev
-dobljenih podatkov. Druga lastnost je pretvorba podatkov iz vec dimenzij, v
-dvo-dimenzionalno polje, ki je primerno za uporabo v programu Orange. Dva
-glavna vmesnika te knjiznice sta IndicatorAPI in ClimateAPI. Prvi omogoca
-pridobivanje podatkov z indikator programskega vmesnika Svetovne banke, drugi
-pa s climate programskega vmesnika.
+Knjiznica simple\_wbd programerjem olajsa dostop do podatkov programskega 
+vmesnika Svetovne banke. Glavna lastnost te knjiznice je zdruzevanje vecjega 
+stevila zahtev po podatkih in enostavna predstavitev dobljenih podatkov. 
+Druga lastnost je pretvorba podatkov iz vec dimenzij v dvo-dimenzionalno polje,
+primerno za uporabo v programu Orange. Glavna vmesnika te knjiznice sta 
+IndicatorAPI in ClimateAPI. Prvi omogoca pridobivanje podatkov iz programskega 
+vmesnika indikatorjev Svetovne banke, drugi pa s programskega vmesnika
+podnebnih meritev.
+
+
+%% % moznost razsiritve z dedovanjem dataset razreda.
+%% % 
+%% 
+%% - omogoca pridobivanje vrednosti za filtre:
+%%     - indicator api: drzave in agregati, indikatorji
+%%     - climate api: drzave, tipi podatkov, meritveno obdobje 
+%% 
+%% - Zahteva za podatke vraca dataset objekt ki ponuja surove podatke, ali pa eno
+%%   drugo obliko. 2D array ali pa dict.
+%% 
+%% - Dataset razred lahko tudi poljubno razsirimo.
 
 
 
-
-% moznost razsiritve z dedovanjem dataset razreda.
-% 
-
-- omogoca pridobivanje vrednosti za filtre:
-    - indicator api: drzave in agregati, indikatorji
-    - climate api: drzave, tipi podatkov, meritveno obdobje 
-
-- Zahteva za podatke vraca dataset objekt ki ponuja surove podatke, ali pa eno
-  drugo obliko. 2D array ali pa dict.
-
-- Dataset razred lahko tudi poljubno razsirimo.
-
-
-
-\subsection{Pomcnik IndicatorAPI}
+\subsection{Pomocnik IndicatorAPI}
 
 IndicatorAPI je razred namenjen pridobivanju podatkov indikatorjev razvoja.
-Vrednosti teh podatkov so (dolocene/ oznake s katerimi lahko do vrednosti
-dostopamo) z drzavo, casovno komponento, in imenom indikatorja. Te podatke
-lahko predstavimo na dva glavna nacina:
+Ker ima programski vmesnik Svetovne banke omejitev koliko podatkov lahko
+prenesemo z eno poizvedbo, nam ta razred zdruzuje rezultate vseh poizvedb, ki
+so potrebne za prenos celotne zahteve. To poskrbi tako da se po prvi poizvedbi
+sprehodi cez stevilo preostalih strani (ref na basic response) ki so na voljo. 
+
+Poleg tega da skrbi za prenos vseh strani podatkov, tudi belezi stevilo 
+narejenih in stevilo potrebnih poizvedb za celoten prenos. Do teh stevil lahko
+dostopamo z drugih niti in jih uporabimo za prikaz napredka in preostalega
+casa do prenosa celotne zahteve.
+
+Glavne metode ki jih ponuja IndicatorAPI razred so:
+
+\begin{itemize}  
+\item get\_indicators - vrne seznam vseh moznih indikatorjev z imeni, opisi in
+      identifikatorji,
+\item get\_countries - vrne seznam drzav in regij z kodami in metapodatki,
+\item get\_dataset - vrne razred (IndicatorDataset) ki vsebuje vse podatke z 
+      poizvedbe in metode za oblikovanje predstavitve podatkov: api\_responses,
+      as\_list, as\_dict.
+\end{itemize}
+
+
+
+
+Vrednosti teh podatkov so dolocene z drzavo, casovno komponento, in
+identifikatorjem indikatorja. Te podatke lahko predstavimo na dva glavna nacina:
 
  - kot gnezdeni slovar, kjer je na prvem nivoju ime indikatorja, na drugem
    drzava, in na tretjem nivoju casovna komponenta.
@@ -58,6 +86,8 @@ lahko predstavimo na dva glavna nacina:
    - vrstice = drzava, stolpci = cas x indikator
    - vrstice = cas, stolpci = drzava x indikator
 
+
+Indicator
 
 
 
@@ -102,6 +132,7 @@ IndicatorAPI je
 razsiritev simple wbd vmesnikov z dedovanjem pravega dataset razreda.
 
 \begin{verbatim}
+
 class ClimateDataset(simple_wbd.ClimateDataset):
     
     def as_numpy(self):
