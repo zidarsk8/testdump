@@ -55,6 +55,12 @@ Ker ima programski vmesnik Svetovne banke omejitev koliko podatkov lahko
 prenesemo z eno poizvedbo, nam ta razred zdruzuje rezultate vseh poizvedb, ki
 so potrebne za prenos celotne zahteve. To poskrbi tako da se po prvi poizvedbi
 sprehodi cez stevilo preostalih strani (ref na basic response) ki so na voljo. 
+Za razliko od obstojecih knjiznic\fnurl{https://pypi.python.org/pypi/wbdata}
+\fnurl{https://pypi.python.org/pypi/wbpy/2.0.1} za delo z programskim vmesnikom
+Svetovne banke, katerih cilj je cim bolj natancno predstaviti programski 
+vmesnik, je cilj nase knjiznice le poenostaviti poizvedbe. V ta namen smo s to
+knjiznico razsirili programski vmesnik da lahko z enim klicem funkcije 
+prenesemo podatke tudi vec kot le enega indikatorja.
 
 Poleg tega da skrbi za prenos vseh strani podatkov, tudi belezi stevilo 
 narejenih in stevilo potrebnih poizvedb za celoten prenos. Do teh stevil lahko
@@ -63,20 +69,29 @@ casa do prenosa celotne zahteve.
 
 Glavne metode ki jih ponuja IndicatorAPI razred so:
 
-\begin{itemize}  
-\item get\_indicators - vrne seznam vseh moznih indikatorjev z imeni, opisi in
+\begin{description}  
+\item [get\_indicators] vrne seznam vseh moznih indikatorjev z imeni, opisi in
       identifikatorji,
-\item get\_countries - vrne seznam drzav in regij z kodami in metapodatki,
-\item get\_dataset - vrne razred (IndicatorDataset) ki vsebuje vse podatke z 
+\item [get\_countries] vrne seznam drzav in regij z kodami in metapodatki,
+\item [get\_dataset] vrne razred (IndicatorDataset) ki vsebuje vse podatke z 
       poizvedbe in metode za oblikovanje predstavitve podatkov: api\_responses,
       as\_list, as\_dict.
-\end{itemize}
+\end{description}
 
 
 
+\subsubsection{Razred IndicatorDataset}
 
-Vrednosti teh podatkov so dolocene z drzavo, casovno komponento, in
-identifikatorjem indikatorja. Te podatke lahko predstavimo na dva glavna nacina:
+Razred IndikatorDataset je osnovni razred v katerem dobimo zahtevane podatke
+indikatorjev. Ta razred vsebuje vse potrebne metode in podatke za predstavitev
+rezultatov programskega vmesnika, na dva glavna nacina; kot slovar slovarjev in
+dvo dimenzionalen seznam. Poleg omenjenih nacinov predstavitve podatkov lahko
+dostopamo tudi do neobdelanih podatkov prejetih z programskega vmesnika za
+vsako poizvedbo posebej.
+
+
+Posamezne vrednosti teh podatkov so dolocene z drzavo, casovno komponento, in
+kodo indikatorja. Te podatke lahko predstavimo na dva glavna nacina:
 
  - kot gnezdeni slovar, kjer je na prvem nivoju ime indikatorja, na drugem
    drzava, in na tretjem nivoju casovna komponenta.
