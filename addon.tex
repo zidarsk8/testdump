@@ -1,34 +1,35 @@
 
-\chapter{Knjiznica in gradniki za Orange}
+\chapter{Knji"znica in gradniki za Orange}
 
-V okviru diplomske naloge smo razvili tri locene komponente za programerje in
-koncne uporabnike programa Orange. 
+V okviru diplomske naloge smo razvili tri lo"cene komponente za programerje in
+kon"cne uporabnike programa Orange. 
 
-Prva komponenta je programska knjiznica simple\_wbd, ki
+Prva komponenta je programska knji"znica simple\_wbd, ki
 omogoca enostaven dostop do programskega vmesnika indikatorjev in klimatskih
-podatkov Svetovne banke. Ta knjiznica je narejena s cim manj odvisnosti in je 
-namenjena splosni uporabi v python programih. Poudarka pri zasnovi knjiznice 
+podatkov Svetovne banke. Ta knji"znica je narejena s "cim manj odvisnosti in je 
+% TODO ali je python z veliko
+namenjena splo"sni uporabi v Python programih. Poudarka pri zasnovi knji"znice 
 simple\_wbd sta predvsem enostavnost razsiritve in zanesljivost. Ta cilja
-dosezemo z mehanizmom za vkljucevanje lastne kode v komponente knjiznice
+dosezemo z mehanizmom za vkljucevanje lastne kode v komponente knji"znice
 in mehanizmi za popravljanje ali odstranjevanje pokvarjenih podatkov.
 
-Drugi sestavni del je razsiritev knjiznice simple\_wbd s funkcionalnostmi, 
+Drugi sestavni del je razsiritev knji"znice simple\_wbd s funkcionalnostmi, 
 potrebnimi za lazje delo v programu Orange. To predvsem zavzema pretvorbo
 pridobljenih podatkov v Orange in numpy tabele. Ta sklop je namenjen skriptnemu
-delu s programom Orange in je dostopen kot api\_wrapper python modul. 
+delu s programom Orange in je dostopen kot api\_wrapper Python modul. 
 
-Tretji sestavni del je graficni vmesnik za uporabo api\_wrapper modula. Namen
-graficnega vmesnika je omogociti ne-programerjem dostop do podatkov 
+Tretji sestavni del je grafi"cni vmesnik za uporabo api\_wrapper modula. Namen
+grafi"cnega vmesnika je omogociti ne-programerjem dostop do podatkov 
 programskega vmesnika Svetovne banke znotraj programa Orange za namen obdelave,
 analize in iskanja zakonitosti med podatki.
 
-\section{Knjiznica simple\_wbd}
+\section{Knji"znica simple\_wbd}
 
-Knjiznica simple\_wbd programerjem olajsa dostop do podatkov programskega 
-vmesnika Svetovne banke. Glavna lastnost te knjiznice je zdruzevanje vecjega 
+Knji"znica simple\_wbd programerjem olajsa dostop do podatkov programskega 
+vmesnika Svetovne banke. Glavna lastnost te knji"znice je zdruzevanje vecjega 
 stevila zahtev po podatkih in enostavna predstavitev dobljenih podatkov. 
 Druga lastnost je pretvorba podatkov iz vec dimenzij v dvo-dimenzionalno polje,
-primerno za uporabo v programu Orange. Glavna vmesnika te knjiznice sta 
+primerno za uporabo v programu Orange. Glavna vmesnika te knji"znice sta 
 IndicatorAPI in ClimateAPI. Prvi omogoca pridobivanje podatkov iz programskega 
 vmesnika indikatorjev Svetovne banke, drugi pa s programskega vmesnika
 podnebnih meritev.
@@ -55,11 +56,11 @@ Ker ima programski vmesnik Svetovne banke omejitev koliko podatkov lahko
 prenesemo z eno poizvedbo, nam ta razred zdruzuje rezultate vseh poizvedb, ki
 so potrebne za prenos celotne zahteve. To poskrbi tako da se po prvi poizvedbi
 sprehodi cez stevilo preostalih strani (ref na basic response) ki so na voljo. 
-Za razliko od obstojecih knjiznic\fnurl{https://pypi.python.org/pypi/wbdata}
+Za razliko od obstojecih knji"znic\fnurl{https://pypi.python.org/pypi/wbdata}
 \fnurl{https://pypi.python.org/pypi/wbpy/2.0.1} za delo z programskim vmesnikom
-Svetovne banke, katerih cilj je cim bolj natancno predstaviti programski 
-vmesnik, je cilj nase knjiznice le poenostaviti poizvedbe. V ta namen smo s to
-knjiznico razsirili programski vmesnik da lahko z enim klicem funkcije 
+Svetovne banke, katerih cilj je "cim bolj natancno predstaviti programski 
+vmesnik, je cilj nase knji"znice le poenostaviti poizvedbe. V ta namen smo s to
+knji"znico razsirili programski vmesnik da lahko z enim klicem funkcije 
 prenesemo podatke tudi vec kot le enega indikatorja.
 
 Poleg tega da skrbi za prenos vseh strani podatkov, tudi belezi stevilo 
@@ -70,7 +71,7 @@ casa do prenosa celotne zahteve.
 Glavne metode ki jih ponuja IndicatorAPI razred so:
 
 \begin{description}  
-\item [get\_indicators] vrne seznam vseh moznih indikatorjev z imeni, opisi in
+\item [get\_indicators] vrne seznam vseh mo"znih indikatorjev z imeni, opisi in
       identifikatorji,
 \item [get\_countries] vrne seznam drzav in regij z kodami in metapodatki,
 \item [get\_dataset] vrne razred (IndicatorDataset) ki vsebuje vse podatke z 
@@ -90,7 +91,7 @@ dostopamo tudi do neobdelanih podatkov prejetih z programskega vmesnika za
 vsako poizvedbo posebej.
 
 
-Posamezne vrednosti teh podatkov so dolocene z drzavo, casovno komponento, in
+Posamezne vrednosti teh podatkov so dolo"cene z drzavo, casovno komponento, in
 kodo indikatorja. Te podatke lahko predstavimo na dva glavna nacina:
 
  - kot gnezdeni slovar, kjer je na prvem nivoju ime indikatorja, na drugem
