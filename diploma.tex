@@ -23,13 +23,44 @@
 %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%
 
-\usepackage{listings}
+\usepackage{listingsutf8}
+\lstset{
+    tabsize=4,
+    basicstyle={\ttfamily \scriptsize},
+    identifierstyle={\ttfamily},
+    inputencoding=cp1250,
+    %barvanje kode
+    commentstyle={\sffamily \color[rgb]{0,0.5,0}},
+    stringstyle=\color[rgb]{0.5,0,1},
+    keywordstyle=\color[rgb]{0,0,1},
+    %barvanje kode
+    language=Python,
+    %iz source datotek potegnemo tisto med //@begin@ ...koda... //@end@
+    %rangeprefix={\#@},
+    %rangesuffix={@},
+    %linerange=begin-end,
+    %includerangemarker=false,
+    %lomljenje predolgih vrstic
+    breaklines=true,
+    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    %okvir
+    frame=single,
+    frameround={t}{t}{t}{t},
+    xleftmargin=23pt,
+    xrightmargin=4pt,
+    framexleftmargin=19pt,
+    framerule=0pt,
+    %številčenje
+    numbers=left,
+    firstnumber=1
+}
+
+
 \usepackage{color}
 
 
 \usepackage{float}
 
-\floatstyle{boxed}
 \newfloat{snippet}{thp}{lop}
 \floatname{snippet}{Primer}
 
