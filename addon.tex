@@ -233,7 +233,52 @@ in tukaj si lahko vsak programer sam oblikuje podatke v katerokoli zeljeno oblik
 
 \section{Graficni vmesnik}
 
+ 
+nova skupina data sets 
+ - v katero je mogoce dodati nove gradnike za druge programske vmesnike.
 
-- Lazja uporaba.
-- Vecja preglednost,
-- lazje iskanje (text search filter)
+2 gradnika - wb indicators in wb climate
+
+- lazja uporaba apija
+- vecja preglednost
+
+
+za oba gradniko smo razvili in uporabili base class - skupni podatki
+
+- razvili smo tudi gradnik za gnezned prikaz urejenih slovarjev.
+  ta se uporablja za prikaz drzav po kontinentih v climate gradniku,
+  in za prikaz drzav in skupin drzav in drugih agregatov v gradniku
+  indicators.
+
+
+za te gradnike smo tudi napisali enotske teste.
+
+
+
+\subsection{wb indicators gradnik}
+
+za sestavo smo si pomagali z gradniki Orange.gui 
+
+elementi gradnika
+
+2 osnovna filtra: 
+
+- izbor indikatorjev ki se pokazejo v seznamu all/common/featured 
+  ki ustreza seznamu indikatorjev na strani: 
+  all - vse (tudi nekateri ki jih na strani ni nastetih)
+  common - http://data.worldbank.org/indicator?tab=all
+  featured - http://data.worldbank.org/indicator?tab=featured
+- text filter
+
+gradnik ima sistem za prikaz (progress bar?) 
+
+moznost izbire tipa izhoda (countries in time series - opis)
+
+
+
+\subsection{wb climate gradnik}
+
+dovoli izbiro posameznih drzav 
+
+
+
