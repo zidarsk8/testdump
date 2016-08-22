@@ -14,21 +14,21 @@ dose"zemo z mehanizmom za vkljucevanje lastne kode v komponente knji"znice
 in mehanizmi za popravljanje ali odstranjevanje pokvarjenih podatkov.
 
 Drugi sestavni del je raz"siritev knji"znice simple\_wbd s funkcionalnostmi, 
-potrebnimi za lazje delo v programu Orange. To predvsem zavzema pretvorbo
+potrebnimi za la"zje delo v programu Orange. To predvsem zavzema pretvorbo
 pridobljenih podatkov v Orange in numpy tabele. Ta sklop je namenjen skriptnemu
 delu s programom Orange in je dostopen kot api\_wrapper Python modul. 
 
 Tretji sestavni del je grafi"cni vmesnik za uporabo api\_wrapper modula. Namen
-grafi"cnega vmesnika je omo"gociti ne-programerjem dostop do podatkov 
+grafi"cnega vmesnika je omogo"citi ne-programerjem dostop do podatkov 
 programskega vmesnika Svetovne banke znotraj programa Orange za namen obdelave,
 analize in iskanja zakonitosti med podatki.
 
 \section{Knji"znica simple\_wbd}
 
-Knji"znica simple\_wbd programerjem olajsa dostop do podatkov programskega 
-vmesnika Svetovne banke. Glavna lastnost te knji"znice je zdruzevanje vecjega 
-stevila zahtev po podatkih in enostavna predstavitev dobljenih podatkov. 
-Druga lastnost je pretvorba podatkov iz vec dimenzij v dvo-dimenzionalno polje,
+Knji"znica simple\_wbd programerjem olaj"sa dostop do podatkov programskega 
+vmesnika Svetovne banke. Glavna lastnost te knji"znice je zdru"zevanje ve"cjega 
+"stevila zahtev po podatkih in enostavna predstavitev dobljenih podatkov. 
+Druga lastnost je pretvorba podatkov iz ve"c dimenzij v dvo-dimenzionalno polje,
 primerno za uporabo v programu Orange. Glavna vmesnika te knji"znice sta 
 IndicatorAPI in ClimateAPI. Prvi omo"goca pridobivanje podatkov iz programskega 
 vmesnika indikatorjev Svetovne banke, drugi pa s programskega vmesnika
@@ -53,18 +53,18 @@ podnebnih meritev.
 
 IndicatorAPI je razred namenjen pridobivanju podatkov indikatorjev razvoja.
 Ker ima programski vmesnik Svetovne banke omejitev koliko podatkov lahko
-prenesemo z eno poizvedbo, nam ta razred zdruzuje rezultate vseh poizvedb, ki
+prenesemo z eno poizvedbo, nam ta razred zdru"zuje rezultate vseh poizvedb, ki
 so potrebne za prenos celotne zahteve. To poskrbi tako da se po prvi poizvedbi
-sprehodi cez stevilo preostalih strani (ref na basic response) ki so na voljo. 
-Za razliko od obstojecih knji"znic\fnurl{https://pypi.python.org/pypi/wbdata}
+sprehodi "cez "stevilo preostalih strani (Primer \ref{basic_response}) ki so na voljo. 
+Za razliko od obstoje"cih knji"znic\fnurl{https://pypi.python.org/pypi/wbdata}
 \fnurl{https://pypi.python.org/pypi/wbpy/2.0.1} za delo z programskim vmesnikom
-Svetovne banke, katerih cilj je "cim bolj natancno predstaviti programski 
+Svetovne banke, katerih cilj je "cim bolj natan"cno predstaviti programski 
 vmesnik, je cilj nase knji"znice le poenostaviti poizvedbe. V ta namen smo s to
 knji"znico razsirili programski vmesnik da lahko z enim klicem funkcije 
 prenesemo podatke tudi vec kot le enega indikatorja.
 
-Poleg tega da skrbi za prenos vseh strani podatkov, tudi belezi stevilo 
-narejenih in stevilo potrebnih poizvedb za celoten prenos. Do teh stevil lahko
+Poleg tega da skrbi za prenos vseh strani podatkov, tudi bele"zi "stevilo 
+narejenih in "stevilo potrebnih poizvedb za celoten prenos. Do teh "stevil lahko
 dostopamo z drugih niti in jih uporabimo za prikaz napredka in preostalega
 casa do prenosa celotne zahteve.
 
@@ -78,6 +78,31 @@ Glavne metode ki jih ponuja IndicatorAPI razred so:
       poizvedbe in metode za oblikovanje predstavitve podatkov: api\_responses,
       as\_list, as\_dict.
 \end{description}
+
+
+
+Implementirali lastni caching:
+ - obstojece knjiznice (vcrpy, requests-cache) za hranjenje narejenih poizdedb so se izkazale za zelo
+ pocasne v primeru ko delamo z vecjim stevilom podatkov.
+ - nasa resitev se zanasa na edinstvost URL naslovov - za vsak url si shranimo odgovor in ce je
+ mlajsi od enega tedna, isti odgovor uporabim pri vsaki poizvedbi za doloceni URL.
+
+
+mehanizmem za odpravo napak:
+ - pridobiti podatke o drzavi za posamezni indikator: 
+   - ob manjkajocih id-jih poskusamo dolociti id iz imena
+   - ob manjkajocih imenih poskusamo dobiti ime iz id-ja
+   - ce ni nobene informacije ta podatek ignoriramo.
+
+ko zelimo dobiti polje v obliki casovne vrste:
+ - pridobivanje datuma iz polja 'date'
+   - ob neveljavnih stringih probamo upostevati le zacetni del.
+     - za text za  obdobje  '2002 - 2006' bomo uporabili le datum 2002 
+   - neveljavne stringe kot so "most rescent value" ignoriramo.
+
+
+
+
 
 
 
@@ -130,6 +155,31 @@ Indicator
 IndicatorAPI je 
 
 
+api dovoli le podatke za en tip za eno vrsto obdobja in eno drzavo hkrati.
+mi naredim kartezicni produkt med vsemi temi zgradimo vse url-je in naredimo
+vse potrebne poizvedbe za pridobitev podatkov.
+
+
+
+\subsubsection{Razred IndicatorDataset}
+
+Isto kot pri indicator apiju
+ko zelimo dobiti polje v obliki casovne vrste:
+ - pridobivanje datuma iz polja 'date'
+   - ob neveljavnih stringih probamo upostevati le zacetni del.
+     - za text za  obdobje  '2002 - 2006' bomo uporabili le datum 2002 
+   - neveljavne stringe kot so "most rescent value" ignoriramo.
+
+
+
+
+as\_dict 
+
+glede na poizvedbo dobimo tu gnezden slovar s polji
+
+drzava / tip podatkov / tip casovnega obdobja / vrednost casovnega obdobja / vrednost
+
+as\_list
 
 % notes:
 % 3 dimenzije: cas (decade,year,month), drzava, tip (pr/ tas)
@@ -162,6 +212,20 @@ class ClimateAPI(simple_wbd.ClimateAPI):
     def __init__(self):
         super().__init__(ClimateDataset)
 \end{verbatim}
+
+
+- razsiri as\_list v as\_numpy\_array ki tudi odstrani vse stolpce ki nimajo 
+  veljavne vrednosti.
+
+- doda as orange table ki numpy array spremeni v orange tabelo.
+  - za indikator api doda se metapodatke drzav ko ne prikazujemo v obliki casovne vrste.
+
+
+api vrapper je tudi zelo uporaben za skriptno uporaba programa Orange 
+(referenca http://www.jmlr.org/papers/volume14/demsar13a/demsar13a.pdf)
+
+in tukaj si lahko vsak programer sam oblikuje podatke v katerokoli zeljeno obliko.
+
 
 
 
