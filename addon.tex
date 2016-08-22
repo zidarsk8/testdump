@@ -5,21 +5,21 @@ V okviru diplomske naloge smo razvili tri lo"cene komponente za programerje in
 kon"cne uporabnike programa Orange. 
 
 Prva komponenta je programska knji"znica simple\_wbd, ki
-omogoca enostaven dostop do programskega vmesnika indikatorjev in klimatskih
+omo"goca enostaven dostop do programskega vmesnika indikatorjev in klimatskih
 podatkov Svetovne banke. Ta knji"znica je narejena s "cim manj odvisnosti in je 
 % TODO ali je python z veliko
 namenjena splo"sni uporabi v Python programih. Poudarka pri zasnovi knji"znice 
 simple\_wbd sta predvsem enostavnost razsiritve in zanesljivost. Ta cilja
-dosezemo z mehanizmom za vkljucevanje lastne kode v komponente knji"znice
+dose"zemo z mehanizmom za vkljucevanje lastne kode v komponente knji"znice
 in mehanizmi za popravljanje ali odstranjevanje pokvarjenih podatkov.
 
-Drugi sestavni del je razsiritev knji"znice simple\_wbd s funkcionalnostmi, 
+Drugi sestavni del je raz"siritev knji"znice simple\_wbd s funkcionalnostmi, 
 potrebnimi za lazje delo v programu Orange. To predvsem zavzema pretvorbo
 pridobljenih podatkov v Orange in numpy tabele. Ta sklop je namenjen skriptnemu
 delu s programom Orange in je dostopen kot api\_wrapper Python modul. 
 
 Tretji sestavni del je grafi"cni vmesnik za uporabo api\_wrapper modula. Namen
-grafi"cnega vmesnika je omogociti ne-programerjem dostop do podatkov 
+grafi"cnega vmesnika je omo"gociti ne-programerjem dostop do podatkov 
 programskega vmesnika Svetovne banke znotraj programa Orange za namen obdelave,
 analize in iskanja zakonitosti med podatki.
 
@@ -30,7 +30,7 @@ vmesnika Svetovne banke. Glavna lastnost te knji"znice je zdruzevanje vecjega
 stevila zahtev po podatkih in enostavna predstavitev dobljenih podatkov. 
 Druga lastnost je pretvorba podatkov iz vec dimenzij v dvo-dimenzionalno polje,
 primerno za uporabo v programu Orange. Glavna vmesnika te knji"znice sta 
-IndicatorAPI in ClimateAPI. Prvi omogoca pridobivanje podatkov iz programskega 
+IndicatorAPI in ClimateAPI. Prvi omo"goca pridobivanje podatkov iz programskega 
 vmesnika indikatorjev Svetovne banke, drugi pa s programskega vmesnika
 podnebnih meritev.
 
@@ -38,7 +38,7 @@ podnebnih meritev.
 %% % moznost razsiritve z dedovanjem dataset razreda.
 %% % 
 %% 
-%% - omogoca pridobivanje vrednosti za filtre:
+%% - omo"goca pridobivanje vrednosti za filtre:
 %%     - indicator api: drzave in agregati, indikatorji
 %%     - climate api: drzave, tipi podatkov, meritveno obdobje 
 %% 
@@ -145,7 +145,7 @@ IndicatorAPI je
 % doda as orange table in as numpy obema indikator apiju in climate apiju.
 
 
-razsiritev simple wbd vmesnikov z dedovanjem pravega dataset razreda.
+raz"siritev simple wbd vmesnikov z dedovanjem pravega dataset razreda.
 
 \begin{verbatim}
 
