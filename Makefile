@@ -11,6 +11,7 @@ view :
 	
 diploma.pdf : diploma.tex
 	$(TEX) diploma.tex
+	$(BIB) diploma
 	$(TEX) diploma.tex
 	$(TEX) diploma.tex
 	rm *.aux
