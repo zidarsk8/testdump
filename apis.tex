@@ -1,52 +1,36 @@
-\chapter{Spletni viri indikatorjev dr"zav sveta}
+\chapter{Podatkovne zbirke Svetovne Banke}
 
 Pri diplomski nalogi smo se osredoto"cili na dva programska vmesnika za dostop 
 podatkov Svetovne banke, to sta ``ClimateAPI'' s katerim dostopamo do 
-podatkov meteorolo"skih meritev in ``IndicatorAPI'' s katerim dostopamo do 
-podatkov raznih indikatorjev stopenj razvoja dr"zav.
+podatkovne zbirke meteorolo"skih meritev in ``IndicatorAPI'' s katerim dostopamo do 
+zbirke podatkov raznih indikatorjev stopenj razvoja dr"zav.
 Za uporabo podatkovne zbirke Svetovne banke smo se odlo"cili, ker zdru"zuje in na
 enovit na"cin predstavi podatke iz ve"cih razli"cnih virov. Podatkovni viri za 
 indikatorje stopnje razvoja dr"zav so:
 \begin{itemize}  
-  \item Svetovni indikatorji razvoja~ \ref{world_dev_ind} % World Development Indicators, 
-\item Global Development Finance, 
-\item African development Indicators, 
-\item Doing Business,
-\item Enterprise Surveys, 
-\item Millennium Development Goals, 
-\item Education Statistics, 
-\item Gender Statistics,
-\item Health and Nutrition Statistics, 
-\item IDA Results Measurement System.
+  \item Svetovni indikatorji razvoja~\cite{world_dev_ind} % World Development Indicators, 
+  \item Globalni finan"cni razvoj~\cite{glob_fin_dev}
+  \item Afri"ski indikatorji razvoja~\cite{africa_dev_ind}
+  \item Poslovanje~\cite{doing_buseness},
+  \item Podjetni"ske raziskave~\cite{ent_surveys}, 
+  \item Razvojni cilji~\cite{mil_dev_goals}, 
+  \item Statistike izobra"zevanja~\cite{edu_stat}, 
+  \item Statistike spolov~\cite{gen_stat},
+  \item Statistike zdravja in prehranjevanja~\cite{health_pop_stat},
+  \item Rezultati meritev IDA~\cite{ida_res_mes_sys}.
 \end{itemize}  
 
+Podatkovni vir zbirke podnebnih meritev pa je osnovan na podatkih oddelka
+za podnebne raziskave (ang.\ Climatic Research Unit)~\cite{climate_data}.
 
-% http://apiv3.iucnredlist.org/api/v3/docs
-% 
-% 2 https://api.nasa.gov/#getting-started
-% 
-% 3 https://www.goodreads.com/api
-% 
-% 4 http://climatedataapi.worldbank.org/
-% 
-% 5 http://api.worldbank.org/
-
-
-
-Podatkovni viri za klimatske meritve so pridobljeni s svetovnih meteorolo"skih 
-postaj.
-
-
-Svetovna banka omogo"ca dostop do podatkov prek vmesnika --slovensko-- 
-% TODO
-% kako predstavimo REST XML in JSON
-(ang. Representational state transfer, REST), ki ponuja 
-veliko mo"znosti za iskanje in presejanje rezultatov. Pri vsaki REST poizvedbi
-lahko dolo"cimo "zeljeno obliko odgovora. Za poizvedbe o informacijah 
-indikatorjev sta na voljo obliki --slovensko-- XML in --slovensko-- JSON. 
-Programski vmesnik meteorolo"skih
-meritev pa ponuja samo obliko JSON. Za konsistentnost in la"zjo berljivost smo
-na obeh vmesnikih uporabili obliko JSON. 
+Svetovna banka omogo"ca dostop do podatkov preko programskega vmesnika REST, ki
+ponuja veliko mo"znosti za iskanje in presejanje rezultatov. Pri vsaki 
+poizvedbi REST lahko dolo"cimo "zeljeno obliko odgovora. Za poizvedbe o 
+informacijah indikatorjev sta na voljo obliki XML in JSON. Programski vmesnik 
+meteorolo"skih meritev pa ponuja samo obliko JSON. Za konsistentnost in la"zjo
+berljivost smo na obeh programskih vmesnikih uporabili obliko JSON. To na
+programskem vmesniku indikatorjev dosezemo take da nastavimo parameter GET
+\verb|format| na vrednost \verb|json|. 
 
 
 \section{Podatki indikatorjev razvoja dr"zav}
@@ -55,38 +39,35 @@ na obeh vmesnikih uporabili obliko JSON.
 
 Programski vmesnik indikatorjev razvoja dr"zav Svetovne banke omogo"ca dostop
 do podatkov preko 16.000 raznih indikatorjev. Podatki indikatorjev so merjeni
-od leta 1960 dalje v mese"cnem, "cetrtletnem ali letnem intervalu. Poleg podatkov
-indikatorjev nam ta programski vmesnik omogo"ca tudi dostop do ve"cine
+mese"cnem, "cetrtletnem ali letnem intervalu. Zacete meritev podatkov
+posameznega indikatorja je odvisna od vira podatkov. Najstaresi podatki segajo
+do leta 1960. Poleg podatkov indikatorjev nam ta programski vmesnik omogo"ca tudi dostop do ve"cine
 metapodatkov s katerimi lahko presejamo in natan"cneje dolo"cimo na"so poizvedbo.
 Seznami metapodatkov so:
 \begin{itemize}
-\item viri podatkov in njihovi opisi (Catalog Source Queries
+\item viri podatkov in njihovi opisi (ang.\ Catalog Source Queries
 	\fnurl{http://api.worldbank.org/sources}),
-\item seznam dr"zav, skupin dr"zav in regij z identifikatorji (ang. :w
-  Country Queries
-	\footnote{\label{country_list}\url{http://api.worldbank.org/countries}}),
-\item razdelitev vi"sin dohodkov z identifikatorji (Income Level Queries
+\item seznam dr"zav, skupin dr"zav in regij z identifikatorji (ang.\ Country Queries
+	\fnurl{http://api.worldbank.org/countries}),
+\item razdelitev vi"sin dohodkov z identifikatorji (ang.\ Income Level Queries
 	\fnurl{http://api.worldbank.org/incomeLevels}),
-\item seznam vseh indikatorjev (Indicator Queries
-    \footnote{\label{indicators_list}\url{http://api.worldbank.org/indicators}}),
-\item seznam tipov posojil (Lending Type Queries
+\item seznam vseh indikatorjev (ang.\ Indicator Queries
+  \fnurl{http://api.worldbank.org/indicators}),
+\item seznam tipov posojil (ang.\ Lending Type Queries
 	\fnurl{http://api.worldbank.org/lendingTypes}),
-\item seznam tem (Topics \fnurl{http://api.worldbank.org/topics}).
+\item seznam tem (ang.\ Topics \fnurl{http://api.worldbank.org/topics}).
 \end{itemize}
 
 
-Za dostop do podatkov posameznega indikatorja, potrebujemo identifikator
-indikatorja s seznama vseh 
-indikatorjev\textsuperscript{\ref{indicators_list}} in kodo ene ali ve"c
-dr"zav oziroma regij s seznama 
-dr"zav\textsuperscript{\ref{country_list}}. Privzeta vrednost za
-koli"cino podatkov na stran je 50, zgornja meja pa ni strogo dolo"cena, vendar
-je odvisna od velikosti odgovora. Ugotovili smo tudi, da se zanesljivost
-programskega vmesnika manj"sa z ve"cjo koli"cino podatkov na stran. V na"sem 
-programu smo se omejili na 1000 podatkov na stran, kar se je izkazalo za 
-uporabno razmerje med hitrostjo in zanesljivostjo prenosa. Vsi seznami in 
-metapodatki, ki so na voljo s programskim vmesnikom indikatorjev razvoja imajo
-enako osnovno obliko (Primer \ref{basic_response}).
+Vsi odgovori na veljavne poizvedbe po podatkih in metapodatkih, ki so na voljo
+s programskim vmesnikom indikatorjev razvoja, imajo enako osnovno obliko. 
+Poizvedbe vra"cajo seznam z dvema elementoma, kjer je ima prvi element 
+informacije o koli"cini podatkov in trenutnem izboru podatkov, drugi element 
+pa vsebuje seznam izbranih podatkov (Primer \ref{basic_response}). 
+Veljavne poizvedbe, ki ne vra"cajo podatkov, imajo vrednost drugega elementa
+osnovnega seznama \verb|null|.
+Za neveljavne poizvedbe, pa programski vmesnik vraca seznam z enim elementom,
+ki vsebuje podatke o napaki poizvedbe (Primer \ref{error_response}).
 
 
 \begin{snippet}
@@ -94,10 +75,10 @@ enako osnovno obliko (Primer \ref{basic_response}).
 \begin{lstlisting}
 [
     {
-    	"page": 4,
-		"pages": 137,
-		"per_page": "50",
-		"total": 6831
+        "page": 4,
+        "pages": 137,
+        "per_page": "50",
+        "total": 6831
     },
     [
         {<podatki>},
@@ -106,24 +87,43 @@ enako osnovno obliko (Primer \ref{basic_response}).
 ]
 \end{lstlisting}
 \end{center}
-% TODO : dolgi linki
-% http://api.worldbank.org/en/countries/all/indicators/16.1\_TRANS.ENERGY.INTENSITY?format=json\&page=4
-\caption{Osnovna oblika odgovora programskega vmesnika Svetovne banke, ob 
-veljavni poizvedbi. Prvi element opisuje koli"cino dobljenih in "stevilo vseh 
-podatkov, drugi element pa vsebuje s stranjo in "stevilom podatkov na stran 
-dolo"ceni izsek celotnih podatkov.}
+\caption{Osnovna oblika odgovora programskega vmesnika Svetovne banke, za
+veljavne poizvedbe.}
 \label{basic_response}
 \end{snippet} 
 
 
+\begin{snippet}
+\begin{center}
+\begin{lstlisting}
+[
+    {
+        "message": [
+            {
+                "id": "120",
+                "key": "Parameter 'country' has an invalid value",
+                "value": "The provided parameter value is not valid"
+            }
+        ]
+    }
+]
+\end{lstlisting}
+\end{center}
+\caption{Osnovna oblika odgovora programskega vmesnika Svetovne banke, za
+neveljavne poizvedbe.}
+\label{error_response}
+\end{snippet} 
+
 
 \subsection{Opis seznama indikatorjev}
 
+% TODO: koda ali sifra ali identifikator / zamenji vse povsod.
+Do seznama vseh indikatorjev razvoja lahko dostopamo na naslovu 
+\verb|http://api.worldbank.org/indicators|
 Programski vmesnik Svetovne banke za indikatorje razvoja nam ponuja seznam 
-vseh indikatorjev\textsuperscript{\ref{indicators_list}} z imeni, opisi, 
-identifikatorji in drugimi metapodatki (Primer \ref{indicator_response}).
-Programski vmesnik nam tudi omogo"ca presejanje podatkov glede na vir podatkov
-indikatorja (ang. source).
+vseh indikatorjev z imeni, opisi, kodami in drugimi metapodatki 
+(Primer \ref{indicator_response}). Programski vmesnik nam tudi omogo"ca
+presejanje podatkov glede na vir podatkov indikatorja (ang. source).
 
 \begin{snippet}
 \begin{center}
@@ -213,6 +213,28 @@ uporabljali besedo ``dr"zave''.
 
 
 \subsection{Dostop do podatkov indikatorjev}
+
+
+Za dostop do podatkov posameznega indikatorja, potrebujemo kodo
+indikatorja s seznama vseh indikatorjev in kodo ene ali ve"c dr"zav. 
+
+\begin{snippet}
+\begin{center}
+\begin{lstlisting}
+ http://api.worldbank.org/en/countries/<country>/indicators/<indicator_id>?<parametri>
+\end{lstlisting}
+\end{center}
+\caption{}
+\label{indicator_datase_request}
+\end{snippet} 
+
+
+Privzeta vrednost za
+koli"cino podatkov na stran je 50, zgornja meja pa ni strogo dolo"cena, vendar
+je odvisna od velikosti odgovora. Ugotovili smo tudi, da se zanesljivost
+programskega vmesnika manj"sa z ve"cjo koli"cino podatkov na stran. V na"sem 
+programu smo se omejili na 1000 podatkov na stran, kar se je izkazalo za 
+uporabno razmerje med hitrostjo in zanesljivostjo prenosa. 
 
 
 Za pridobivanje podatkov indikatorjev se uporablja dostopna tocka \\
