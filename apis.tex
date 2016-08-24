@@ -21,7 +21,8 @@ indikatorje stopnje razvoja dr"zav so:
 \end{itemize}  
 
 Podatkovni vir zbirke podnebnih meritev pa je osnovan na podatkih oddelka
-za podnebne raziskave (ang.\ Climatic Research Unit)~\cite{climate_data}.
+za podnebne raziskave (ang.\ Climatic Research Unit)~\cite{climate_data}
+univerze v vzhodni Angliji.
 
 Svetovna banka omogo"ca dostop do podatkov preko programskega vmesnika REST, ki
 ponuja veliko mo"znosti za iskanje in presejanje rezultatov. Pri vsaki 
@@ -29,7 +30,7 @@ poizvedbi REST lahko dolo"cimo "zeljeno obliko odgovora. Za poizvedbe o
 informacijah indikatorjev sta na voljo obliki XML in JSON. Programski vmesnik 
 meteorolo"skih meritev pa ponuja samo obliko JSON. Za konsistentnost in la"zjo
 berljivost smo na obeh programskih vmesnikih uporabili obliko JSON. To na
-programskem vmesniku indikatorjev dosezemo take da nastavimo parameter GET
+programskem vmesniku indikatorjev dose"zemo take da nastavimo parameter GET
 \verb|format| na vrednost \verb|json|. 
 
 
@@ -40,7 +41,7 @@ programskem vmesniku indikatorjev dosezemo take da nastavimo parameter GET
 Programski vmesnik indikatorjev razvoja dr"zav Svetovne banke omogo"ca dostop
 do podatkov preko 16.000 raznih indikatorjev. Podatki indikatorjev so merjeni
 mese"cnem, "cetrtletnem ali letnem intervalu. Zacete meritev podatkov
-posameznega indikatorja je odvisna od vira podatkov. Najstaresi podatki segajo
+posameznega indikatorja je odvisna od vira podatkov. Najstarej"si podatki segajo
 do leta 1960. Poleg podatkov indikatorjev nam ta programski vmesnik omogo"ca tudi dostop do ve"cine
 metapodatkov s katerimi lahko presejamo in natan"cneje dolo"cimo na"so poizvedbo.
 Seznami metapodatkov so:
@@ -360,7 +361,7 @@ http://climatedataapi.worldbank.org/climateweb/rest/v1/country/cru/pr/month/SVN
 \section{Te"zave pri dostopu}
 
 
-Tezave pri uporabi SB API-ja lahko razdelimo v dve skupini. Prvo skupino
+Te"zave pri uporabi SB API-ja lahko razdelimo v dve skupini. Prvo skupino
 sestavljajo te"zave pri dokumentaciji in z manjkajo"cimi podatki, drugo pa
 napake v samih pridobljenih podatkih.
 
@@ -380,7 +381,7 @@ Te"zave druge skupine:
 
 
 \begin{itemize}  
-\item manjkajo"ci identifikatoriji za polja na posameznih indikatorjih (primer je
+\item manjkajo"ci identifikatorji za polja na posameznih indikatorjih (primer je
   manjkajo"ca vrednost v polju id dr"zave),
 \item datum vsebuje naklju"cne vrednosti (``last known value'' ``2001 - 2015'' ``2040''
 \item zgornja meja "stevila izbranih lokacij na 250 ni navedena,
