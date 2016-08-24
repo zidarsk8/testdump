@@ -60,7 +60,12 @@ dolo"cimo na"so poizvedbo. Seznami metapodatkov so:
 \end{itemize}
 
 Za pridobitev podatkov indikatorjev potrebujemo metapodatke o indikatorjih in
-drzavah. Primere teh metapodatkov si bomo podrobneje pogledali v nadaljevanju.
+dr"zavah. Primere teh metapodatkov si bomo podrobneje pogledali v nadaljevanju.
+
+Ker je mogo"ce z eno poizvedbo dostopati do velike koli"cine podatkov, ima
+programski vmesnik za dostop do podatkov indikatorjev implementirano
+ostranjevanje, s katerim je omejeno "stevilo podatkov ki jih lahko dobimo z eno
+poizvedbo. Tako so podatki razdeljeni na skupine ki jih imenujemo strani.
 
 Vsi odgovori na veljavne poizvedbe po podatkih in metapodatkih, ki so na voljo
 s programskim vmesnikom indikatorjev razvoja, imajo enako osnovno obliko. 
@@ -71,8 +76,8 @@ vrednost "stevila elementov na stran je $50$, kar lahko spremenimo tako da
 poizvedbi nastavimo parameter GET \verb|per_page| na poljubno vrednost. "Ce
 "zelimo pridobiti podatke z ve"cih strani, moramo za vsako stran poslati novo
 poizvedbo v kateri podamo "zeljeno stran s parametrom GET \verb|page|, . 
-Veljavne poizvedbe, ki ne vra"cajo podatkov, imajo vrednost drugega elementa
-osnovnega seznama \verb|null|.
+Veljavne poizvedbe, s sitom ki ne vra"ca nobenih podatkov, imajo vrednost 
+drugega elementa osnovnega seznama \verb|null|.
 Za neveljavne poizvedbe, pa programski vmesnik vraca seznam z enim elementom,
 ki vsebuje podatke o napaki poizvedbe (Primer \ref{error_response}).
 
@@ -185,11 +190,11 @@ stopnja rev"s"cine pri dohodku 2,5 dolarja na dan.}
 Seznam dr"zav na programskem vmesniku Svetovne banke vsebuje podatke o imenih, 
 opisih, ISO-3166-1 alpha kodah, regijah in druge metapodatke 
 (Primer \ref{country_response}). Programski
-vmesnik nam tudi omogo"ca presejanje seznama dr"zav po kodi drzave, regiji,
+vmesnik nam tudi omogo"ca presejanje seznama dr"zav po kodi dr"zave, regiji,
 visini dohodka, in tipu posojil (Premer \ref{country_queries})
 
 % \begin{description}
-% \item [id] koda drzave, regije ali skupine drzav,
+% \item [id] koda dr"zave, regije ali skupine dr"zav,
 % \item [region] regija,
 % \item [incomeLevel] vi"sina dohodka,
 % \item [lendingType] tipov posojil. % TODO preveri prevod!
@@ -342,49 +347,83 @@ napovedne modele.
 
 Za razliko od uporabe programskega vmesnika indikatorjev, lahko pri tem
 programskem vmesniku uporabljamo veljavne ISO 3166-1 alpha-2 ali ISO 3166-1 
-alpha-3 kode dr"zav, ali pa "stevilski identifikator (TODO link) vodoto"cnega 
+alpha-3 kode dr"zav, ali pa "stevilski identifikator vodoto"cnega 
 obmo"cja.
 
-Ta programski vmesnik nam omogo"ca dostop do podatkov o povpre"cnih temperaturah 
-in padavinah v "casovnih obdobjih enega leta, desetletja ali pa nam omogo"ca 
-dostop do mese"cnih povpre"cij skozi vsa leta meritev.
+Ta programski vmesnik nam omogo"ca dostop do podatkov o povpre"cnih 
+temperaturah in padavinah v "casovnih obdobjih enega leta, desetletja ali pa 
+nam omogo"ca dostop do mese"cnih povpre"cij skozi vsa leta meritev.
 
 
 \subsection{Dostop do podatkov podnebnih meritev}
 
-Dostop do podatkov podnebnih meritev je mogo"c na naslovu \\
-% TODO
-http://climatedataapi.worldbank.org/climateweb/rest/\\
-v1/\textbf{loc\_type}/cru/\textbf{data\_type}/\textbf{interval}/\textbf{location}\\
-kjer je:
+Za dostop do podnebnih podatkov preko programskega vmesnika Svetovne banke,
+potrebujemo ISO-3166-1 alpha3 kodo dr"zave, ali "stevilski identifikator
+vodoto"cnega obmo"cja (Slika \ref{climate_data_api_basins}). Programski vmesnik
+nam omogo"ca dostop do meritev povprecnih koli"cin padavin in temperatur za 
+letno ali desetleno obdobje. Poleg letnega in desetletnega obdobja pa nam 
+programski vmensik ponuja tudi povprecno kolicino padavin in temperatur za 
+posamezne mesece skozi vsa leta meritev. Obliko poizvedbe prikazuje primer 
+\ref{climate_dataset_request}, kjer je:
 \begin{description}
 \item [loc\_type] vrsta identifikatorja obmo"cja (``basin'' za vodotocno obmo"cje, 
   ``country'' za dr"zave),
 \item [data\_type] vrsta meritev (``pr'' za padavine, ``tas'' za temperature),
 \item [interval] vrsta meritvenega obdobja (``month'' za mese"cno, ``year'' za letno in
   ``decade'' za desetletno),
-\item [location] identifikator dr"zave ali vodoto"cnega obmo"cja.
+\item [location] koda dr"zave ali stevilski identifikator vodoto"cnega obmo"cja.
 \end{description}
+Za razliko od programskega vmesnika indikatorjev, nam programskem vmesniku
+podnebnih meritev z eno poizvedbo omogoca dostop do podatkov le za eno dr"zavo.
+To pomeni da je koli"cina podatkov dovolj omejena da nam programski vmesnki,
+vedno vrne vse podatke brez ostranjevanja, kot prikazuje primer 
+\ref{climate_dataset_response},
 
 
-Izsek podatkov (primer za mese"cno povpre"cje koli"cine padavin za Slovenijo):
-http://climatedataapi.worldbank.org/climateweb/rest/v1/country/cru/pr/month/SVN
+\begin{figure}
+\begin{center}
+\includegraphics[width=12cm]{pic/climate_data_api_basins.pdf}
+\end{center}
+\caption{Prikaz vodoto"cnih obmo"cij sveta.}
+\label{climate_data_api_basins}
+\end{figure} 
 
+
+\begin{snippet}
+\begin{center}
 \begin{lstlisting}
-{
-    "month": 0,
-    "data": 68.93643
-},
-{
-    "month": 1,
-    "data": 64.23069
-},
-{
-    "month": 2,
-    "data": 81.098724
-},
-...
+http://climatedataapi.worldbank.org/climateweb/rest/v1/<loc_type>/cru/<data_type>/<interval>/<location>
 \end{lstlisting}
+\end{center}
+\caption{Osnovna oblika poizvedbe za podnebne podatke.}
+\label{climate_dataset_request}
+\end{snippet} 
+
+
+\begin{snippet}
+\begin{center}
+\begin{lstlisting}
+[
+    {
+        "month": 0,
+        "data": 68.93643
+    },
+    {
+        "month": 1,
+        "data": 64.23069
+    },
+    {
+        "month": 2,
+        "data": 81.098724
+    },
+    ...
+]
+\end{lstlisting}
+\end{center}
+\caption{Primer odgovora za poizvedbo koli"cine padavin v posameznih mesecih v 
+  Sloveniji.}
+\label{climate_dataset_response}
+\end{snippet} 
 
 
 
@@ -396,34 +435,27 @@ http://climatedataapi.worldbank.org/climateweb/rest/v1/country/cru/pr/month/SVN
 
 
 
-\section{Te"zave pri dostopu}
+\section{Te"zave pri uporabi programskih vmesnikov Svetovne banke}
 
 
-Tezave pri uporabi SB API-ja lahko razdelimo v dve skupini. Prvo skupino
-sestavljajo te"zave pri dokumentaciji in z manjkajo"cimi podatki, drugo pa
-napake v samih pridobljenih podatkih.
-
-Te"zave prve skupine:
-
+Programski vmesniki Svetovne banke zajema podatke razli"cnih virov, zato je
+te"sko zagotoviti pravilnost in konsistentnost podatkov. Poleg tega pa se 
+programski vmesnik in spletna stran z dokumentacijo ob"casno spremenita, kar
+povzro"ca "se dodatne te"zave pri uporabi. Nekatere te"zave, ki smo jih opazili
+so:
 \begin{itemize}  
-\item ob posodabljanju spletne strani SB se izgubijo posamezne povezave do 
-  primerov, dokumentacije in opisov API-ja,
-\item nepopolna dokumentacija:
-\subitem polje za datum je opisano, vendar ni dokumentirano, kak"sne so vse mo"zne 
-    vrednosti,
-\subitem delovanje polj za obdobje (date), zadnje vrednosti (mrv) in za mankjajo"ce
-    vrednosti (gapfill) ni ustrezno opisano.
-\end{itemize}  
-
-Te"zave druge skupine:
-
-
-\begin{itemize}  
-\item manjkajo"ci identifikatoriji za polja na posameznih indikatorjih (primer je
-  manjkajo"ca vrednost v polju id dr"zave),
-\item datum vsebuje naklju"cne vrednosti (``last known value'' ``2001 - 2015'' ``2040''
-\item zgornja meja "stevila izbranih lokacij na 250 ni navedena,
-\item nemogo"ce je ugotoviti pogostost vzor"cenja indikatorja (frequency).
+\item nekaterim delom dokumentacije se je med izdelavo te diplomske naloge
+  spremenil spletni naslov, tako da do tistit delov sedaj nimamo ve"c dostopa,
+\item polje za datum v odgovoru je opisano, vendar ni dokumentirano, kak"sne so
+    vse mo"zne vrednosti (nekaj primerov nedokumentiranih vrednosti:
+    ``last known value'' ``2001 - 2015'' ``2040''),
+\item delovanje sita z razli"cnimi kombinaciji polj \verb|mrv|, \verb|gapfill|
+  in \verb|date| ni ustrezno opisano,
+\item v odgovoru poizvedbe po podatkih indikatorjev, ponekod manjkajo vrednosti
+  kot so koda dr"zave, ime dr"zave ali ime indikatorja.
+\item zgornja meja "stevila izbranih lokacij na 250 ni navedena in napaka 
+  ki jo programski vmesnik vrne ni dokumentirana,
+\item nemogo"ce je ugotoviti pogostost vzor"cenja indikatorja (frequency), .
 \end{itemize}  
 
 
