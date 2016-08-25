@@ -280,6 +280,20 @@ na na"cin ki je prikazan v primeru \ref{indicator_api_extend}. Na"sa
 raz"siritev obema razredoma doda metodi za pretvorbo podatkov v podatkovno 
 tabelo Orange in tabelo numpy.
 
+\subsection{Raz"siritev razreda IndicatorDataset}
+
+Glavne funkcionalnosti, za uporabo programske vmesnika indikatorjev, so
+vklju"cene v na"si raz"siritvi razreda \verb|IndicatorDataset|. To je na prvem
+mestu metoda \verb|as_numpy_array|, ki rezultat metode \verb|as_list|
+opisane v poglavju \ref{missing}, spremeni v polje numpy in odstrani vse
+stolpce, ki ne vsebujejo niti ene veljavne vrednosti. Druga metoda pa je
+\verb|to_orange_table|, ki podatke dobljene iz metode \verb|as_numpy_array|,
+pretvori v podatkovno tabelo Orange. % TODO: (angl.\ Orange data table).
+Ta metoda tudi poskrbi za pravilno nastavljeno domeno\footnote{Domena
+\verb|Domain| je razred v orodju Orange, ki dolo"ca tipe in imena zna"cilk in
+ciljnih razredov.} podatkov.
+
+
 TODO: opis posameznih raz"siritev in primer skripte uporabe.
 
 
