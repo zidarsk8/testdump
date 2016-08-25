@@ -334,8 +334,12 @@ podatke za vse "casovne vrednosti. V odgovoru API-ja dobimo seznam objektov
 \label{dataset_response}
 \end{snippet} 
 
-Slabost programskega vmesnika indikatorjev Svetovne banke je v tem, da ne
-moremo z eno poizvedbo dostopati do podatkov ve"cih indikatorjev hkrati.
+Slabosti programskega vmesnika indikatorjev Svetovne banke za uporabo v namene
+podatkovnega rudarjenja so v tem, da vmesnik ni namenjen prenosu ve"cje 
+kolicine podatkov z eno samo poizvedbo. Zaradi ostranjevanja moramo za en sam 
+indikator narediti ve"c poizvedb, da prenesemo podatke z vseh strani. Prav 
+tako podatkovni vmesnik ne podpira poizvedb po ve"cih indikatorjih hkrati, kar
+potrebujemo za iskanje zakonitosti med posameznimi indikatorji.
 
 \section{Podatki podnebnih meritev}
 
@@ -424,11 +428,6 @@ http://climatedataapi.worldbank.org/climateweb/rest/v1/<loc_type>/cru/<data_type
   Sloveniji.}
 \label{climate_dataset_response}
 \end{snippet} 
-
-
-
-
-
 
 
 

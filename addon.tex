@@ -13,32 +13,59 @@ namenjena splo"sni uporabi v Python programih. Poudarka pri zasnovi knji"znice
 dose"zemo z mehanizmom za vkljucevanje lastne kode v komponente knji"znice
 in mehanizmi za popravljanje ali odstranjevanje pokvarjenih podatkov.
 
-Drugi sestavni del je raz"siritev knji"znice \verb|simple_wbd| s funkcionalnostmi, 
-potrebnimi za la"zje delo v programu Orange. To predvsem zavzema pretvorbo
-pridobljenih podatkov v Orange in numpy tabele. Ta sklop je namenjen skriptnemu
-delu s programom Orange in je dostopen kot api\_wrapper Python modul. 
+Drugi sestavni del je raz"siritev knji"znice \verb|simple_wbd| s 
+funkcionalnostmi, potrebnimi za la"zje delo v programu Orange. To predvsem 
+zavzema pretvorbo pridobljenih podatkov v podatkovno tabelo Orange in tabelo 
+numpy. Ta sklop je namenjen skriptnemu delu s programom Orange 
+\cite{orange_scripting} in je dostopen
+kot \verb|api_wrapper| Python modul. 
 
-Tretji sestavni del je grafi"cni vmesnik za uporabo api\_wrapper modula. Namen
-grafi"cnega vmesnika je omogo"citi ne-programerjem dostop do podatkov 
+Tretji sestavni del je grafi"cni vmesnik za uporabo \verb|api_wrapper| modula.
+Namen grafi"cnega vmesnika je omogo"citi ne-programerjem dostop do podatkov 
 programskega vmesnika Svetovne banke znotraj programa Orange za namen obdelave,
-analize in iskanja zakonitosti med podatki.
+analize in iskanja zakonitosti v podatkih.
 
 \section{Knji"znica simple\_wbd}
 
-Knji"znica \verb|simple_wbd| programerjem olaj"sa dostop do podatkov programskega 
-vmesnika Svetovne banke. Glavna lastnost te knji"znice je zdru"zevanje ve"cjega 
-"stevila zahtev po podatkih in enostavna predstavitev dobljenih podatkov. 
-Druga lastnost je pretvorba podatkov iz ve"c dimenzij v dvo-dimenzionalno polje,
-primerno za uporabo v programu Orange. Glavna vmesnika te knji"znice sta 
-IndicatorAPI in ClimateAPI. Prvi omo"goca pridobivanje podatkov iz programskega 
-vmesnika indikatorjev Svetovne banke, drugi pa s programskega vmesnika
-podnebnih meritev.
+Knji"znica \verb|simple_wbd| programerjem olaj"sa dostop do podatkov 
+programskega vmesnika Svetovne banke. Glavna lastnost te knji"znice je 
+zdru"zevanje ve"cjega "stevila zahtev po podatkih in enostavna predstavitev 
+prejetih podatkov. Druga lastnost je pretvorba podatkov iz ve"c dimenzij v 
+dvo-dimenzionalno polje, primerno za uporabo v programu Orange. Glavna 
+razreda te knji"znice sta \verb|IndicatorAPI| in \verb|ClimateAPI|. Prvi 
+omogo"ca pridobivanje podatkov iz programskega vmesnika indikatorjev, drugi pa 
+s programskega vmesnika podnebnih meritev.
 
+
+"Ceprav za dostop do programskega vmesnika Svetovne banke "ze obstajajo 
+re"sitve kot sta knji"znici 
+\verb|wbdata|\fnurl{https://pypi.python.org/pypi/wbdata} in
+\verb|wbpy|\fnurl{https://pypi.python.org/pypi/wbpy/2.0.1}, smo se odlo"cili
+za lastno implementacijo podobne knji"znice. Glavni razlog za to je, da
+obstoje"ce re"sitve posku"sajo "cim bolj natan"cno predstaviti programski
+vmesnik Svetovne banke, ne pa olaj"sati dostop do "cim ve"cje koli"cine
+podatkov.
+
+Za potrebe te knji"znice smo razvili lastno re"sitev za predpomnenje poizvedb,
+saj so se bolj splo"sne re"sitve, kot naprimer
+\verb|vcrpy|\fnurl{https://pypi.python.org/pypi/vcrpy/1.10.0} in
+\verb|requests-cache|\fnurl{https://pypi.python.org/pypi/requests-cache}, 
+izkazale za prepo"casne ko delamo z ve"cjimi koli"cinami podatkov. Na"sa
+re"sitev za predpomnenje izkori"sca dejstvo da je vsaka poizvedba dolo"cena le
+z naslovom URL, in da so vsi odgovori oblike JSON. Za vsak URL naredimo novo
+datoteko v sistemskem za"casnem imeniku, v kateri hranimo serializirane JSON
+podatke. Ker se podatki na programskem vmesniku Svetovne banke redko
+posodabljajo, smo za "cas veljavosti za"casnih datotek izbrali en teden.
+
+% NOTE: serailizacija je baje uredu beseda:
+% http://eprints.fri.uni-lj.si/2711/1/63100205-VALENTIN_KRAGELJ-Pregled_in_analiza_tehnologij_za_serializacijo_objektov.pdf
+
+% server query je ful omojen (retarded) mi mamo bolsiga v guiju 
 
 %% % moznost razsiritve z dedovanjem dataset razreda.
 %% % 
 %% 
-%% - omo"goca pridobivanje vrednosti za filtre:
+%% - omogo"ca pridobivanje vrednosti za filtre:
 %%     - indicator api: drzave in agregati, indikatorji
 %%     - climate api: drzave, tipi podatkov, meritveno obdobje 
 %% 
@@ -49,43 +76,23 @@ podnebnih meritev.
 
 
 
-\subsection{Pomocnik IndicatorAPI}
+\subsection{Razred IndicatorAPI}
 
-IndicatorAPI je razred namenjen pridobivanju podatkov indikatorjev razvoja.
-Ker ima programski vmesnik Svetovne banke omejitev koliko podatkov lahko
-prenesemo z eno poizvedbo, nam ta razred zdru"zuje rezultate vseh poizvedb, ki
-so potrebne za prenos celotne zahteve. To poskrbi tako da se po prvi poizvedbi
-sprehodi "cez "stevilo preostalih strani (Primer \ref{basic_response}) ki so na voljo. 
-Za razliko od obstoje"cih knji"znic\fnurl{https://pypi.python.org/pypi/wbdata}
-\fnurl{https://pypi.python.org/pypi/wbpy/2.0.1} za delo z programskim vmesnikom
-Svetovne banke, katerih cilj je "cim bolj natan"cno predstaviti programski 
-vmesnik, je cilj nase knji"znice le poenostaviti poizvedbe. V ta namen smo s to
-knji"znico razsirili programski vmesnik da lahko z enim klicem funkcije 
-prenesemo podatke tudi vec kot le enega indikatorja.
+\verb|IndicatorAPI| je razred namenjen pridobivanju podatkov indikatorjev
+razvoja dr"zav. Ker ima programski vmesnik Svetovne banke omejitev koliko 
+podatkov lahko prenesemo z eno poizvedbo in nam dovoli tvoriti poizvedbe le za
+en indikator na enkrat, smo napisali razred, ki v ozadju tvori in izvede
+poizvedbe za vse strani vseh zahtevanih indikatorjev. To poskrbi tako da se po
+prvi poizvedbi za en indikator sprehodi "cez "stevilo preostalih strani 
+(Primer \ref{basic_response}), ki so na voljo, in pridobljene podatke ve"cih
+strani zdru"zi in predstavi kot rezultat ene same poizvedbe. Ta postopek ponovi
+za vse zahtevane indikatorje, in njihove rezultate vrne v obliki slovarja, ki 
+ima za klju"c kodo indikatorja posamezne zahteve.
 
 Poleg tega da skrbi za prenos vseh strani podatkov, tudi bele"zi "stevilo 
-narejenih in "stevilo potrebnih poizvedb za celoten prenos. Do teh "stevil lahko
-dostopamo z drugih niti in jih uporabimo za prikaz napredka in preostalega
-casa do prenosa celotne zahteve.
+izvedenih in "stevilo potrebnih poizvedb za celoten prenos. Ta "stevila se
+lahko uporablja za prikaz napredka prenosa podatkov.
 
-Glavne metode ki jih ponuja IndicatorAPI razred so:
-
-\begin{description}  
-\item [get\_indicators] vrne seznam vseh mo"znih indikatorjev z imeni, opisi in
-      identifikatorji,
-\item [get\_countries] vrne seznam drzav in regij z kodami in metapodatki,
-\item [get\_dataset] vrne razred (IndicatorDataset) ki vsebuje vse podatke z 
-      poizvedbe in metode za oblikovanje predstavitve podatkov: api\_responses,
-      as\_list, as\_dict.
-\end{description}
-
-
-
-Implementirali lastni caching:
- - obstojece knjiznice (vcrpy, requests-cache) za hranjenje narejenih poizdedb so se izkazale za zelo
- pocasne v primeru ko delamo z vecjim stevilom podatkov.
- - nasa resitev se zanasa na edinstvost URL naslovov - za vsak url si shranimo odgovor in ce je
- mlajsi od enega tedna, isti odgovor uporabim pri vsaki poizvedbi za doloceni URL.
 
 
 mehanizmem za odpravo napak:
@@ -94,11 +101,25 @@ mehanizmem za odpravo napak:
    - ob manjkajocih imenih poskusamo dobiti ime iz id-ja
    - ce ni nobene informacije ta podatek ignoriramo.
 
-ko zelimo dobiti polje v obliki casovne vrste:
- - pridobivanje datuma iz polja 'date'
-   - ob neveljavnih stringih probamo upostevati le zacetni del.
-     - za text za  obdobje  '2002 - 2006' bomo uporabili le datum 2002 
-   - neveljavne stringe kot so "most rescent value" ignoriramo.
+  ko zelimo dobiti polje v obliki casovne vrste:
+   - pridobivanje datuma iz polja 'date'
+     - ob neveljavnih stringih probamo upostevati le zacetni del.
+       - za text za  obdobje  '2002 - 2006' bomo uporabili le datum 2002 
+     - neveljavne stringe kot so "most rescent value" ignoriramo.
+
+
+
+
+\ \\
+Glavne metode ki jih ponuja razred IndicatorAPI so:
+
+\begin{description}  
+\item [get\_indicators] za pridobivanje seznama indikatorjev s kodami, imeni
+      in opisi,
+\item [get\_countries] za pridobivanje seznama drzav z metapodatki,
+\item [get\_dataset] za pridobivanje podatkov za indikatorjev.
+\end{description}
+
 
 
 
