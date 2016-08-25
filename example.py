@@ -5,12 +5,13 @@ from orangecontrib.wbd import api_wrapper
 api = api_wrapper.IndicatorAPI()
 
 test_data = api.get_dataset([
-  "EG.ELC.RNEW.ZS",  # Renewable electricity output (% of total electricity output)
-  "EG.ELC.ACCS.ZS",  # Access to electricity (% of population)
+    "SH.H2O.SAFE.ZS",  # Improved water source (% of population with access)
+    "SH.MED.BEDS.ZS",  # Hospital beds (per 1,000 people)
+    "SH.IMM.IDPT",     # Immunization, DPT (% of children ages 12-23 months)
 ]).as_orange_table()
 
 class_data = api.get_dataset(
-  "SP.URB.TOTL.IN.ZS",  # Urban population (% of total)
+    "SP.DYN.IMRT.IN",  # Mortality rate, infant (per 1,000 live births)
 ).as_orange_table()
 
 # lines with valid class values (not nan)
@@ -26,10 +27,16 @@ data = Orange.data.Table(
 )
 
 lin = Orange.regression.linear.LinearRegressionLearner()
+rf = Orange.regression.random_forest.RandomForestRegressionLearner()
+ridge = Orange.regression.RidgeRegressionLearner()
+mean = Orange.regression.MeanLearner()
 
-res = Orange.evaluation.CrossValidation(data, [lin], k=5)
+learners = [lin, rf, ridge, mean]
 
+res = Orange.evaluation.CrossValidation(data, learners, k=10)
 rmse = Orange.evaluation.RMSE(res)
 r2 = Orange.evaluation.R2(res)
 
-print("{:8} {:.2f} {:5.2f}".format(lin.name, rmse[0], r2[0]))
+print("{:25} {:7} {:7}".format("Learner", "RMSE", "R2"))
+for i in range(len(learners)):
+    print("{:25} {:5.2f} {:6.2f}".format(learners[i].name, rmse[i], r2[i]))
