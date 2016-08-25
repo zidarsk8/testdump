@@ -124,52 +124,77 @@ Glavne metode ki jih ponuja razred IndicatorAPI so:
       ki vsebuje podatkov indikatorjev.
 \end{description}
 
+Ena izmed lastnosti razreda \verb|IndicatorAPI| je ta da mu lahko ob
+inicializaciji podamo razred v katerem "zelimo prejeti rezultat poizvedbe. Ta
+razred mora dedovati od osnovnega razreda \verb|IndicatorDataset|. Na ta
+na"cin lahko enostavno raz"sirimo funkcionalnost \verb|simple_wbd| knji"znice.
+V primeru \ref{indicator_api_extend} vidimo en na"cin za raz"siritev razreda 
+\verb|IndicatorDataset| tako da uporabniku razreda \verb|MyIndicatorAPI| ni
+potrebno izrecno podati razreda \verb|IndicatorDataset| v konstruktor.
+
+\begin{snippet}
+\begin{center}
+\begin{lstlisting}
+class MyIndicatorDataset(simple_wbd.IndicatorDataset):
+    
+    def as_numpy(self):
+        raise NotImplemented()
+    
+    def as_orange_table(self):
+        raise NotImplemented()
+
+class MyIndicatorAPI(simple_wbd.IndicatorAPI):
+
+    def __init__(self):
+        super().__init__(MyIndicatorDataset)
+\end{lstlisting}
+\end{center}
+\caption[some]{Primer raz"siritve osnovnega razreda rezultatov poizvedb.}
+\label{indicator_api_extend}
+\end{snippet} 
+
 
 \subsubsection{Razred IndicatorDataset}
 
-Razred \verb|IndikatorDataset| je osnovni razred v katerem dobimo zahtevane podatke
-indikatorjev. Ta razred vsebuje vse potrebne metode in podatke za predstavitev
-rezultatov programskega vmesnika, na dva glavna načina: kot slovar slovarjev in
-dvo dimenzionalen seznam. Poleg omenjenih načinov predstavitve podatkov lahko
-dostopamo tudi do neobdelanih podatkov prejetih iz programskega vmesnika za
-vsako poizvedbo posebej.
+Razred \verb|IndicatorDataset| je osnovni razred v katerem dobimo zahtevane 
+podatke indikatorjev. Ta razred vsebuje vse potrebne metode in podatke za 
+predstavitev rezultatov programskega vmesnika, na dva načina: kot slovar
+rezultatov poizvedb za posamezen indikator in dvo dimenzionalen seznam. 
+Posamezna vrednost v teh podatkih je določena z državo, časovno komponento in 
+kodo indikatorja. 
 
-\textbf{TODO:}
+Podatke lahko predstavimo kot dvodimenzionalno polje v dveh oblikah: kot
+"casovne vrste ali kot podatki dr"zav. Obliko predstavitve izberemo s
+parametrom \verb|time_series| metode \verb|as_list|. Za predstavitev obeh oblik
+je prva vrstica polja uporabljena kot naslovna vrstica, ki opisuje podatke v 
+stolpcih.
 
-Posamezne vrednosti teh podatkov so določene z državo, časovno komponento, in
-kodo indikatorja. Te podatke lahko predstavimo na dva glavna načina:
+Ko uporabljavo obliko "casovnih vrst, so elementi prve vrstice kartezi"cni
+produkt kod indikatorjev in dr"zav. V prvem stolpcu polja pa imamo casovno
+komponento podatkov. Na ta na"cin so vsi ostali elementi polja dolo"ceni s 
+casovno komponento, dr"zavo in kodo indikatorja.
 
- - kot gnezdeni slovar, kjer je na prvem nivoju ime indikatorja, na drugem
-   drzava, in na tretjem nivoju casovna komponenta.
-
- - Kot dvo-dimenzionalno polje, kjer imamo v vrsticah eno oznako, v stolpcih
-   pa kartezicni produkt ostalih dveh. ponujene moznosti so:
-   - vrstice = drzava, stolpci = cas x indikator
-   - vrstice = cas, stolpci = drzava x indikator
-
-
-Indicator
-
+Ko dostopamo do dvodimezionalnega polja ki predstavlja podatke dr"zav, pa je v
+prvi vrstici kartezi"cni produkt kod indikatorjev in casovne komponente. Prvi
+stolpec v tej predstavitvi vsebuje imena drzav. Za razliko od predstavitve v 
+obliki "casovnih vrst, v to polje vstavimo se dodatne stolpce ki vsebujejo
+metapodatke drzav iz primera \ref{country_response}: regija \verb|region|, administrativna regija
+\verb|adminregion|, vi"sina dohodka \verb|incomeLevel|, vrsta posojil
+\verb|lendingType|, geografska "sirina \verb|latitude|, geografska dol"zina
+\verb|longitude|. Tudi tukaj vsi ostali elementi dolo"ceni s casovno 
+komponento, dr"zavo in kodo indikatorja. 
 
 
-% notes:
-% 3 dimenzije: cas, drzava, indikator > vrednost
+% \subsubsection{Primeri uporabe}
 % 
-% lahko damo v:
+% Razreda \verb|IndicatorAPI| in \verb|IndicatorDataset| 
 % 
 % 
-%    \    drzava x indikator
-%   cas
-% 
-%  ali: 
-% 
-%    \    cas x indikator
-% drzava
-% 
-
-
-\subsubsection{Primeri uporabe}
-
+% import simple_wbd
+% api = simple_wbd.IndicatorAPI()
+% seznam_indikatorjev = api.get_indicators()
+% kode_indikatorjev = [indikator.get("id") for indikator in seznam_indikatorjev]
+% indicator_dataset = api.get_dataset(kode_indikatorjev[:3])
 
 
 
@@ -185,7 +210,45 @@ vse potrebne poizvedbe za pridobitev podatkov.
 
 
 
-\subsubsection{Razred IndicatorDataset}
+\subsubsection{Razred ClimateDataset}
+
+
+
+
+Razred \verb|ClimateDataset| je osnovni razred v katerem dobimo zahtevane 
+podatke podnebnih meritev. Ta razred vsebuje vse potrebne metode in podatke za 
+predstavitev rezultatov programskega vmesnika, na dva glavna načina: kot slovar
+slovarjev in dvo dimenzionalen seznam. Posamezna vrednost v teh podatkih je
+določena z državo, časovno komponento in kodo indikatorja. Poleg omenjenih
+načinov predstavitve podatkov lahko dostopamo tudi do neobdelanih podatkov 
+prejetih iz programskega vmesnika za vsako poizvedbo posebej.
+
+
+
+Do podatkov predstavljenih s slovarjem slovarjev lahko dostopamo preko funkcije
+\verb|as_dict|. V tej funkciji zdru"zimo podatke z poizvedb programskega
+vmesnika v gnezden slovar, tako da 
+
+
+Do podatkov predstavljenih s slovarjem slovarjev lahko dostopamo preko funkcije
+\verb|as_dict|. V tej funkciji zdru"zimo podatke poizvedb programskega
+vmesnika v gnezden slovar, tako da 
+
+ - kot gnezdeni slovar, kjer je na prvem nivoju ime indikatorja, na drugem
+   drzava, in na tretjem nivoju casovna komponenta.
+
+
+
+ - Kot dvo-dimenzionalno polje, kjer imamo v vrsticah eno oznako, v stolpcih
+   pa kartezicni produkt ostalih dveh. ponujene moznosti so:
+   - vrstice = drzava, stolpci = cas x indikator
+   - vrstice = cas, stolpci = drzava x indikator
+
+
+Indicator
+
+
+
 
 Isto kot pri indicator apiju
 ko zelimo dobiti polje v obliki casovne vrste:
@@ -220,22 +283,6 @@ as\_list
 
 
 razširitev simple wbd vmesnikov z dedovanjem pravega dataset razreda.
-
-\begin{verbatim}
-
-class ClimateDataset(simple_wbd.ClimateDataset):
-    
-    def as_numpy(self):
-        raise NotImplemented()
-    
-    def as_orange_table(self):
-        raise NotImplemented()
-
-class ClimateAPI(simple_wbd.ClimateAPI):
-
-    def __init__(self):
-        super().__init__(ClimateDataset)
-\end{verbatim}
 
 
 - razsiri as\_list v as\_numpy\_array ki tudi odstrani vse stolpce ki nimajo 
