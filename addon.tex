@@ -2,7 +2,11 @@
 \chapter{Knjižnica in gradniki za Orange}
 
 V okviru diplomske naloge smo razvili tri ločene komponente za programerje in
-končne uporabnike programa Orange. 
+končne uporabnike programa Orange. Prva komponenta je
+dostopna kot samostojni paket 
+\verb|simple_wbd|\fnurl{https://pypi.python.org/pypi/simple_wbd/0.5.0}. 
+Druga in tretja komponenti pa sta zdru"zeni v paketu
+\verb|orange3-datasets|\fnurl{https://pypi.python.org/pypi/Orange3-Datasets/0.1.3}
 
 Prva komponenta je programska knjižnica \verb|simple_wbd|, ki
 omogoča enostaven dostop do programskega vmesnika indikatorjev in podnebnih
@@ -18,7 +22,7 @@ funkcionalnostmi, potrebnimi za lažje delo v programu Orange. To predvsem
 zavzema pretvorbo pridobljenih podatkov v podatkovno tabelo Orange in tabelo 
 numpy. Ta sklop je namenjen skriptnemu delu s programom Orange 
 \cite{orange_scripting} in je dostopen
-kot \verb|api_wrapper| Python modul. 
+kot \verb|api_wrapper| Python modul znotraj paketa \verb|orangecontrib.wbd|.
 
 Tretji sestavni del je grafični vmesnik za uporabo \verb|api_wrapper| modula.
 Namen grafičnega vmesnika je omogočiti ne-programerjem dostop do podatkov 
@@ -267,7 +271,18 @@ list5 = ds.as_list(columns=["country"])
 
 
 
-\section{api\_wrapper}
+\section{Modul api\_wrapper}
+
+
+Znotraj paketa \verb|orangecontrib.wbd| smo razvili modul \verb|api_wrapper| v
+katerem smo raz"sirili razreda \verb|IndicatorDataset| in \verb|ClimateDataset|
+na na"cin ki je prikazan v primeru \ref{indicator_api_extend}. Na"sa
+raz"siritev obema razredoma doda metodi za pretvorbo podatkov v podatkovno 
+tabelo Orange in tabelo numpy.
+
+
+
+
 
 % doda as orange table in as numpy obema indikator apiju in climate apiju.
 
