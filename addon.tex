@@ -196,7 +196,7 @@ komponento, državo in kodo indikatorja.
 % import simple_wbd
 % api = simple_wbd.IndicatorAPI()
 % seznam_indikatorjev = api.get_indicators()
-% kode_indikatorjev = [indikator.get("id") for indikator in seznam_indikatorjev]
+% kode_indikatorjev = [indikator.get('id') for indikator in seznam_indikatorjev]
 % indicator_dataset = api.get_dataset(kode_indikatorjev[:3])
 
 
@@ -255,13 +255,13 @@ predstavitev v obliki časovnih vrst.
 import simple_wbd
 
 api = simple_wbd.ClimateAPI()                   
-climate_dataset = api.get_instrumental([švn", "usa", "aus"])
+climate_dataset = api.get_instrumental(['svn', 'usa', 'aus'])
 
 list1 = ds.as_list()
-list2 = ds.as_list(columns=["type", "interval"])  # default  value
-list3 = ds.as_list(columns=["type"])
-list4 = ds.as_list(columns=["type", čountry"]) 
-list5 = ds.as_list(columns=[čountry"])
+list2 = ds.as_list(columns=['type', 'interval'])  # default  value
+list3 = ds.as_list(columns=['type'])
+list4 = ds.as_list(columns=['type', 'country']) 
+list5 = ds.as_list(columns=['country'])
 \end{lstlisting}
 \end{center}
 \cprotect
@@ -323,7 +323,7 @@ TODO: opis posameznih razširitev in primer skripte uporabe.
 % % from orangecontrib.wbd import api_wrapper
 % % api = api_wrapper.IndicatorAPI()
 % % seznam_indikatorjev = api.get_indicators()
-% % kode_indikatorjev = [indikator.get("id") for indikator in seznam_indikatorjev]
+% % kode_indikatorjev = [indikator.get('id') for indikator in seznam_indikatorjev]
 % % indicator_dataset = api.get_dataset(kode_indikatorjev[:3])
 
 
