@@ -1,61 +1,61 @@
 
-\chapter{Knji"znica in gradniki za Orange}
+\chapter{Knjižnica in gradniki za Orange}
 
-V okviru diplomske naloge smo razvili tri lo"cene komponente za programerje in
-kon"cne uporabnike programa Orange. 
+V okviru diplomske naloge smo razvili tri ločene komponente za programerje in
+končne uporabnike programa Orange. 
 
-Prva komponenta je programska knji"znica \verb|simple_wbd|, ki
-omogo"ca enostaven dostop do programskega vmesnika indikatorjev in klimatskih
-podatkov Svetovne banke. Ta knji"znica je narejena s "cim manj odvisnosti in je 
+Prva komponenta je programska knjižnica \verb|simple_wbd|, ki
+omogoča enostaven dostop do programskega vmesnika indikatorjev in podnebnih
+podatkov Svetovne banke. Ta knjižnica je narejena s čim manj odvisnosti in je 
 % TODO ali je python z veliko
-namenjena splo"sni uporabi v Python programih. Poudarka pri zasnovi knji"znice 
+namenjena splošni uporabi v Python programih. Poudarka pri zasnovi knjižnice 
 \verb|simple_wbd| sta predvsem enostavnost razsiritve in zanesljivost. Ta cilja
-dose"zemo z mehanizmom za vkljucevanje lastne kode v komponente knji"znice
+dosežemo z mehanizmom za vključevanje lastne kode v komponente knjižnice
 in mehanizmi za popravljanje ali odstranjevanje pokvarjenih podatkov.
 
-Drugi sestavni del je raz"siritev knji"znice \verb|simple_wbd| s 
-funkcionalnostmi, potrebnimi za la"zje delo v programu Orange. To predvsem 
+Drugi sestavni del je razširitev knjižnice \verb|simple_wbd| s 
+funkcionalnostmi, potrebnimi za lažje delo v programu Orange. To predvsem 
 zavzema pretvorbo pridobljenih podatkov v podatkovno tabelo Orange in tabelo 
 numpy. Ta sklop je namenjen skriptnemu delu s programom Orange 
 \cite{orange_scripting} in je dostopen
 kot \verb|api_wrapper| Python modul. 
 
-Tretji sestavni del je grafi"cni vmesnik za uporabo \verb|api_wrapper| modula.
-Namen grafi"cnega vmesnika je omogo"citi ne-programerjem dostop do podatkov 
+Tretji sestavni del je grafični vmesnik za uporabo \verb|api_wrapper| modula.
+Namen grafičnega vmesnika je omogočiti ne-programerjem dostop do podatkov 
 programskega vmesnika Svetovne banke znotraj programa Orange za namen obdelave,
 analize in iskanja zakonitosti v podatkih.
 
-\section{Knji"znica simple\_wbd}
+\section{Knjižnica simple\_wbd}
 
-Knji"znica \verb|simple_wbd| programerjem olaj"sa dostop do podatkov 
-programskega vmesnika Svetovne banke. Glavna lastnost te knji"znice je 
-zdru"zevanje ve"cjega "stevila zahtev po podatkih in enostavna predstavitev 
-prejetih podatkov. Druga lastnost je pretvorba podatkov iz ve"c dimenzij v 
+Knjižnica \verb|simple_wbd| programerjem olajša dostop do podatkov 
+programskega vmesnika Svetovne banke. Glavna lastnost te knjižnice je 
+združevanje večjega števila zahtev po podatkih in enostavna predstavitev 
+prejetih podatkov. Druga lastnost je pretvorba podatkov iz več dimenzij v 
 dvo-dimenzionalno polje, primerno za uporabo v programu Orange. Glavna 
-razreda te knji"znice sta \verb|IndicatorAPI| in \verb|ClimateAPI|. Prvi 
-omogo"ca pridobivanje podatkov iz programskega vmesnika indikatorjev, drugi pa 
+razreda te knjižnice sta \verb|IndicatorAPI| in \verb|ClimateAPI|. Prvi 
+omogoča pridobivanje podatkov iz programskega vmesnika indikatorjev, drugi pa 
 s programskega vmesnika podnebnih meritev.
 
 
-"Ceprav za dostop do programskega vmesnika Svetovne banke "ze obstajajo 
-re"sitve kot sta knji"znici 
+Čeprav za dostop do programskega vmesnika Svetovne banke že obstajajo 
+rešitve kot sta knjižnici 
 \verb|wbdata|\fnurl{https://pypi.python.org/pypi/wbdata} in
-\verb|wbpy|\fnurl{https://pypi.python.org/pypi/wbpy/2.0.1}, smo se odlo"cili
-za lastno implementacijo podobne knji"znice. Glavni razlog za to je, da
-obstoje"ce re"sitve posku"sajo "cim bolj natan"cno predstaviti programski
-vmesnik Svetovne banke, ne pa olaj"sati dostop do "cim ve"cje koli"cine
+\verb|wbpy|\fnurl{https://pypi.python.org/pypi/wbpy/2.0.1}, smo se odločili
+za lastno implementacijo podobne knjižnice. Glavni razlog za to je, da
+obstoječe rešitve poskušajo čim bolj natančno predstaviti programski
+vmesnik Svetovne banke, ne pa olajšati dostop do čim večje količine
 podatkov.
 
-Za potrebe te knji"znice smo razvili lastno re"sitev za predpomnenje poizvedb,
-saj so se bolj splo"sne re"sitve, kot naprimer
+Za potrebe te knjižnice smo razvili lastno rešitev za predpomnenje poizvedb,
+saj so se bolj splošne rešitve, kot na primer
 \verb|vcrpy|\fnurl{https://pypi.python.org/pypi/vcrpy/1.10.0} in
 \verb|requests-cache|\fnurl{https://pypi.python.org/pypi/requests-cache}, 
-izkazale za prepo"casne ko delamo z ve"cjimi koli"cinami podatkov. Na"sa
-re"sitev za predpomnenje izkori"sca dejstvo da je vsaka poizvedba dolo"cena le
+izkazale za prepočasne ko delamo z večjimi količinami podatkov. Naša
+rešitev za predpomnenje izkorišča dejstvo da je vsaka poizvedba določena le
 z naslovom URL, in da so vsi odgovori oblike JSON. Za vsak URL naredimo novo
-datoteko v sistemskem za"casnem imeniku, v kateri hranimo serializirane JSON
+datoteko v sistemskem začasnem imeniku, v kateri hranimo serializirane JSON
 podatke. Ker se podatki na programskem vmesniku Svetovne banke redko
-posodabljajo, smo za "cas veljavosti za"casnih datotek izbrali en teden.
+posodabljajo, smo za čas veljavnosti začasnih datotek izbrali en teden.
 
 % NOTE: serailizacija je baje uredu beseda:
 % http://eprints.fri.uni-lj.si/2711/1/63100205-VALENTIN_KRAGELJ-Pregled_in_analiza_tehnologij_za_serializacijo_objektov.pdf
@@ -65,7 +65,7 @@ posodabljajo, smo za "cas veljavosti za"casnih datotek izbrali en teden.
 %% % moznost razsiritve z dedovanjem dataset razreda.
 %% % 
 %% 
-%% - omogo"ca pridobivanje vrednosti za filtre:
+%% - omogoča pridobivanje vrednosti za filtre:
 %%     - indicator api: drzave in agregati, indikatorji
 %%     - climate api: drzave, tipi podatkov, meritveno obdobje 
 %% 
@@ -79,37 +79,37 @@ posodabljajo, smo za "cas veljavosti za"casnih datotek izbrali en teden.
 \subsection{Razred IndicatorAPI}
 
 \verb|IndicatorAPI| je razred namenjen pridobivanju podatkov indikatorjev
-razvoja dr"zav. Ker ima programski vmesnik Svetovne banke omejitev koliko 
+razvoja držav. Ker ima programski vmesnik Svetovne banke omejitev koliko 
 podatkov lahko prenesemo z eno poizvedbo in nam dovoli tvoriti poizvedbe le za
 en indikator na enkrat, smo napisali razred, ki v ozadju tvori in izvede
 poizvedbe za vse strani vseh zahtevanih indikatorjev. To poskrbi tako da se po
-prvi poizvedbi za en indikator sprehodi "cez "stevilo preostalih strani 
-(Primer \ref{basic_response}), ki so na voljo, in pridobljene podatke ve"cih
-strani zdru"zi in predstavi kot rezultat ene same poizvedbe. Ta postopek ponovi
+prvi poizvedbi za en indikator sprehodi čez število preostalih strani 
+(Primer \ref{basic_response}), ki so na voljo, in pridobljene podatke večih
+strani združi in predstavi kot rezultat ene same poizvedbe. Ta postopek ponovi
 za vse zahtevane indikatorje, in njihove rezultate vrne v obliki slovarja, ki 
-ima za klju"c kodo indikatorja posamezne zahteve.
+ima za ključ kodo indikatorja posamezne zahteve.
 
-Poleg tega da skrbi za prenos vseh strani podatkov, tudi bele"zi "stevilo 
-izvedenih in "stevilo potrebnih poizvedb za celoten prenos. Ta "stevila se
+Poleg tega da skrbi za prenos vseh strani podatkov, tudi beleži število 
+izvedenih in število potrebnih poizvedb za celoten prenos. Ta števila se
 lahko uporablja za prikaz napredka prenosa podatkov.
 
 
-Za namene razreda \verb|IndicatorAPI| smo v knji"znici \verb|simple_wbd|
-razvili mehanizvme za odpravo nekaterih napak omenjenih v poglavju 
+Za namene razreda \verb|IndicatorAPI| smo v knjižnici \verb|simple_wbd|
+razvili mehanizme za odpravo nekaterih napak omenjenih v poglavju 
 \ref{api_gotchas}.
 
-Pri manjkajo"cih vrednostih dr"zav v poizvedbah za podatke indikatorjev,
-posku"samo dolo"citi pravilne vrednosti. To naredimo s pomo"cjo dveh
-slovarjev: prvi slika kode dr"zav v imena, drugi pa imena dr"zav v kode. V
-primeru manjkajo"ce vrednosti kode ali imena, posku"samo to prebrati iz enega
-od na"stetih slovarjev. "Ce nam ne uspe ugotoviti manjkajo"cih vrednosti,
+Pri manjkajočih vrednostih držav v poizvedbah za podatke indikatorjev,
+poskušamo določiti pravilne vrednosti. To naredimo s pomočjo dveh
+slovarjev: prvi slika kode držav v imena, drugi pa imena držav v kode. V
+primeru manjkajoče vrednosti kode ali imena, poskušamo to prebrati iz enega
+od naštetih slovarjev. Če nam ne uspe ugotoviti manjkajočih vrednosti,
 trenutni vnos odstranimo iz rezultata poizvedbe.
 
-Drugi tip napak, ki ga lahko delno popravimo, so napa"cne vrednosti v polju
+Drugi tip napak, ki ga lahko delno popravimo, so napačne vrednosti v polju
 \verb|date| v poizvedbah za podatke indikatorjev. Ker lahko v temu polju
-pri"cakujemo poljubeno besedilo, dela na"s pretvornik za polje \verb|date| v 
-datum, tako da posku"sa v datum pretvoriti "cim dalj"so predpono besedila.
-"Ce nam ne uspe besedila pretvoriti v veljaven datum, trenutni vnos odstranimo
+pričakujemo poljubno besedilo, dela naš pretvornik za polje \verb|date| v 
+datum, tako da poskuša v datum pretvoriti čim daljšo predpono besedila.
+Če nam ne uspe besedila pretvoriti v veljaven datum, trenutni vnos odstranimo
 iz rezultata poizvedbe.
 
 
@@ -119,7 +119,7 @@ Glavne metode ki jih ponuja razred IndicatorAPI so:
 \begin{description}  
 \item [get\_indicators] za pridobivanje seznama indikatorjev s kodami, imeni
       in opisi,
-\item [get\_countries] za pridobivanje seznama drzav z metapodatki,
+\item [get\_countries] za pridobivanje seznama držav z metapodatki,
 \item [get\_dataset] za pridobivanje podatkov za indikatorjev.
 \end{description}
 
@@ -128,14 +128,14 @@ Glavne metode ki jih ponuja razred IndicatorAPI so:
 
 Razred \verb|IndikatorDataset| je osnovni razred v katerem dobimo zahtevane podatke
 indikatorjev. Ta razred vsebuje vse potrebne metode in podatke za predstavitev
-rezultatov programskega vmesnika, na dva glavna na"cina; kot slovar slovarjev in
-dvo dimenzionalen seznam. Poleg omenjenih na"cinov predstavitve podatkov lahko
-dostopamo tudi do neobdelanih podatkov prejetih z programskega vmesnika za
+rezultatov programskega vmesnika, na dva glavna načina; kot slovar slovarjev in
+dvo dimenzionalen seznam. Poleg omenjenih načinov predstavitve podatkov lahko
+dostopamo tudi do neobdelanih podatkov prejetih iz programskega vmesnika za
 vsako poizvedbo posebej.
 
 
-Posamezne vrednosti teh podatkov so dolo"cene z drzavo, casovno komponento, in
-kodo indikatorja. Te podatke lahko predstavimo na dva glavna nacina:
+Posamezne vrednosti teh podatkov so določene z državo, časovno komponento, in
+kodo indikatorja. Te podatke lahko predstavimo na dva glavna načina:
 
  - kot gnezdeni slovar, kjer je na prvem nivoju ime indikatorja, na drugem
    drzava, in na tretjem nivoju casovna komponenta.
@@ -190,7 +190,7 @@ ko zelimo dobiti polje v obliki casovne vrste:
  - pridobivanje datuma iz polja 'date'
    - ob neveljavnih stringih probamo upostevati le zacetni del.
      - za text za  obdobje  '2002 - 2006' bomo uporabili le datum 2002 
-   - neveljavne stringe kot so "most rescent value" ignoriramo.
+   - neveljavne stringe kot so ``most recent value'' ignoriramo.
 
 
 
@@ -217,7 +217,7 @@ as\_list
 % doda as orange table in as numpy obema indikator apiju in climate apiju.
 
 
-raz"siritev simple wbd vmesnikov z dedovanjem pravega dataset razreda.
+razširitev simple wbd vmesnikov z dedovanjem pravega dataset razreda.
 
 \begin{verbatim}
 

@@ -1,24 +1,24 @@
 
 \chapter{Uvod}
 
-Na svetovnem spletu je dosegljivih vedno ve"c prosto dostopnih programskih
+Na svetovnem spletu je dosegljivih vedno več prosto dostopnih programskih
 vmesnikov (ang.\ application programming interface). 
 % TODO: morda dodaj API v razlago zgoraj
-Ti vmesniki omogo"cajo dostop
+Ti vmesniki omogočajo dostop
 do zelo raznolikih zbirk podatkov. Nekaj primerov prosto dostopnih podatkovnih
-zbirk je seznam stopnje ogro"zenosti "zivali po dr"zavah 
+zbirk je seznam stopnje ogroženosti živali po državah 
 % 1 IUCN 2016. IUCN Red List of Threatened Species. Version 2016-1 <www.iucnredlist.org>
     \fnurl{http://apiv3.iucnredlist.org/api/v3/docs},
 podatki meritev in slike vesolja agencije NASA
     \fnurl{https://api.nasa.gov/},
 seznam knjig z ocenami in povezavami med uporabniki 
     \fnurl{https://www.goodreads.com/api},
-zgodovina meteorolo"skih meritev 
+zgodovina meteoroloških meritev 
     \fnurl{http://climatedataapi.worldbank.org/},
-razni indikatorji stopenj razvoja dr"zav
+razni indikatorji stopenj razvoja držav
     \fnurl{http://api.worldbank.org/}.
 
-Programski vmesniki so oblikovani tako, da je omogo"cena raznolika uporaba
+Programski vmesniki so oblikovani tako, da je omogočena raznolika uporaba
 podatkov iz podatkovnh zbirk. To pa ima tudi slabost, ki je v tem, da je 
 podatke potrebno predhodno obdelati za vsak namen posebej. Tako bi na primer 
 moral vsak uporabnik programa Orange podatke predhodno pretvoriti v obliko, 
@@ -35,35 +35,35 @@ primerno za njegovo konkretno analizo.
 
 Povezava programskega vmesnika za dostop do podatkov in orodja za analizo 
 podatkov je pogosto prezapletena za navadnega uporabnika. Z dodatkom Orange
-data sets "zelimo podatke programskega vmesnika Svetovne banke spraviti v 
-obliko, primerno za nadaljno
-uporabo v orodju Orange. Ta dodatek bi pomagal zdru"ziti programe za obdelavo
-podatkov in prosto dostopne zbirke podatkov. S tem dobimo enostavnej"si dostop 
-do podatkov iz prek 16.000 indikatorjev in "stevilnih klimatskih meritev,
-s "cimer bomo la"zje analizirali in iskali morebitne zakonitosti v podatkih.
-"Ce bi imeli en sam ustrezen dodatek za dostop do podatkov programskega 
+data sets želimo podatke programskega vmesnika Svetovne banke spraviti v 
+obliko, primerno za nadaljnjo
+uporabo v orodju Orange. Ta dodatek bi pomagal združiti programe za obdelavo
+podatkov in prosto dostopne zbirke podatkov. S tem dobimo enostavnejši dostop 
+do podatkov iz prek 16.000 indikatorjev in številnih podnebnih meritev,
+s čimer bomo lažje analizirali in iskali morebitne zakonitosti v podatkih.
+Če bi imeli en sam ustrezen dodatek za dostop do podatkov programskega 
 vmesnika Svetovne banke, bi poenostavili posodabljanje in
-vzdr"zevanje kode v primeru sprememb programskega vmesnika za vse uporabnike
+vzdrževanje kode v primeru sprememb programskega vmesnika za vse uporabnike
 istega orodja hkrati. S tem odpravimo potrebo, da bi moral vsak uporabnik sam
 skrbeti za uskladitvene posodobitve.
 
 
 \section{Cilji in struktura diplomske naloge}
 
-Cilj diplomske naloge je izdelati knji"znico za uporabo programskega vmesnika
-Svetovne banke ter izdelati dodatek za program Orange, ki s pomo"cjo omenjene
-knji"znice omogo"ca uporabniku dostop do podatkov Svetovne banke preko
-grafi"cnega vmesnika.
+Cilj diplomske naloge je izdelati knjižnico za uporabo programskega vmesnika
+Svetovne banke ter izdelati dodatek za program Orange, ki s pomočjo omenjene
+knjižnice omogoča uporabniku dostop do podatkov Svetovne banke preko
+grafičnega vmesnika.
 
 V diplomski nalogi najprej predstavimo spletna vira indikatorjev
-dr"zav sveta in meritev podnebnih podatkov Svetovne banke, ter
-opi"semo delovanje njunih programskih vmesnikov.
-Nato podrobneje opi"semo na"so implementacijo knji"znice za dostop do
+držav sveta in meritev podnebnih podatkov Svetovne banke, ter
+opišemo delovanje njunih programskih vmesnikov.
+Nato podrobneje opišemo našo implementacijo knjižnice za dostop do
 programskega vmesnika Svetovne banke in gradnikov za program Orange, ki to
-knji"znico uporabljajo. V nadaljevanju prika"zemo "se nekaj prakti"cnih 
-primerov uporabe dodatka Orange data sets. Na koncu "se popisemo opravljeno 
-delo, navedemo vire kode in omenimo mo"zne na"cine za izbolj"savo ali 
-nadgradnjo na"sega dodatka.
+knjižnico uporabljajo. V nadaljevanju prikažemo še nekaj praktičnih 
+primerov uporabe dodatka Orange data sets. Na koncu še popišemo opravljeno 
+delo, navedemo vire kode in omenimo možne načine za izboljšavo ali 
+nadgradnjo našega dodatka.
 
 
 
@@ -77,77 +77,77 @@ nadgradnjo na"sega dodatka.
 
 
 % bomo podrobneje opisali programski vmesnik za dostop do
-% podatkov Svetovne banke (API SB). V "cetrtem poglavju sledi predstavitev
-% knji"znice in gradnikov za Orange in nato "se konkretni primeri uporabe. Na koncu
-% bomo popisali opravljeno delo, navedli vire kode in opisali nadaljne mo"znosti
+% podatkov Svetovne banke (API SB). V četrtem poglavju sledi predstavitev
+% knjižnice in gradnikov za Orange in nato še konkretni primeri uporabe. Na koncu
+% bomo popisali opravljeno delo, navedli vire kode in opisali nadaljne možnosti
 % nadgradnje dodatka.
 
 
 %% -------------------------------
 %%
-%%  - Prav tako se ve"cina programov in knji"znic za dostop do baz podatkov osredoto"ci le na iskanje po teh bazah, ne pa tudi na pridobivanje "cim ve"cje koli"cine podatkov.
+%%  - Prav tako se večina programov in knjižnic za dostop do baz podatkov osredotoči le na iskanje po teh bazah, ne pa tudi na pridobivanje čim večje količine podatkov.
 %%
 %%
 %% % Poleg tega obstaja dosti odprto kodnih programov za obdelavo
-%% % in analizo podatkov. Ker so programski vmesnike bolj splo"sno namenski, je
+%% % in analizo podatkov. Ker so programski vmesnike bolj splošno namenski, je
 %%
 %%
 %% \chapter{Uvod}
 %%
 %%
-%% Na spletu je vedno ve"c prosto dostopnih programskih vmesnikov(API, ang.
-%% application programming interface) za razli"cne baze podatkov. Ti vmesniki
+%% Na spletu je vedno več prosto dostopnih programskih vmesnikov(API, ang.
+%% application programming interface) za različne baze podatkov. Ti vmesniki
 %% ponujajo dostop do zelo raznolikih podatkov, kot so
-%% seznami stopnje ogro"zenosti "zivali po dr"zavah
+%% seznami stopnje ogroženosti živali po državah
 %% \fnurl{http://apiv3.iucnredlist.org/api/v3/docs},
 %% NASA podatki meritev in slike vesolja
 %% \fnurl{https://api.nasa.gov/},
 %% seznam knjig z ocenami in povezavami med uporabniki
 %% \fnurl{https://www.goodreads.com/api},
-%% zgodovina meteorolo"skih meritev
+%% zgodovina meteoroloških meritev
 %% \fnurl{http://climatedataapi.worldbank.org/},
-%% razni indikatorji stopnje razvoja dr"zav
+%% razni indikatorji stopnje razvoja držav
 %% \fnurl{http://api.worldbank.org/}.
 %%
-%% Ker pa so programski vmesniki bolj splo"sno namenski, je
-%% podatke te"sko spraviti v obliko ki bi bila primerna za uporabo v raznih
-%% orodjih za analizo in obdelavo podatkov. Prav tako se ve"cina programov in knji"znic za dostop
-%% do baz podatkov osredoto"ci le na iskanje po teh bazah, ne pa tudi na
-%% pridobivanje "cim ve"cje koli"cine podatkov.
+%% Ker pa so programski vmesniki bolj splošno namenski, je
+%% podatke teško spraviti v obliko ki bi bila primerna za uporabo v raznih
+%% orodjih za analizo in obdelavo podatkov. Prav tako se večina programov in knjižnic za dostop
+%% do baz podatkov osredotoči le na iskanje po teh bazah, ne pa tudi na
+%% pridobivanje čim večje količine podatkov.
 %%
 %%
 %% % Poleg tega obstaja dosti odprto kodnih programov za obdelavo
-%% % in analizo podatkov. Ker so programski vmesnike bolj splo"sno namenski, je
-%% % podatke te"sko spraviti v obliko za analizo in obdelavo. Z orodjem, ki bi
-%% % pomagalo zdru"ziti programe za obdelavo podatkov in prosto dostopne baze
-%% % podatkov, bi omogo"cili raziskovanje teh podatkov "sir"si javnosti.
+%% % in analizo podatkov. Ker so programski vmesnike bolj splošno namenski, je
+%% % podatke teško spraviti v obliko za analizo in obdelavo. Z orodjem, ki bi
+%% % pomagalo združiti programe za obdelavo podatkov in prosto dostopne baze
+%% % podatkov, bi omogočili raziskovanje teh podatkov širši javnosti.
 %%
 %%
 %%
 %% % Povezava programskega vmesnika in orodja za analizo podatkov pa je pogosto
 %% % prezapletena za navadnega uporabnika. Z dodajanjem gradnikov za enostavno
-%% % uporabo spletnih programskih vmesnikov v orodjih kot je Orange, omogo"cimo ...
+%% % uporabo spletnih programskih vmesnikov v orodjih kot je Orange, omogočimo ...
 %%
 %% \section{Motivacija}
 %%
 %% Branje podatkov z raznih programskih vmesnikov je lahko zelo zamudno delo.
-%% Programski vmesnik se lahko s "casom spremeni, in podatki ki jih dobimo z
-%% vmesnika so lahko pokvarjeni. Trenutni pristop, kjer moramo podatke vsaki"c ro"cno
+%% Programski vmesnik se lahko s časom spremeni, in podatki ki jih dobimo z
+%% vmesnika so lahko pokvarjeni. Trenutni pristop, kjer moramo podatke vsakič ročno
 %% obilkovati da so primerni za analizo, ima mnogo pomanjkljivosti. Prejeti podatki
 %% lahko vsebujejo nepravilnosti, ali pa so celo nedostopni. Z dodatkom ki bi
 %% poskrbel za prenos podatkov in pretovrbo v uporabno obliko, hkrati pa bi znal
-%% popraviti ali odstraniti pokvarjene podatke, bi lahko ve"c pozornosti posvetili
-%% sami analizi in obdelavi. Poleg tega, pa ve"cina knji"znic za delo z odprtimi
-%% programskimi vmesniki, nudi zelo dobre na"cine za iskanje posameznih podatkov,
-%% ne pa za prenos ve"cje koli"cine podatkov kar je bolj primerno za analizo in
+%% popraviti ali odstraniti pokvarjene podatke, bi lahko več pozornosti posvetili
+%% sami analizi in obdelavi. Poleg tega, pa večina knjižnic za delo z odprtimi
+%% programskimi vmesniki, nudi zelo dobre načine za iskanje posameznih podatkov,
+%% ne pa za prenos večje količine podatkov kar je bolj primerno za analizo in
 %% obdelavo.
 %%
 %%
 %%
 %% \section{Cilji}
 %%
-%% Cilj diplomske naloge je izdelati knji"znico, ki omogo"ca enostaven dostop do
+%% Cilj diplomske naloge je izdelati knjižnico, ki omogoča enostaven dostop do
 %% podatkov Svetovne banke in interaktivni gradnik v programu Orange za dostop in
-%% uporabo teh podatkov. S tem bomo omogo"cili raziskovanje teh podtakov "sir"si
-%% javnosti. Knji"znica bo poenostavila prenos ve"cjega "stevila podatkov, in
+%% uporabo teh podatkov. S tem bomo omogočili raziskovanje teh podtakov širši
+%% javnosti. Knjižnica bo poenostavila prenos večjega števila podatkov, in
 %% predstavila te podatke v obliki primerni za orodje Orange. k<
