@@ -120,7 +120,8 @@ Glavne metode ki jih ponuja razred IndicatorAPI so:
 \item [get\_indicators] za pridobivanje seznama indikatorjev s kodami, imeni
       in opisi,
 \item [get\_countries] za pridobivanje seznama držav z metapodatki,
-\item [get\_dataset] za pridobivanje podatkov za indikatorjev.
+\item [get\_dataset] za pridobivanje instance razreda \verb|IndicatorDataset|,
+      ki vsebuje podatkov indikatorjev.
 \end{description}
 
 
@@ -128,11 +129,12 @@ Glavne metode ki jih ponuja razred IndicatorAPI so:
 
 Razred \verb|IndikatorDataset| je osnovni razred v katerem dobimo zahtevane podatke
 indikatorjev. Ta razred vsebuje vse potrebne metode in podatke za predstavitev
-rezultatov programskega vmesnika, na dva glavna načina; kot slovar slovarjev in
+rezultatov programskega vmesnika, na dva glavna načina: kot slovar slovarjev in
 dvo dimenzionalen seznam. Poleg omenjenih načinov predstavitve podatkov lahko
 dostopamo tudi do neobdelanih podatkov prejetih iz programskega vmesnika za
 vsako poizvedbo posebej.
 
+\textbf{TODO:}
 
 Posamezne vrednosti teh podatkov so določene z državo, časovno komponento, in
 kodo indikatorja. Te podatke lahko predstavimo na dva glavna načina:
@@ -172,7 +174,7 @@ Indicator
 
 
 
-\subsection{Pomcnik ClimateAPI}
+\subsection{Razred ClimateAPI}
 
 IndicatorAPI je 
 
