@@ -13,11 +13,17 @@ class_data = api.get_dataset(
   "SP.URB.TOTL.IN.ZS",  # Urban population (% of total)
 ).as_orange_table()
 
+# lines with valid class values (not nan)
+good_lines = ~np.isnan(np.array(class_data[:,55]))[:,0]
+
 domain = Orange.data.Domain(
     test_data.domain.attributes, class_vars=class_data.domain[55])
 
 data = Orange.data.Table(
-    domain, np.array(test_data), np.array(class_data[:,55]))
+    domain,
+    np.array(test_data)[good_lines,:],
+    np.array(class_data)[good_lines,55]
+)
 
 lin = Orange.regression.linear.LinearRegressionLearner()
 
