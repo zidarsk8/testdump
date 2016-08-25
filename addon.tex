@@ -5,7 +5,7 @@ V okviru diplomske naloge smo razvili tri ločene komponente za programerje in
 končne uporabnike programa Orange. Prva komponenta je
 dostopna kot samostojni paket 
 \verb|simple_wbd|\fnurl{https://pypi.python.org/pypi/simple_wbd/0.5.0}. 
-Druga in tretja komponenti pa sta zdru"zeni v paketu
+Druga in tretja komponenti pa sta združeni v paketu
 \verb|orange3-datasets|\fnurl{https://pypi.python.org/pypi/Orange3-Datasets/0.1.3}
 
 Prva komponenta je programska knjižnica \verb|simple_wbd|, ki
@@ -13,7 +13,7 @@ omogoča enostaven dostop do programskega vmesnika indikatorjev in podnebnih
 podatkov Svetovne banke. Ta knjižnica je narejena s čim manj odvisnosti in je 
 % TODO ali je python z veliko
 namenjena splošni uporabi v Python programih. Poudarka pri zasnovi knjižnice 
-\verb|simple_wbd| sta predvsem enostavnost razsiritve in zanesljivost. Ta cilja
+\verb|simple_wbd| sta predvsem enostavnost razširitve in zanesljivost. Ta cilja
 dosežemo z mehanizmom za vključevanje lastne kode v komponente knjižnice
 in mehanizmi za popravljanje ali odstranjevanje pokvarjenih podatkov.
 
@@ -50,12 +50,12 @@ obstoječe rešitve poskušajo čim bolj natančno predstaviti programski
 vmesnik Svetovne banke, ne pa olajšati dostop do čim večje količine
 podatkov.
 
-Za potrebe te knjižnice smo razvili lastno rešitev za predpomnenje poizvedb,
+Za potrebe te knjižnice smo razvili lastno rešitev za predpomnjenje poizvedb,
 saj so se bolj splošne rešitve, kot na primer
 \verb|vcrpy|\fnurl{https://pypi.python.org/pypi/vcrpy/1.10.0} in
 \verb|requests-cache|\fnurl{https://pypi.python.org/pypi/requests-cache}, 
 izkazale za prepočasne ko delamo z večjimi količinami podatkov. Naša
-rešitev za predpomnenje izkorišča dejstvo da je vsaka poizvedba določena le
+rešitev za predpomnjenje izkorišča dejstvo da je vsaka poizvedba določena le
 z naslovom URL, in da so vsi odgovori oblike JSON. Za vsak URL naredimo novo
 datoteko v sistemskem začasnem imeniku, v kateri hranimo serializirane JSON
 podatke. Ker se podatki na programskem vmesniku Svetovne banke redko
@@ -129,10 +129,10 @@ Glavne metode ki jih ponuja razred IndicatorAPI so:
 \end{description}
 
 Ena izmed lastnosti razreda \verb|IndicatorAPI| je ta da mu lahko ob
-inicializaciji podamo razred v katerem "zelimo prejeti rezultat poizvedbe. Ta
+inicializaciji podamo razred v katerem želimo prejeti rezultat poizvedbe. Ta
 razred mora dedovati od osnovnega razreda \verb|IndicatorDataset|. Na ta
-na"cin lahko enostavno raz"sirimo funkcionalnost \verb|simple_wbd| knji"znice.
-V primeru \ref{indicator_api_extend} vidimo en na"cin za raz"siritev razreda 
+način lahko enostavno razširimo funkcionalnost \verb|simple_wbd| knjižnice.
+V primeru \ref{indicator_api_extend} vidimo en način za razširitev razreda 
 \verb|IndicatorDataset| tako da uporabniku razreda \verb|MyIndicatorAPI| ni
 potrebno izrecno podati razreda \verb|IndicatorDataset| v konstruktor.
 
@@ -153,7 +153,7 @@ class MyIndicatorAPI(simple_wbd.IndicatorAPI):
         super().__init__(MyIndicatorDataset)
 \end{lstlisting}
 \end{center}
-\caption[some]{Primer raz"siritve osnovnega razreda rezultatov poizvedb.}
+\caption[some]{Primer razširitve osnovnega razreda rezultatov poizvedb.}
 \label{indicator_api_extend}
 \end{snippet} 
 
@@ -168,25 +168,25 @@ Posamezna vrednost v teh podatkih je določena z državo, časovno komponento in
 kodo indikatorja. 
 
 Podatke lahko predstavimo kot dvodimenzionalno polje v dveh oblikah: kot
-"casovne vrste ali kot podatki dr"zav. Obliko predstavitve izberemo s
+časovne vrste ali kot podatki držav. Obliko predstavitve izberemo s
 parametrom \verb|time_series| metode \verb|as_list|. Za predstavitev obeh oblik
 je prva vrstica polja uporabljena kot naslovna vrstica, ki opisuje podatke v 
 stolpcih.
 
-Ko uporabljavo obliko "casovnih vrst, so elementi prve vrstice kartezi"cni
-produkt kod indikatorjev in dr"zav. V prvem stolpcu polja pa imamo casovno
-komponento podatkov. Na ta na"cin so vsi ostali elementi polja dolo"ceni s 
-casovno komponento, dr"zavo in kodo indikatorja.
+Ko uporabljavo obliko časovnih vrst, so elementi prve vrstice kartezični
+produkt kod indikatorjev in držav. V prvem stolpcu polja pa imamo časovno
+komponento podatkov. Na ta način so vsi ostali elementi polja določeni s 
+časovno komponento, državo in kodo indikatorja.
 
-Ko dostopamo do dvodimezionalnega polja ki predstavlja podatke dr"zav, pa je v
-prvi vrstici kartezi"cni produkt kod indikatorjev in casovne komponente. Prvi
-stolpec v tej predstavitvi vsebuje imena drzav. Za razliko od predstavitve v 
-obliki "casovnih vrst, v to polje vstavimo se dodatne stolpce ki vsebujejo
+Ko dostopamo do dvodimezionalnega polja ki predstavlja podatke držav, pa je v
+prvi vrstici kartezični produkt kod indikatorjev in časovne komponente. Prvi
+stolpec v tej predstavitvi vsebuje imena držav. Za razliko od predstavitve v 
+obliki časovnih vrst, v to polje vstavimo se dodatne stolpce ki vsebujejo
 metapodatke drzav iz primera \ref{country_response}: regija \verb|region|, administrativna regija
-\verb|adminregion|, vi"sina dohodka \verb|incomeLevel|, vrsta posojil
-\verb|lendingType|, geografska "sirina \verb|latitude|, geografska dol"zina
-\verb|longitude|. Tudi tukaj vsi ostali elementi dolo"ceni s casovno 
-komponento, dr"zavo in kodo indikatorja. 
+\verb|adminregion|, višina dohodka \verb|incomeLevel|, vrsta posojil
+\verb|lendingType|, geografska širina \verb|latitude|, geografska dolžina
+\verb|longitude|. Tudi tukaj vsi ostali elementi določeni s časovno 
+komponento, državo in kodo indikatorja. 
 
 % \subsubsection{Primeri uporabe}
 % 
@@ -202,13 +202,13 @@ komponento, dr"zavo in kodo indikatorja.
 
 \subsection{Razred ClimateAPI}
 
-Razred \verb|ClimateAPI| olaj"sa dostop do podnebnih podatkov programskega
+Razred \verb|ClimateAPI| olajša dostop do podnebnih podatkov programskega
 vmesnika Svetovne banke. Ta programski vmesnik dovoli poizvedbe po podatkih le 
-ene vrste meritev za eno vrsto meritvenega obdobja in eno drzavo. Na"s razred 
-naredi kartezi"cni produkt med vsemi zahtevanimi vrstami meritev, vrstami
-meritvenih obdobij in dr"zavami. Nato iz tega zgradi in izvede vse poizvedbe 
+ene vrste meritev za eno vrsto meritvenega obdobja in eno državo. Naš razred 
+naredi kartezični produkt med vsemi zahtevanimi vrstami meritev, vrstami
+meritvenih obdobij in državami. Nato iz tega zgradi in izvede vse poizvedbe 
 in predstavi podatke kot enotni odgovor. V razredu \verb|ClimateAPI| hranimo 
-tudi "stevilo vseh potrebnih poizvedb in "stevilo "ze izvedenih poizvedb, kar 
+tudi število vseh potrebnih poizvedb in število že izvedenih poizvedb, kar 
 lahko uporabimo za prikaz napredka prenosa podatkov.
 
 
@@ -219,35 +219,35 @@ Razred \verb|ClimateDataset| je osnovni razred v katerem dobimo zahtevane
 podatke podnebnih meritev. Ta razred vsebuje vse potrebne metode in podatke za 
 predstavitev rezultatov programskega vmesnika, na dva glavna načina: kot
 gnezden slovar in dvo dimenzionalen seznam. Posamezna vrednost v teh podatkih
-je določena z državo, vrsta podatkov, in "casovno komponento. Poleg omenjenih
+je določena z državo, vrsta podatkov, in časovno komponento. Poleg omenjenih
 načinov predstavitve podatkov lahko dostopamo tudi do neobdelanih podatkov 
 prejetih iz programskega vmesnika za vsako poizvedbo posebej.
 
-"Casovna komponenta rezultata je sestavljena iz vrste meritvenega obdobja in 
-za"cetkom obdobja meritve. Sestavljo "casovno komponento uporabljamo, da se 
-izognemo dvoumnim primerom vrednosti za"cetka obdobja za letni in deseteletni 
-interval meritev. Primera takih dveh "casovnih obdobij sta 
+Časovna komponenta rezultata je sestavljena iz vrste meritvenega obdobja in 
+začetkom obdobja meritve. Sestavljajo časovno komponento uporabljamo, da se 
+izognemo dvoumnim primerom vrednosti začetka obdobja za letni in desetletni 
+interval meritev. Primera takih dveh časovnih obdobij sta 
 \verb|'decade - 1990'| in \verb|'year - 1990'|.
 
 
-Do podatkov predstavljenih z gneznedim slovarjev lahko dostopamo preko funkcije
-\verb|as_dict|. V tej funkciji zdru"zimo podatke poizvedb programskega
-vmesnika v gnezden slovar s "stirimi nivoji gnezdenja: drzava, vrsta meritev,
-vrsta meritvenega obdobja in obdobje meritve. Zadnji nivo gnezdenja pa vsebuje
+Do podatkov predstavljenih z gnezdenim slovarjem lahko dostopamo preko funkcije
+\verb|as_dict|. V tej funkciji združimo podatke poizvedb programskega
+vmesnika v gnezden slovar s štirimi nivoji gnezdenja: država, vrsta meritev,
+vrsta meritvenega obdobja in obdobje meritve. Zadnji nivo gnezdenja vsebuje
 vrednosti podnebnih meritev.
 
 Pri predstavitvi podatkov kot dvodimenzionalno polje, moramo dve od treh
 komponent podatkov (država \verb|'country'|, vrsta podatkov \verb|'type'|, 
-in "casovna komponenta \verb|'interval'|)
-zdru"ziti in ju skupaj prikazati v vrsticah ali stolpcih. Za razliko od razreda
+in časovna komponenta \verb|'interval'|)
+združiti in ju skupaj prikazati v vrsticah ali stolpcih. Za razliko od razreda
 \verb|IndicatorDataset|, ki podpira le dve obliki prikaza, lahko v razredu
-\verb|ClimateDataset| sami dolo"cimo katere komponente bodo v stolpcih in
-katere v vrsticah. Primer razli"cnih izborov komponent je prikazan v
+\verb|ClimateDataset| sami določimo katere komponente bodo v stolpcih in
+katere v vrsticah. Primer različnih izborov komponent je prikazan v
 \ref{list_configurations}. Spremenljivki \verb|list1| ind \verb|list2| iz
-prej"snjega primera prikazujeta privzeto konfiguracijo, kjer imamo v stolpcih
-kartezi"cni produkt vrst meritev in vrst meritvenih obdobij, v vrsticah pa
-podatke dr"zave. Spremenljivka \verb|list4| prikazuje konfiguracija za
-predstavitev v obliki "casovnih vrst.
+prejšnjega primera prikazujeta privzeto konfiguracijo, kjer imamo v stolpcih
+kartezični produkt vrst meritev in vrst meritvenih obdobij, v vrsticah pa
+podatke države. Spremenljivka \verb|list4| prikazuje konfiguracija za
+predstavitev v obliki časovnih vrst.
 
 \begin{snippet}
 \begin{center}
@@ -255,17 +255,17 @@ predstavitev v obliki "casovnih vrst.
 import simple_wbd
 
 api = simple_wbd.ClimateAPI()                   
-climate_dataset = api.get_instrumental(["svn", "usa", "aus"])
+climate_dataset = api.get_instrumental([švn", "usa", "aus"])
 
 list1 = ds.as_list()
 list2 = ds.as_list(columns=["type", "interval"])  # default  value
 list3 = ds.as_list(columns=["type"])
-list4 = ds.as_list(columns=["type", "country"]) 
-list5 = ds.as_list(columns=["country"])
+list4 = ds.as_list(columns=["type", čountry"]) 
+list5 = ds.as_list(columns=[čountry"])
 \end{lstlisting}
 \end{center}
 \cprotect
-\caption{Prikaz nekaj mo"znih oblik dvodimezionalnega polja vrednosti.} 
+\caption{Prikaz nekaj možnih oblik dvodimezionalnega polja vrednosti.} 
 \label{list_configurations}
 \end{snippet} 
 
@@ -275,26 +275,26 @@ list5 = ds.as_list(columns=["country"])
 
 
 Znotraj paketa \verb|orangecontrib.wbd| smo razvili modul \verb|api_wrapper| v
-katerem smo raz"sirili razreda \verb|IndicatorDataset| in \verb|ClimateDataset|
-na na"cin ki je prikazan v primeru \ref{indicator_api_extend}. Na"sa
-raz"siritev obema razredoma doda metodi za pretvorbo podatkov v podatkovno 
+katerem smo razširili razreda \verb|IndicatorDataset| in \verb|ClimateDataset|
+na način ki je prikazan v primeru \ref{indicator_api_extend}. Naša
+razširitev obema razredoma doda metodi za pretvorbo podatkov v podatkovno 
 tabelo Orange in tabelo numpy.
 
-\subsection{Raz"siritev razreda IndicatorDataset}
+\subsection{Razširitev razreda IndicatorDataset}
 
 Glavne funkcionalnosti, za uporabo programske vmesnika indikatorjev, so
-vklju"cene v na"si raz"siritvi razreda \verb|IndicatorDataset|. To je na prvem
+vključene v naši razširitvi razreda \verb|IndicatorDataset|. To je na prvem
 mestu metoda \verb|as_numpy_array|, ki rezultat metode \verb|as_list|
 opisane v poglavju \ref{missing}, spremeni v polje numpy in odstrani vse
 stolpce, ki ne vsebujejo niti ene veljavne vrednosti. Druga metoda pa je
 \verb|to_orange_table|, ki podatke dobljene iz metode \verb|as_numpy_array|,
 pretvori v podatkovno tabelo Orange. % TODO: (angl.\ Orange data table).
 Ta metoda tudi poskrbi za pravilno nastavljeno domeno\footnote{Domena
-\verb|Domain| je razred v orodju Orange, ki dolo"ca tipe in imena zna"cilk in
+\verb|Domain| je razred v orodju Orange, ki določa tipe in imena značilk in
 ciljnih razredov.} podatkov.
 
 
-TODO: opis posameznih raz"siritev in primer skripte uporabe.
+TODO: opis posameznih razširitev in primer skripte uporabe.
 
 
 
@@ -330,15 +330,15 @@ TODO: opis posameznih raz"siritev in primer skripte uporabe.
 
 
 
-\section{Graficni vmesnik}
+\section{Grafični vmesnik}
 
 Za namen tega diplomskega dela smo z dodatkom \verb|Orange3-DataSets|
-grafi"cnemu vmesniku programa Orange, dodali novo skupino gradnikov imenovano
+grafičnemu vmesniku programa Orange, dodali novo skupino gradnikov imenovano
 ``Data Sets'' (Slika \ref{data_sets_group}). V okviru te naloge smo za skupino
-``Data Sets'' izdelali dva lo"cena gradnika. Prvi gradnik se imenuje ``WB
-Climate'' in nam preko grafi"cnega vmesnika omogo"ca dostop do pobnebnih 
+``Data Sets'' izdelali dva ločena gradnika. Prvi gradnik se imenuje ``WB
+Climate'' in nam preko grafičnega vmesnika omogoča dostop do podnebnih 
 podatkov Svetovne banke. Drugi gradnik pa se imenuje ``WB Indicators'' in nam
-preko grafi"cnega vmesnika omogo"ca dostop do podatkov indikatorjev razvoja.
+preko grafičnega vmesnika omogoča dostop do podatkov indikatorjev razvoja.
  
 nova skupina data sets 
  - v katero je mogoce dodati nove gradnike za druge programske vmesnike.

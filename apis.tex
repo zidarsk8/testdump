@@ -191,7 +191,7 @@ Seznam držav na programskem vmesniku Svetovne banke vsebuje podatke o imenih,
 opisih, ISO-3166-1 alpha kodah, regijah in druge metapodatke 
 (Primer \ref{country_response}). Programski
 vmesnik nam tudi omogoča presejanje seznama držav po kodi države, regiji,
-visini dohodka, in tipu posojil (Premer \ref{country_queries})
+višini dohodka, in tipu posojil (Premer \ref{country_queries})
 
 % \begin{description}
 % \item [id] koda države, regije ali skupine držav,
@@ -276,7 +276,7 @@ Za poizvedbe do podatkov indikatorjev so poleg osnovnih parametrov GET
 \ref{sec:podatki_ind_razvoja}, na voljo tudi dodatni parametri za presejanje
 rezultatov poizvedbe:
 \begin{description}  
-\item [MRV] Stevilska vrednost, ki določi maksimalno število zadnjih meritev,
+\item [MRV] Številska vrednost, ki določi maksimalno število zadnjih meritev,
     ki jih programski vmesnik vrne. Ko uporabljamo polje \verb|mrv| bo 
     programski vmesnik izpustil ničelne vrednosti za obdobja v katerih ni
     meritev.
@@ -375,10 +375,10 @@ posamezne mesece skozi vsa leta meritev. Obliko poizvedbe prikazuje primer
 \item [data\_type] vrsta meritev (``pr'' za padavine, ``tas'' za temperature),
 \item [interval] vrsta meritvenega obdobja (``month'' za mesečno, ``year'' za letno in
   ``decade'' za desetletno),
-\item [location] koda države ali stevilski identifikator vodotočnega območja.
+\item [location] koda države ali številski identifikator vodotočnega območja.
 \end{description}
 Za razliko od programskega vmesnika indikatorjev, nam programskem vmesniku
-podnebnih meritev z eno poizvedbo omogoca dostop do podatkov le za eno državo.
+podnebnih meritev z eno poizvedbo omogoča dostop do podatkov le za eno državo.
 To pomeni da je količina podatkov dovolj omejena da nam programski vmesnik,
 vedno vrne vse podatke brez ostranjevanja, kot prikazuje primer 
 \ref{climate_dataset_response},
@@ -439,7 +439,7 @@ http://climatedataapi.worldbank.org/climateweb/rest/v1/<loc_type>/cru/<data_type
 
 
 Programski vmesniki Svetovne banke zajema podatke različnih virov, zato je
-teško zagotoviti pravilnost in konsistentnost podatkov. Poleg tega pa se 
+težko zagotoviti pravilnost in konsistentnost podatkov. Poleg tega pa se 
 programski vmesnik in spletna stran z dokumentacijo občasno spremenita, kar
 povzroča še dodatne težave pri uporabi. Nekatere težave, ki smo jih opazili
 so:
