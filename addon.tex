@@ -280,36 +280,37 @@ na na"cin ki je prikazan v primeru \ref{indicator_api_extend}. Na"sa
 raz"siritev obema razredoma doda metodi za pretvorbo podatkov v podatkovno 
 tabelo Orange in tabelo numpy.
 
+TODO: opis posameznih raz"siritev in primer skripte uporabe.
 
 
 
 
-% doda as orange table in as numpy obema indikator apiju in climate apiju.
-
-
-razširitev simple wbd vmesnikov z dedovanjem pravega dataset razreda.
-
-
-- razsiri as\_list v as\_numpy\_array ki tudi odstrani vse stolpce ki nimajo 
-  veljavne vrednosti.
-
-- doda as orange table ki numpy array spremeni v orange tabelo.
-  - za indikator api doda se metapodatke drzav ko ne prikazujemo v obliki casovne vrste.
-
-
-api vrapper je tudi zelo uporaben za skriptno uporaba programa Orange 
-(referenca http://www.jmlr.org/papers/volume14/demsar13a/demsar13a.pdf)
-
-in tukaj si lahko vsak programer sam oblikuje podatke v katerokoli zeljeno obliko.
-
-
-TODO: primer skripte
-
-% from orangecontrib.wbd import api_wrapper
-% api = api_wrapper.IndicatorAPI()
-% seznam_indikatorjev = api.get_indicators()
-% kode_indikatorjev = [indikator.get("id") for indikator in seznam_indikatorjev]
-% indicator_dataset = api.get_dataset(kode_indikatorjev[:3])
+% % doda as orange table in as numpy obema indikator apiju in climate apiju.
+% 
+% 
+% razširitev simple wbd vmesnikov z dedovanjem pravega dataset razreda.
+% 
+% 
+% - razsiri as\_list v as\_numpy\_array ki tudi odstrani vse stolpce ki nimajo 
+%   veljavne vrednosti.
+% 
+% - doda as orange table ki numpy array spremeni v orange tabelo.
+%   - za indikator api doda se metapodatke drzav ko ne prikazujemo v obliki casovne vrste.
+% 
+% 
+% api vrapper je tudi zelo uporaben za skriptno uporaba programa Orange 
+% (referenca http://www.jmlr.org/papers/volume14/demsar13a/demsar13a.pdf)
+% 
+% in tukaj si lahko vsak programer sam oblikuje podatke v katerokoli zeljeno obliko.
+% 
+% 
+% TODO: primer skripte
+% 
+% % from orangecontrib.wbd import api_wrapper
+% % api = api_wrapper.IndicatorAPI()
+% % seznam_indikatorjev = api.get_indicators()
+% % kode_indikatorjev = [indikator.get("id") for indikator in seznam_indikatorjev]
+% % indicator_dataset = api.get_dataset(kode_indikatorjev[:3])
 
 
 
@@ -317,7 +318,13 @@ TODO: primer skripte
 
 \section{Graficni vmesnik}
 
-
+Za namen tega diplomskega dela smo z dodatkom \verb|Orange3-DataSets|
+grafi"cnemu vmesniku programa Orange, dodali novo skupino gradnikov imenovano
+``Data Sets'' (Slika \ref{data_sets_group}). V okviru te naloge smo za skupino
+``Data Sets'' izdelali dva lo"cena gradnika. Prvi gradnik se imenuje ``WB
+Climate'' in nam preko grafi"cnega vmesnika omogo"ca dostop do pobnebnih 
+podatkov Svetovne banke. Drugi gradnik pa se imenuje ``WB Indicators'' in nam
+preko grafi"cnega vmesnika omogo"ca dostop do podatkov indikatorjev razvoja.
  
 nova skupina data sets 
  - v katero je mogoce dodati nove gradnike za druge programske vmesnike.
@@ -344,7 +351,7 @@ za te gradnike smo tudi napisali enotske teste.
     \includegraphics[width=4cm]{pic/data_sets_group.png}
   \end{center}
   \caption{Skupina gradnikov data sets}
-  \label{drevo}
+  \label{data_sets_group}
 \end{figure} 
 
 
