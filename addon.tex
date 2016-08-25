@@ -94,20 +94,23 @@ izvedenih in "stevilo potrebnih poizvedb za celoten prenos. Ta "stevila se
 lahko uporablja za prikaz napredka prenosa podatkov.
 
 
+Za namene razreda \verb|IndicatorAPI| smo v knji"znici \verb|simple_wbd|
+razvili mehanizvme za odpravo nekaterih napak omenjenih v poglavju 
+\ref{api_gotchas}.
 
-mehanizmem za odpravo napak:
- - pridobiti podatke o drzavi za posamezni indikator: 
-   - ob manjkajocih id-jih poskusamo dolociti id iz imena
-   - ob manjkajocih imenih poskusamo dobiti ime iz id-ja
-   - ce ni nobene informacije ta podatek ignoriramo.
+Pri manjkajo"cih vrednostih dr"zav v poizvedbah za podatke indikatorjev,
+posku"samo dolo"citi pravilne vrednosti. To naredimo s pomo"cjo dveh
+slovarjev: prvi slika kode dr"zav v imena, drugi pa imena dr"zav v kode. V
+primeru manjkajo"ce vrednosti kode ali imena, posku"samo to prebrati iz enega
+od na"stetih slovarjev. "Ce nam ne uspe ugotoviti manjkajo"cih vrednosti,
+trenutni vnos odstranimo iz rezultata poizvedbe.
 
-  ko zelimo dobiti polje v obliki casovne vrste:
-   - pridobivanje datuma iz polja 'date'
-     - ob neveljavnih stringih probamo upostevati le zacetni del.
-       - za text za  obdobje  '2002 - 2006' bomo uporabili le datum 2002 
-     - neveljavne stringe kot so "most rescent value" ignoriramo.
-
-
+Drugi tip napak, ki ga lahko delno popravimo, so napa"cne vrednosti v polju
+\verb|date| v poizvedbah za podatke indikatorjev. Ker lahko v temu polju
+pri"cakujemo poljubeno besedilo, dela na"s pretvornik za polje \verb|date| v 
+datum, tako da posku"sa v datum pretvoriti "cim dalj"so predpono besedila.
+"Ce nam ne uspe besedila pretvoriti v veljaven datum, trenutni vnos odstranimo
+iz rezultata poizvedbe.
 
 
 \ \\
