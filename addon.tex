@@ -159,6 +159,7 @@ class MyIndicatorAPI(simple_wbd.IndicatorAPI):
 
 
 \subsubsection{Razred IndicatorDataset}
+\label{razred_indicatordatasets}
 
 Razred \verb|IndicatorDataset| je osnovni razred v katerem dobimo zahtevane 
 podatke indikatorjev. Ta razred vsebuje vse potrebne metode in podatke za 
@@ -288,14 +289,43 @@ mestu metoda \verb|as_numpy_array|, ki rezultat metode \verb|as_list|
 opisane v poglavju \ref{missing}, spremeni v polje numpy in odstrani vse
 stolpce, ki ne vsebujejo niti ene veljavne vrednosti. Druga metoda pa je
 \verb|to_orange_table|, ki podatke dobljene iz metode \verb|as_numpy_array|,
-pretvori v podatkovno tabelo Orange. % TODO: (angl.\ Orange data table).
+pretvori v podatkovno tabelo Orange. To tabelo lahko oblikuje kot "casovno
+vrsto ali pa kot seznam dr"zav, kot je opisano v poglavju 
+\ref{razred_indicatordatasets}. Katero obliko tabele Orange "zelimo izbrati,
+dolo"cimo s parametrom \verb|time_series|. % TODO: (angl.\ Orange data table).
 Ta metoda tudi poskrbi za pravilno nastavljeno domeno\footnote{Domena
-\verb|Domain| je razred v orodju Orange, ki določa tipe in imena značilk in
+``Domain'' je razred v orodju Orange, ki določa tipe in imena značilk in
 ciljnih razredov.} podatkov.
 
 
-TODO: opis posameznih razširitev in primer skripte uporabe.
+\subsection{Raz"siritev razreda ClimateDataset}
 
+Prav tako kot raz"siritev razreda \verb|IndicatorDatasets|, tudi ta raz"siritev
+doda metodi \verb|as_numpy_array| in \verb|to_orange_table|. Prav tako kot v
+raz"siritvi razreda \verb|IndicatorDatasets|, lahko tudi tukaj s parametrom
+\verb|time_series| izberemo obliko tabele Orange. Pri vrednosti parametra 
+\verb|time_series = False| se nastavi privzeta oblika tabele, prikazana kot
+\verb|list1| sicer pa kot \verb|list3|, iz primera \ref{list_configurations}.
+S tem parametrom pa izgubimo mo"znost poljubne oblike orange tabele.
+
+
+\subsection{Primer uporabe modula api\_wrapper}
+
+Enostaveno uporabo modula \verb|api_wrapper| s skriptnim delom programa Orange
+prikazuje primer \ref{scripting_example}. V temu primeru poka"zemo kako lahko
+iz podatkov o dostopnosti elektrike in raz"sirjenosti uporabe obnovljivih
+elektri"cnih virov, napovemo koliko odstotkov populacije prebiva v urbanih
+obmo"cjih.
+
+\begin{snippet}
+\begin{center}
+\lstinputlisting{example.py}
+\end{center}
+\cprotect
+\caption{Napovedovanje procentov populacije v urbanem okolju iz podatkov o 
+  dostopnosti elektrike in kolicini obnovljivih virov, z linearno regresijo.} 
+\label{scripting_example}
+\end{snippet} 
 
 
 
