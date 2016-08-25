@@ -27,21 +27,13 @@ class_data = np.array(class_values)[good_lines,:]
 data = Orange.data.Table(domain, test_data, class_data)
 
 lin = Orange.regression.linear.LinearRegressionLearner()
-rf = Orange.regression.random_forest.RandomForestRegressionLearner()
-rf.name = "rf"
-ridge = Orange.regression.RidgeRegressionLearner()
-mean = Orange.regression.MeanLearner()
 
-learners = [lin, rf, ridge, mean]
-
-res = Orange.evaluation.CrossValidation(data, learners, k=5)
+res = Orange.evaluation.CrossValidation(data, [lin], k=5)
 
 rmse = Orange.evaluation.RMSE(res)
 r2 = Orange.evaluation.R2(res)
 
-print("Learner  RMSE   R2")
-for i in range(len(learners)):
-    print("{:8} {:.2f} {:5.2f}".format(learners[i].name, rmse[i], r2[i]))
+print("{:8} {:.2f} {:5.2f}".format(lin.name, rmse[0], r2[0]))
 
 
 
