@@ -213,70 +213,57 @@ lahko uporabimo za prikaz napredka prenosa podatkov.
 
 Razred \verb|ClimateDataset| je osnovni razred v katerem dobimo zahtevane 
 podatke podnebnih meritev. Ta razred vsebuje vse potrebne metode in podatke za 
-predstavitev rezultatov programskega vmesnika, na dva glavna načina: kot slovar
-slovarjev in dvo dimenzionalen seznam. Posamezna vrednost v teh podatkih je
-določena z državo, tipom podatkov, in "casovno komponento. "Casovna komponenta
-rezultata je sestavljena iz vrste meritvenega obdobja in za"cetkom obdobja 
-meritve. Sestavljo "casovno komponento uporabljamo, da se izognemo dvoumnim
-primerom vrednosti za"cetka obdobja za letni in deseteletni interval meritev.
-Primera takih dveh "casovnih obdobij sta \verb|'decade - 1990'| in 
-\verb|'year - 1990'|.
-
-in  Poleg omenjenih
+predstavitev rezultatov programskega vmesnika, na dva glavna načina: kot
+gnezden slovar in dvo dimenzionalen seznam. Posamezna vrednost v teh podatkih
+je določena z državo, vrsta podatkov, in "casovno komponento. Poleg omenjenih
 načinov predstavitve podatkov lahko dostopamo tudi do neobdelanih podatkov 
 prejetih iz programskega vmesnika za vsako poizvedbo posebej.
 
+"Casovna komponenta rezultata je sestavljena iz vrste meritvenega obdobja in 
+za"cetkom obdobja meritve. Sestavljo "casovno komponento uporabljamo, da se 
+izognemo dvoumnim primerom vrednosti za"cetka obdobja za letni in deseteletni 
+interval meritev. Primera takih dveh "casovnih obdobij sta 
+\verb|'decade - 1990'| in \verb|'year - 1990'|.
 
 
-Do podatkov predstavljenih s slovarjem slovarjev lahko dostopamo preko funkcije
-\verb|as_dict|. V tej funkciji zdru"zimo podatke z poizvedb programskega
-vmesnika v gnezden slovar, tako da 
-
-
-Do podatkov predstavljenih s slovarjem slovarjev lahko dostopamo preko funkcije
+Do podatkov predstavljenih z gneznedim slovarjev lahko dostopamo preko funkcije
 \verb|as_dict|. V tej funkciji zdru"zimo podatke poizvedb programskega
-vmesnika v gnezden slovar, tako da 
+vmesnika v gnezden slovar s "stirimi nivoji gnezdenja: drzava, vrsta meritev,
+vrsta meritvenega obdobja in obdobje meritve. Zadnji nivo gnezdenja pa vsebuje
+vrednosti podnebnih meritev.
 
- - kot gnezdeni slovar, kjer je na prvem nivoju ime indikatorja, na drugem
-   drzava, in na tretjem nivoju casovna komponenta.
+Pri predstavitvi podatkov kot dvodimenzionalno polje, moramo dve od treh
+komponent podatkov (država \verb|'country'|, vrsta podatkov \verb|'type'|, 
+in "casovna komponenta \verb|'interval'|)
+zdru"ziti in ju skupaj prikazati v vrsticah ali stolpcih. Za razliko od razreda
+\verb|IndicatorDataset|, ki podpira le dve obliki prikaza, lahko v razredu
+\verb|ClimateDataset| sami dolo"cimo katere komponente bodo v stolpcih in
+katere v vrsticah. Primer razli"cnih izborov komponent je prikazan v
+\ref{list_configurations}. Spremenljivki \verb|list1| ind \verb|list2| iz
+prej"snjega primera prikazujeta privzeto konfiguracijo, kjer imamo v stolpcih
+kartezi"cni produkt vrst meritev in vrst meritvenih obdobij, v vrsticah pa
+podatke dr"zave. Spremenljivka \verb|list4| prikazuje konfiguracija za
+predstavitev v obliki "casovnih vrst.
 
+\begin{snippet}
+\begin{center}
+\begin{lstlisting}
+import simple_wbd
 
+api = simple_wbd.ClimateAPI()                   
+climate_dataset = api.get_instrumental(["svn", "usa", "aus"])
 
- - Kot dvo-dimenzionalno polje, kjer imamo v vrsticah eno oznako, v stolpcih
-   pa kartezicni produkt ostalih dveh. ponujene moznosti so:
-   - vrstice = drzava, stolpci = cas x indikator
-   - vrstice = cas, stolpci = drzava x indikator
-
-
-Indicator
-
-
-
-
-Isto kot pri indicator apiju
-ko zelimo dobiti polje v obliki casovne vrste:
- - pridobivanje datuma iz polja 'date'
-   - ob neveljavnih stringih probamo upostevati le zacetni del.
-     - za text za  obdobje  '2002 - 2006' bomo uporabili le datum 2002 
-   - neveljavne stringe kot so ``most recent value'' ignoriramo.
-
-
-
-
-as\_dict 
-
-glede na poizvedbo dobimo tu gnezden slovar s polji
-
-drzava / tip podatkov / tip casovnega obdobja / vrednost casovnega obdobja / vrednost
-
-as\_list
-
-% notes:
-% 3 dimenzije: cas (decade,year,month), drzava, tip (pr/ tas)
-% 
-% lahko damo v poljubno konfiguracijo z nastetimi elementi v stolpcu
-% 
-% stolpci = [drzava, cas] => vrstice = tip ... naredi kartezicni produkt
+list1 = ds.as_list()
+list2 = ds.as_list(columns=["type", "interval"])  # default  value
+list3 = ds.as_list(columns=["type"])
+list4 = ds.as_list(columns=["type", "country"]) 
+list5 = ds.as_list(columns=["country"])
+\end{lstlisting}
+\end{center}
+\cprotect
+\caption{Prikaz nekaj mo"znih oblik dvodimezionalnega polja vrednosti.} 
+\label{list_configurations}
+\end{snippet} 
 
 
 
@@ -300,6 +287,14 @@ api vrapper je tudi zelo uporaben za skriptno uporaba programa Orange
 
 in tukaj si lahko vsak programer sam oblikuje podatke v katerokoli zeljeno obliko.
 
+
+TODO: primer skripte
+
+% from orangecontrib.wbd import api_wrapper
+% api = api_wrapper.IndicatorAPI()
+% seznam_indikatorjev = api.get_indicators()
+% kode_indikatorjev = [indikator.get("id") for indikator in seznam_indikatorjev]
+% indicator_dataset = api.get_dataset(kode_indikatorjev[:3])
 
 
 
