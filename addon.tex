@@ -184,7 +184,6 @@ metapodatke drzav iz primera \ref{country_response}: regija \verb|region|, admin
 \verb|longitude|. Tudi tukaj vsi ostali elementi dolo"ceni s casovno 
 komponento, dr"zavo in kodo indikatorja. 
 
-
 % \subsubsection{Primeri uporabe}
 % 
 % Razreda \verb|IndicatorAPI| in \verb|IndicatorDataset| 
@@ -197,29 +196,33 @@ komponento, dr"zavo in kodo indikatorja.
 % indicator_dataset = api.get_dataset(kode_indikatorjev[:3])
 
 
-
-
 \subsection{Razred ClimateAPI}
 
-IndicatorAPI je 
-
-
-api dovoli le podatke za en tip za eno vrsto obdobja in eno drzavo hkrati.
-mi naredim kartezicni produkt med vsemi temi zgradimo vse url-je in naredimo
-vse potrebne poizvedbe za pridobitev podatkov.
+Razred \verb|ClimateAPI| olaj"sa dostop do podnebnih podatkov programskega
+vmesnika Svetovne banke. Ta programski vmesnik dovoli poizvedbe po podatkih le 
+ene vrste meritev za eno vrsto meritvenega obdobja in eno drzavo. Na"s razred 
+naredi kartezi"cni produkt med vsemi zahtevanimi vrstami meritev, vrstami
+meritvenih obdobij in dr"zavami. Nato iz tega zgradi in izvede vse poizvedbe 
+in predstavi podatke kot enotni odgovor. V razredu \verb|ClimateAPI| hranimo 
+tudi "stevilo vseh potrebnih poizvedb in "stevilo "ze izvedenih poizvedb, kar 
+lahko uporabimo za prikaz napredka prenosa podatkov.
 
 
 
 \subsubsection{Razred ClimateDataset}
 
-
-
-
 Razred \verb|ClimateDataset| je osnovni razred v katerem dobimo zahtevane 
 podatke podnebnih meritev. Ta razred vsebuje vse potrebne metode in podatke za 
 predstavitev rezultatov programskega vmesnika, na dva glavna načina: kot slovar
 slovarjev in dvo dimenzionalen seznam. Posamezna vrednost v teh podatkih je
-določena z državo, časovno komponento in kodo indikatorja. Poleg omenjenih
+določena z državo, tipom podatkov, in "casovno komponento. "Casovna komponenta
+rezultata je sestavljena iz vrste meritvenega obdobja in za"cetkom obdobja 
+meritve. Sestavljo "casovno komponento uporabljamo, da se izognemo dvoumnim
+primerom vrednosti za"cetka obdobja za letni in deseteletni interval meritev.
+Primera takih dveh "casovnih obdobij sta \verb|'decade - 1990'| in 
+\verb|'year - 1990'|.
+
+in  Poleg omenjenih
 načinov predstavitve podatkov lahko dostopamo tudi do neobdelanih podatkov 
 prejetih iz programskega vmesnika za vsako poizvedbo posebej.
 
