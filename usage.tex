@@ -7,14 +7,14 @@
 
 Enostaveno uporabo modula \verb|api_wrapper| s skriptnim delom programa Orange
 prikazuje primer \ref{scripting_example}. V temu primeru pogledamo kako
-u"cinkovito lahko napovemo smrtnost otrok iz raznih indikatorjev zdravja in
+učinkovito lahko napovemo smrtnost otrok iz raznih indikatorjev zdravja in
 okolja in infrastrukture. V vrsticah $5$ do $15$ naredimo poizvedbe po
 potrebnih podatkih s programskega vmesnika Svetovne banke. Nato v vrsticah $18$
 do $27$ odstranimo vrstice, ki nimajo ciljne vrednosti in naredimo novo tabelo z
-razredom, ki ga "zelimo napovedovati. Vrednosti, ki jih "zelimo napovedovati, se
+razredom, ki ga želimo napovedovati. Vrednosti, ki jih želimo napovedovati, se
 nahajajo v stolpcu $55$ v tabeli \verb|class_data|. Ta vrstica vsebuje podatke
-o smrtnosti otrok mlaj"sih od enega leta za leto 2015. V naslednjih vrsticah
-pa zgradimo "stiri napovedne modele: naklju"cni gozd z
+o smrtnosti otrok mlajših od enega leta za leto 2015. V naslednjih vrsticah
+pa zgradimo štiri napovedne modele: naključni gozd z
 regresijskimi drevesi \verb|rf|, linearna regresija z regularizacijo 
 \verb|ridge| in srednja vrednost \verb|mean|.
 Za ocene napovednih modelov smo uporabili oceni
@@ -30,7 +30,7 @@ Rezultate primera \ref{scripting_example} lahko vidimo v tabeli
 \end{center}
 \cprotect
 \caption{Napovedovanje smrtnosti otrok do enega leta iz podatkov o dostopnosti
-  "ciste vode, "stevilu bolni"skih postelj na 1000 prebivalcev in odstotku
+  čiste vode, številu bolniških postelj na 1000 prebivalcev in odstotku
   cepljenih otrok do drugega leta starosti.}
 \label{scripting_example}
 \end{snippet} 
@@ -57,14 +57,14 @@ Rezultate primera \ref{scripting_example} lahko vidimo v tabeli
 \section{Napoved temperature s pomočjo $CO_2$ izpustov v ZDA}
 
 
-Podatke svetovne banke lahko uporabimo tudi kot "casovne vrste z uporabo
-posebnih gradnikov za delo s "casovnimi vrstami \cite{time_series}. Tukaj si
-bomo ogledali enostaven primer napovedi temperature v ZDA s pomo"cjo podatkov o
-emisijah. V tej napovedi smo uporabili podatke tako z gradnika WB Indicators
+Podatke svetovne banke lahko uporabimo tudi kot časovne vrste z uporabo
+posebnih gradnikov za delo s časovnimi vrstami \cite{time_series}. Tukaj si
+bomo ogledali enostaven primer napovedi temperature v ZDA s pomočjo podatkov o
+izpustih. V tej napovedi smo uporabili podatke tako z gradnika WB Indicators
 (Slika \ref{var_indicator_select})
 kot tudi z gradnika WB Climate (Slika \ref{var_climate_select}), 
-kar prikazuje slika \ref{var_setup}. Podatke obeh gradnikov zdru"zimo v eno 
-tablo Orange in s pomo"cjo modela \verb|var| napovemo podatke za povpre"cno 
+kar prikazuje slika \ref{var_setup}. Podatke obeh gradnikov združimo v eno 
+tablo Orange in s pomočjo modela \verb|var| napovemo podatke za povprečno 
 letno temperaturo za naslednjih nekaj let, kar je prikazano na sliki 
 \ref{var_forecast_graph}.
 
