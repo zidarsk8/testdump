@@ -195,7 +195,7 @@ Seznam držav na programskem vmesniku Svetovne banke vsebuje podatke o imenih,
 opisih, ISO-3166-1 alpha kodah, regijah in druge metapodatke 
 (Primer \ref{country_response}). Programski
 vmesnik nam omogoča tudi presejanje seznama držav po kodi države, regiji,
-višini dohodka in tipu posojil (Premer \ref{country_queries})
+višini dohodka in tipu posojil (Primer \ref{country_queries})
 
 % \begin{description}
 % \item [id] koda države, regije ali skupine držav,
@@ -272,7 +272,7 @@ kjer so:
 	  preberemo iz polja ``id'' ali ``iso2Code'', ki sta prikazana v Primeru 
     \ref{country_response}, ali pa ključna beseda ``all'',
 \item [indicator\_id] polje ``id'' indikatorja ki je prikazano v Primeru 
-    \ref{indicator_response}.
+    \ref{indicator_response},
 \item [parametri] Dodatni parametri GET 
 \end{description}
 Za poizvedbe do podatkov indikatorjev so poleg osnovnih parametrov GET 
@@ -306,10 +306,10 @@ http://api.worldbank.org/en/countries/<country>/indicators/<indicator_id>?<param
 % http://api.worldbank.org/countries/svn;usa/indicators/SL.TLF.ACTI.FE.ZS?format=json
 % http://api.worldbank.org/countries/all/indicators/SL.TLF.ACTI.FE.ZS?format=json
 
-Privzeta vrednost za količino podatkov na stran \verb|per_page| je 50. 
+Privzeta vrednost za količino podatkov na stran \verb|per_page| je $50$. 
 Zgornja meja pa ni strogo določena, vendar je odvisna od velikosti odgovora. 
 Ugotovili smo, da se zanesljivost programskega vmesnika manjša z večjo 
-količino podatkov na stran. V našem programu smo se omejili na 1000 podatkov
+količino podatkov na stran. V našem programu smo se omejili na $1000$ podatkov
 na stran, kar se je izkazalo za uporabno razmerje med hitrostjo in 
 zanesljivostjo programskega vmesnika. Privzeto bo programski vmesnik vrnil 
 podatke za vse časovne vrednosti. V odgovoru API-ja dobimo seznam objektov 
@@ -333,7 +333,7 @@ podatke za vse časovne vrednosti. V odgovoru API-ja dobimo seznam objektov
 }
 \end{lstlisting}
 \end{center}
-\caption{Podatki za indikator SP.POP.TOTL (populacija države) za Izrael leta
+\caption{Podatki za indikator SP.POP.TOTL (skupno število prebivalcev države) za Izrael leta
 2000.}
 \label{dataset_response}
 \end{snippet} 
@@ -366,7 +366,7 @@ nam omogoča dostop do mesečnih povprečij skozi vsa leta meritev.
 \subsection{Dostop do podatkov podnebnih meritev}
 
 Za dostop do podnebnih podatkov preko programskega vmesnika Svetovne banke
-potrebujemo ISO-3166-1 alpha3 kodo države ali številski identifikator
+potrebujemo ISO-3166-1 alpha-3 kodo države ali številski identifikator
 vodotočnega območja (Slika \ref{climate_data_api_basins}). Programski vmesnik
 nam omogoča dostop do meritev povprečnih količin padavin in temperatur za 
 letno ali desetletno obdobje. Poleg letnega in desetletnega obdobja pa nam 
@@ -450,16 +450,16 @@ so:
 \begin{itemize}  
 \item nekaterim delom dokumentacije se je med izdelavo te diplomske naloge
   spremenil spletni naslov, tako da do tistih delov sedaj nimamo več dostopa,
-\item polje za datum v odgovoru je opisano, vendar ni dokumentirano, kakšne so
-    vse možne vrednosti (nekaj primerov nedokumentiranih vrednosti:
+\item polje za datum \verb|date| v odgovoru je opisano, vendar niso dokumentirane vse možne vrednosti
+    (nekaj primerov nedokumentiranih vrednosti:
     ``last known value'' ``2001 - 2015'' ``2040''),
 \item delovanje sita z različnimi kombinacijami polj \verb|mrv|, \verb|gapfill|
   in \verb|date| ni ustrezno opisano,
 \item v odgovoru poizvedbe po podatkih indikatorjev ponekod manjkajo vrednosti
-  kot so koda države, ime države ali ime indikatorja.
-\item zgornja meja števila izbranih lokacij na 250 ni navedena in napaka 
-  ki jo programski vmesnik vrne ni dokumentirana,
-\item nemogoče je ugotoviti pogostost vzorčenja indikatorja (frequency), .
+  kot so koda države, ime države ali ime indikatorja,
+\item zgornja meja števila izbranih lokacij na $250$ ni navedena, prav tako pa ni
+  dokumentirana napaka, ki jo v tem primeru vrne programski vmesnik
+\item nemogoče je ugotoviti pogostost vzorčenja indikatorja \verb|frequency|, .
 \end{itemize}  
 
 
