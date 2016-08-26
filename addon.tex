@@ -81,6 +81,7 @@ posodabljajo, smo za čas veljavnosti začasnih datotek izbrali en teden.
 
 
 \subsection{Razred IndicatorAPI}
+\label{razered_indicator_api}
 
 \verb|IndicatorAPI| je razred namenjen pridobivanju podatkov indikatorjev
 razvoja držav. Ker ima programski vmesnik Svetovne banke omejitev koliko 
@@ -371,24 +372,28 @@ Climate'' in nam preko grafičnega vmesnika omogoča dostop do podnebnih
 podatkov Svetovne banke. Drugi gradnik pa se imenuje ``WB Indicators'' in nam
 preko grafičnega vmesnika omogoča dostop do podatkov indikatorjev razvoja.
  
-nova skupina data sets 
- - v katero je mogoce dodati nove gradnike za druge programske vmesnike.
-
-2 gradnika - wb indicators in wb climate
-
-- lazja uporaba apija
-- vecja preglednost
 
 
-za oba gradniko smo razvili in uporabili base class - skupni podatki
 
-- razvili smo tudi gradnik za gnezned prikaz urejenih slovarjev.
-  ta se uporablja za prikaz drzav po kontinentih v climate gradniku,
-  in za prikaz drzav in skupin drzav in drugih agregatov v gradniku
-  indicators.
-
-
-za te gradnike smo tudi napisali enotske teste.
+% 2 gradnika - wb indicators in wb climate
+% 
+% - lazja uporaba apija
+% - vecja preglednost
+% 
+% 
+% Za izdelavo grafi"cnih gradniko, smo naredili en osnovni razred, 
+% 
+% 
+% 
+% za oba gradniko smo razvili in uporabili base class - skupni podatki
+% 
+% - razvili smo tudi gradnik za gnezned prikaz urejenih slovarjev.
+%   ta se uporablja za prikaz drzav po kontinentih v climate gradniku,
+%   in za prikaz drzav in skupin drzav in drugih agregatov v gradniku
+%   indicators.
+% 
+% 
+% za te gradnike smo tudi napisali enotske teste.
 
 
 \begin{figure}
@@ -400,24 +405,48 @@ za te gradnike smo tudi napisali enotske teste.
 \end{figure} 
 
 
-\subsection{wb indicators gradnik}
+\subsection{Gradnik WB Indicators}
 
-za sestavo smo si pomagali z gradniki Orange.gui 
+\verb|WB Indicators| je gradnik programa Orange za dostop do podatkov
+programskega vmesnika indikatorjev. Ta gradnik nam omogo"ca enastavno izbiro
+enega ali ve"c indikatorjev in ene ali ve"c dr"zav za katere "zelimo dobiti
+podatke izbranih indikatorjev. Za la"zje iskanje indikatorjev smo v grafi"cnem
+vmesniku dodali dve mo"znosti presejanja seznama indikatorjev. Pri prvem situ
+si lahko izberemo prikaz vseh indikatorjev, pogosto uporabljenih 
+indikatorjev\footnote{Seznam je na voljo na strani 
+\url{http://data.worldbank.org/indicator?tab=all}}
+ali pa izpostavljenih indikatorjev\footnote{Seznam je na voljo na strani 
+\url{http://data.worldbank.org/indicator?tab=featured}}. Drugo sit pa je
+tekstovno presejanje po poljih: koda ``Id'', ime ``Name'', teme ``Topics'' in
+viri ``Sources''. 
+% TODO: preveri ta stavek
+V grafi"cnem vmesniku si lahko tudi izberemo eno izmed oblik izhodnih podatkov
+kot "casovne vrste \angl{Time Series} ali podatke dr"zav \angl{Countries}, 
+kot smo ju opisali v razdelku \ref{razred_indicatordatasets}. 
+Implementirali pa smo tudi prikaz napredka prenosa podatkov, s "stevili vseh in
+"ze izvedenih poizveb, omenjeni v razdelku \ref{razered_indicator_api}.
 
-elementi gradnika
 
-2 osnovna filtra: 
 
-- izbor indikatorjev ki se pokazejo v seznamu all/common/featured 
-  ki ustreza seznamu indikatorjev na strani: 
-  all - vse (tudi nekateri ki jih na strani ni nastetih)
-  common - http://data.worldbank.org/indicator?tab=all
-  featured - http://data.worldbank.org/indicator?tab=featured
-- text filter
 
-gradnik ima sistem za prikaz (progress bar?) 
 
-moznost izbire tipa izhoda (countries in time series - opis)
+
+% za sestavo smo si pomagali z gradniki Orange.gui 
+% 
+% elementi gradnika
+% 
+% 2 osnovna filtra: 
+% 
+% - izbor indikatorjev ki se pokazejo v seznamu all/common/featured 
+%   ki ustreza seznamu indikatorjev na strani: 
+%   all - vse (tudi nekateri ki jih na strani ni nastetih)
+%   common - http://data.worldbank.org/indicator?tab=all
+%   featured - http://data.worldbank.org/indicator?tab=featured
+% - text filter
+% 
+% gradnik ima sistem za prikaz (progress bar?) 
+% 
+% moznost izbire tipa izhoda (countries in time series - opis)
 
 \begin{figure}
 \begin{center}
