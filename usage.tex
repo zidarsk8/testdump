@@ -15,10 +15,13 @@ razredom ki ga "zelimo napovedovati. Vrednosti, ki jih "zelimo napovedovati se
 nahajajo v stolpcu $55$ v tabeli \verb|class_data|. Ta vrstica vsebuje podatke
 o smrtnosti otrok mlaj"sih od enega leta, za leto 2015. V naslednjih vrsticah
 pa zgradimo "stiri napovedne modele: naklju"cni gozd z
-regresijskimi drevesi, linearna regresija z regularizacijo in srednja vrednost.
+regresijskimi drevesi \verb|rf|, linearna regresija z regularizacijo 
+\verb|ridge| in srednja vrednost \verb|mean|.
 Za ocene napovednih modelov smo uporabili oceni
 $RMSE$ \fnurl{https://en.wikipedia.org/wiki/Root-mean-square_deviation} in 
 $R^2$ \fnurl{https://en.wikipedia.org/wiki/Coefficient_of_determination}.
+Rezultate primera \ref{scripting_example} lahko vidimo v tabeli 
+\ref{rezultati_skripte}.
 
 
 \begin{snippet}
@@ -31,6 +34,23 @@ $R^2$ \fnurl{https://en.wikipedia.org/wiki/Coefficient_of_determination}.
   cepljenih otrok do drugega leta starosti.}
 \label{scripting_example}
 \end{snippet} 
+
+\begin{table}
+\begin{center}
+
+\begin{tabular}{l|r|r}
+  Learner & RMSE & R2      \\ \hline
+ 
+  rf & 9.74 & 0.79 \\
+  ridge & 17.76 & 0.31 \\
+  mean & 21.35 & -0.00
+
+\end{tabular}
+\end{center}
+\cprotect
+\caption{Rezultati napovedi smrtnosti otrok do enega leta starosti.}
+\label{rezultati_skripte}
+\end{table} 
 
 
 
