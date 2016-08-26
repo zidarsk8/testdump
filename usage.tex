@@ -10,10 +10,10 @@ prikazuje primer \ref{scripting_example}. V temu primeru pogledamo kako
 u"cinkovito lahko napovemo smrtnost otrok iz raznih indikatorjev zdravja in
 okolja in infrastrukture. V vrsticah $5$ do $15$ naredimo poizvedbe po
 potrebnih podatkih s programskega vmesnika Svetovne banke. Nato v vrsticah $18$
-do $27$ odstranimo vrstice ki nimajo ciljne vrednosti in naredimo novo tabelo z
-razredom ki ga "zelimo napovedovati. Vrednosti, ki jih "zelimo napovedovati se
+do $27$ odstranimo vrstice, ki nimajo ciljne vrednosti in naredimo novo tabelo z
+razredom, ki ga "zelimo napovedovati. Vrednosti, ki jih "zelimo napovedovati, se
 nahajajo v stolpcu $55$ v tabeli \verb|class_data|. Ta vrstica vsebuje podatke
-o smrtnosti otrok mlaj"sih od enega leta, za leto 2015. V naslednjih vrsticah
+o smrtnosti otrok mlaj"sih od enega leta za leto 2015. V naslednjih vrsticah
 pa zgradimo "stiri napovedne modele: naklju"cni gozd z
 regresijskimi drevesi \verb|rf|, linearna regresija z regularizacijo 
 \verb|ridge| in srednja vrednost \verb|mean|.
@@ -54,18 +54,19 @@ Rezultate primera \ref{scripting_example} lahko vidimo v tabeli
 
 
 
-\section{Napoved temperature s pomočjo CO2 emisij v ZDA}
+\section{Napoved temperature s pomočjo $CO_2$ izpustov v ZDA}
 
 
-Podatke svetovne banke lahko uporabimo tudi kot "casovne vrste, z uporabo
+Podatke svetovne banke lahko uporabimo tudi kot "casovne vrste z uporabo
 posebnih gradnikov za delo s "casovnimi vrstami \cite{time_series}. Tukaj si
 bomo ogledali enostaven primer napovedi temperature v ZDA s pomo"cjo podatkov o
 emisijah. V tej napovedi smo uporabili podatke tako z gradnika WB Indicators
 (Slika \ref{var_indicator_select})
-kot z gradnika WB Climate (Slika \ref{var_climate_select}), 
+kot tudi z gradnika WB Climate (Slika \ref{var_climate_select}), 
 kar prikazuje slika \ref{var_setup}. Podatke obeh gradnikov zdru"zimo v eno 
-tablo Orange in s pom"cjo modela \verb|var| napovemo podatke za povpre"cno 
-letno temperaturo za naslednjih nekaj let\ref{var_forecast_graph}.
+tablo Orange in s pomo"cjo modela \verb|var| napovemo podatke za povpre"cno 
+letno temperaturo za naslednjih nekaj let, kar je prikazano na sliki 
+\ref{var_forecast_graph}.
 
 \begin{figure}
 \begin{center}
@@ -80,7 +81,7 @@ letno temperaturo za naslednjih nekaj let\ref{var_forecast_graph}.
 \begin{center}
 \includegraphics[width=12cm]{pic/var_indicator_select.png}
 \end{center}
-\caption{Izbor indikatorja CO2 emisij v ZDA.}
+\caption{Izbor indikatorja $CO_2$ izpustov v ZDA.}
 \label{var_indicator_select}
 \end{figure} 
 
@@ -104,7 +105,7 @@ letno temperaturo za naslednjih nekaj let\ref{var_forecast_graph}.
 \begin{center}
 \includegraphics[width=12cm]{pic/var_forecast_graph.png}
 \end{center}
-\caption{Prikaz napovedi gibanja povprečnih letnih temperatur in emisij CO2.}
+\caption{Prikaz napovedi gibanja povprečnih letnih temperatur in $CO_2$ izpustov.}
 \label{var_forecast_graph}
 \end{figure} 
 
