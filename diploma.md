@@ -88,11 +88,11 @@ Podatkovne zbirke Svetovne Banke
 
 Pri diplomski nalogi smo se osredotočili na dva programska vmesnika za dostop podatkov Svetovne banke, to sta “ClimateAPI” s katerim dostopamo do podatkovne zbirke meteoroloških meritev in “IndicatorAPI” s katerim dostopamo do zbirke podatkov raznih indikatorjev stopenj razvoja držav. Za uporabo podatkovne zbirke Svetovne banke smo se odločili, ker združuje in na enovit način predstavi podatke iz več različnih virov. Podatkovni viri za indikatorje stopnje razvoja držav so:
 
--   Svetovni indikatorji razvoja 
+-   Svetovni indikatorji razvoja ,
 
--   Globalni finančni razvoj 
+-   Globalni finančni razvoj ,
 
--   Afriški indikatorji razvoja 
+-   Afriški indikatorji razvoja ,
 
 -   Poslovanje ,
 
@@ -133,7 +133,7 @@ Za pridobitev podatkov indikatorjev potrebujemo metapodatke o indikatorjih in dr
 
 Ker je mogoče z eno poizvedbo dostopati do velike količine podatkov, ima programski vmesnik za dostop do podatkov indikatorjev implementirano ostranjevanje, s katerim je omejeno število podatkov, ki jih lahko dobimo z eno poizvedbo. Tako so podatki razdeljeni na skupine ki jih imenujemo strani.
 
-Vsi odgovori na veljavne poizvedbe po podatkih in metapodatkih, ki so na voljo s programskim vmesnikom indikatorjev razvoja, imajo enako osnovno obliko. Poizvedbe vračajo seznam z dvema elementoma, kjer ima prvi element informacije o količini podatkov in trenutnem izboru podatkov, drugi element pa vsebuje seznam izbranih podatkov (Primer \[basic\_response\]). Privzeta vrednost števila elementov na stran je 50, kar lahko spremenimo tako, da poizvedbi nastavimo parameter GET `per_page` na poljubno vrednost. Če želimo pridobiti podatke z več strani, moramo za vsako stran poslati novo poizvedbo, v kateri podamo želeno stran s parametrom GET `page`, . Veljavne poizvedbe, s sitom ki ne vrača nobenih podatkov, imajo vrednost drugega elementa osnovnega seznama `null`. Za neveljavne poizvedbe pa programski vmesnik vrača seznam z enim elementom, ki vsebuje podatke o napaki poizvedbe (Primer \[error\_response\]).
+Vsi odgovori na veljavne poizvedbe po podatkih in metapodatkih, ki so na voljo s programskim vmesnikom indikatorjev razvoja, imajo enako osnovno obliko. Poizvedbe vračajo seznam z dvema elementoma, kjer ima prvi element informacije o količini podatkov in trenutnem izboru podatkov, drugi element pa vsebuje seznam izbranih podatkov (Primer \[basic\_response\]). Privzeta vrednost števila elementov na stran je 50, kar lahko spremenimo tako, da poizvedbi nastavimo parameter GET `per_page` na poljubno vrednost. Če želimo pridobiti podatke z več strani, moramo za vsako stran poslati novo poizvedbo, v kateri podamo številko želene strani s parametrom GET `page`. Veljavne poizvedbe, s sitom ki ne vrača nobenih podatkov, imajo vrednost drugega elementa osnovnega seznama `null`. Za neveljavne poizvedbe pa programski vmesnik vrača seznam z enim elementom, ki vsebuje podatke o napaki poizvedbe (Primer \[error\_response\]).
 
     [
         {
