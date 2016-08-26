@@ -8,9 +8,9 @@ Za uporabo podatkovne zbirke Svetovne banke smo se odločili, ker združuje in n
 enovit način predstavi podatke iz več različnih virov. Podatkovni viri za 
 indikatorje stopnje razvoja držav so:
 \begin{itemize}  
-  \item Svetovni indikatorji razvoja~\cite{world_dev_ind} % World Development Indicators, 
-  \item Globalni finančni razvoj~\cite{glob_fin_dev}
-  \item Afriški indikatorji razvoja~\cite{africa_dev_ind}
+  \item Svetovni indikatorji razvoja~\cite{world_dev_ind}, % World Development Indicators, 
+  \item Globalni finančni razvoj~\cite{glob_fin_dev},
+  \item Afriški indikatorji razvoja~\cite{africa_dev_ind},
   \item Poslovanje~\cite{doing_buseness},
   \item Podjetniške raziskave~\cite{ent_surveys}, 
   \item Razvojni cilji~\cite{mil_dev_goals}, 
@@ -79,7 +79,7 @@ pa vsebuje seznam izbranih podatkov (Primer \ref{basic_response}). Privzeta
 vrednost števila elementov na stran je $50$, kar lahko spremenimo tako, da
 poizvedbi nastavimo parameter GET \verb|per_page| na poljubno vrednost. Če
 želimo pridobiti podatke z več strani, moramo za vsako stran poslati novo
-poizvedbo, v kateri podamo želeno stran s parametrom GET \verb|page|, . 
+poizvedbo, v kateri podamo številko želene strani s parametrom GET \verb|page|.
 Veljavne poizvedbe, s sitom ki ne vrača nobenih podatkov, imajo vrednost 
 drugega elementa osnovnega seznama \verb|null|.
 Za neveljavne poizvedbe pa programski vmesnik vrača seznam z enim elementom,
