@@ -5,7 +5,7 @@ podatkov Svetovne banke, to sta ``ClimateAPI'' s katerim dostopamo do
 podatkovne zbirke meteoroloških meritev in ``IndicatorAPI'' s katerim dostopamo do 
 zbirke podatkov raznih indikatorjev stopenj razvoja držav.
 Za uporabo podatkovne zbirke Svetovne banke smo se odločili, ker združuje in na
-enovit način predstavi podatke iz večih različnih virov. Podatkovni viri za 
+enovit način predstavi podatke iz več različnih virov. Podatkovni viri za 
 indikatorje stopnje razvoja držav so:
 \begin{itemize}  
   \item Svetovni indikatorji razvoja~\cite{world_dev_ind} % World Development Indicators, 
@@ -29,7 +29,7 @@ poizvedbi REST lahko določimo želeno obliko odgovora. Za poizvedbe o
 informacijah indikatorjev sta na voljo obliki XML in JSON. Programski vmesnik 
 meteoroloških meritev pa ponuja samo obliko JSON. Za konsistentnost in lažjo
 berljivost smo na obeh programskih vmesnikih uporabili obliko JSON. To na
-programskem vmesniku indikatorjev dosežemo take da nastavimo parameter GET
+programskem vmesniku indikatorjev dosežemo tako da nastavimo parameter GET
 \verb|format| na vrednost \verb|json|. 
 
 
@@ -39,11 +39,11 @@ programskem vmesniku indikatorjev dosežemo take da nastavimo parameter GET
 
 
 Programski vmesnik indikatorjev razvoja držav Svetovne banke omogoča dostop
-do podatkov preko 16.000 raznih indikatorjev. Podatki indikatorjev so merjeni
+do podatkov preko 16.000 raznih indikatorjev. Podatki indikatorjev so merjeni v
 mesečnem, četrtletnem ali letnem intervalu. Začetek meritev podatkov
 posameznega indikatorja je odvisna od vira podatkov. Najstarejši podatki segajo
 do leta 1960. Poleg podatkov indikatorjev nam ta programski vmesnik omogoča 
-tudi dostop do večine metapodatkov s katerimi lahko presejamo in natančneje
+tudi dostop do večine metapodatkov, s katerimi lahko presejamo in natančneje
 določimo našo poizvedbo. Seznami metapodatkov so:
 \begin{itemize}
 \item viri podatkov in njihovi opisi (ang.\ Catalog Source Queries
@@ -64,21 +64,21 @@ državah. Primere teh metapodatkov si bomo podrobneje pogledali v nadaljevanju.
 
 Ker je mogoče z eno poizvedbo dostopati do velike količine podatkov, ima
 programski vmesnik za dostop do podatkov indikatorjev implementirano
-ostranjevanje, s katerim je omejeno število podatkov ki jih lahko dobimo z eno
+ostranjevanje, s katerim je omejeno število podatkov, ki jih lahko dobimo z eno
 poizvedbo. Tako so podatki razdeljeni na skupine ki jih imenujemo strani.
 
 Vsi odgovori na veljavne poizvedbe po podatkih in metapodatkih, ki so na voljo
 s programskim vmesnikom indikatorjev razvoja, imajo enako osnovno obliko. 
-Poizvedbe vračajo seznam z dvema elementoma, kjer je ima prvi element 
+Poizvedbe vračajo seznam z dvema elementoma, kjer ima prvi element 
 informacije o količini podatkov in trenutnem izboru podatkov, drugi element 
 pa vsebuje seznam izbranih podatkov (Primer \ref{basic_response}). Privzeta
-vrednost števila elementov na stran je $50$, kar lahko spremenimo tako da
+vrednost števila elementov na stran je $50$, kar lahko spremenimo tako, da
 poizvedbi nastavimo parameter GET \verb|per_page| na poljubno vrednost. Če
-želimo pridobiti podatke z večih strani, moramo za vsako stran poslati novo
-poizvedbo v kateri podamo želeno stran s parametrom GET \verb|page|, . 
+želimo pridobiti podatke z več strani, moramo za vsako stran poslati novo
+poizvedbo, v kateri podamo želeno stran s parametrom GET \verb|page|, . 
 Veljavne poizvedbe, s sitom ki ne vrača nobenih podatkov, imajo vrednost 
 drugega elementa osnovnega seznama \verb|null|.
-Za neveljavne poizvedbe, pa programski vmesnik vrača seznam z enim elementom,
+Za neveljavne poizvedbe pa programski vmesnik vrača seznam z enim elementom,
 ki vsebuje podatke o napaki poizvedbe (Primer \ref{error_response}).
 
 
@@ -99,7 +99,7 @@ ki vsebuje podatke o napaki poizvedbe (Primer \ref{error_response}).
 ]
 \end{lstlisting}
 \end{center}
-\caption{Osnovna oblika odgovora programskega vmesnika Svetovne banke, za
+\caption{Osnovna oblika odgovora programskega vmesnika Svetovne banke za
 veljavno poizvedbo indikatorjev.} 
 \label{basic_response}
 \end{snippet} 
@@ -131,7 +131,7 @@ neveljavne poizvedbe.}
 
 Programski vmesnik Svetovne banke za indikatorje razvoja nam ponuja seznam 
 vseh indikatorjev z imeni, opisi, kodami in drugimi metapodatki 
-(Primer \ref{indicator_response}). Programski vmesnik nam tudi omogoča dostop
+(Primer \ref{indicator_response}). Programski vmesnik nam omogoča tudi dostop
 do podatkov posameznega indikatorja določenega s kodo in presejanje seznama 
 indikatorjev glede na vir podatkov \ref{indicator_queries}. V našem programu
 smo uporabili le poizvedbo za celoten seznam indikatorjev, da smo omogočili 
@@ -190,8 +190,8 @@ stopnja revščine pri dohodku 2,5 dolarja na dan.}
 Seznam držav na programskem vmesniku Svetovne banke vsebuje podatke o imenih, 
 opisih, ISO-3166-1 alpha kodah, regijah in druge metapodatke 
 (Primer \ref{country_response}). Programski
-vmesnik nam tudi omogoča presejanje seznama držav po kodi države, regiji,
-višini dohodka, in tipu posojil (Premer \ref{country_queries})
+vmesnik nam omogoča tudi presejanje seznama držav po kodi države, regiji,
+višini dohodka in tipu posojil (Premer \ref{country_queries})
 
 % \begin{description}
 % \item [id] koda države, regije ali skupine držav,
@@ -210,7 +210,7 @@ http://api.worldbank.org/countries?format=json&incomeLevel=HIC&region=ECS
 \end{center}
 \caption{Primeri poizvedb po seznamu držav.
 1) seznam vseh držav, 2) podatki ene države,
-3) seznam držav v Evropi in Osrednji Aziji, z visoko višino dohodka.}
+3) seznam držav v Evropi in Osrednji Aziji z visoko višino dohodka.}
 \label{country_queries}
 \end{snippet} 
 
@@ -256,10 +256,10 @@ uporabljali besedo ``države''.
 
 \subsection{Dostop do podatkov indikatorjev}
 
-Za dostop do podatkov posameznega indikatorja, potrebujemo kodo
-indikatorja s seznama vseh indikatorjev in kodo ene ali večih držav. Namesto
-kode ene ali večih držav lahko uporabimo tudi ključno besedo ``all'', ki
-označuje vse kode držav. Pri večjih količinah podatkov, lahko z dodatnimi
+Za dostop do podatkov posameznega indikatorja potrebujemo kodo
+indikatorja s seznama vseh indikatorjev in kodo ene ali več držav. Namesto
+kode ene ali več držav, lahko uporabimo tudi ključno besedo ``all'', ki
+označuje vse kode držav. Pri večjih količinah podatkov lahko z dodatnimi
 parametri določimo število podatkov na stran, in želeno stran podatkov.
 Primer \ref{indicator_dataset_request} prikazuje osnovno obliko poizvedbe,
 kjer so:
@@ -338,7 +338,7 @@ Slabosti programskega vmesnika indikatorjev Svetovne banke za uporabo v namene
 podatkovnega rudarjenja so v tem, da vmesnik ni namenjen prenosu večje 
 količine podatkov z eno samo poizvedbo. Zaradi ostranjevanja moramo za en sam 
 indikator narediti več poizvedb, da prenesemo podatke z vseh strani. Prav 
-tako podatkovni vmesnik ne podpira poizvedb po večih indikatorjih hkrati, kar
+tako podatkovni vmesnik ne podpira poizvedb po več indikatorjih hkrati, kar
 potrebujemo za iskanje zakonitosti med posameznimi indikatorji.
 
 \section{Podatki podnebnih meritev}
@@ -361,8 +361,8 @@ nam omogoča dostop do mesečnih povprečij skozi vsa leta meritev.
 
 \subsection{Dostop do podatkov podnebnih meritev}
 
-Za dostop do podnebnih podatkov preko programskega vmesnika Svetovne banke,
-potrebujemo ISO-3166-1 alpha3 kodo države, ali številski identifikator
+Za dostop do podnebnih podatkov preko programskega vmesnika Svetovne banke
+potrebujemo ISO-3166-1 alpha3 kodo države ali številski identifikator
 vodotočnega območja (Slika \ref{climate_data_api_basins}). Programski vmesnik
 nam omogoča dostop do meritev povprečnih količin padavin in temperatur za 
 letno ali desetletno obdobje. Poleg letnega in desetletnega obdobja pa nam 
@@ -377,9 +377,9 @@ posamezne mesece skozi vsa leta meritev. Obliko poizvedbe prikazuje primer
   ``decade'' za desetletno),
 \item [location] koda države ali številski identifikator vodotočnega območja.
 \end{description}
-Za razliko od programskega vmesnika indikatorjev, nam programskem vmesniku
+Za razliko od programskega vmesnika indikatorjev, nam programski vmesnik
 podnebnih meritev z eno poizvedbo omogoča dostop do podatkov le za eno državo.
-To pomeni da je količina podatkov dovolj omejena da nam programski vmesnik,
+To pomeni, da je količina podatkov dovolj omejena, da nam programski vmesnik
 vedno vrne vse podatke brez ostranjevanja, kot prikazuje primer 
 \ref{climate_dataset_response},
 
@@ -438,7 +438,7 @@ http://climatedataapi.worldbank.org/climateweb/rest/v1/<loc_type>/cru/<data_type
 \label{api_gotchas}
 
 
-Programski vmesniki Svetovne banke zajema podatke različnih virov, zato je
+Programski vmesniki Svetovne banke zajemajo podatke iz različnih virov, zato je
 težko zagotoviti pravilnost in konsistentnost podatkov. Poleg tega pa se 
 programski vmesnik in spletna stran z dokumentacijo občasno spremenita, kar
 povzroča še dodatne težave pri uporabi. Nekatere težave, ki smo jih opazili
@@ -449,9 +449,9 @@ so:
 \item polje za datum v odgovoru je opisano, vendar ni dokumentirano, kakšne so
     vse možne vrednosti (nekaj primerov nedokumentiranih vrednosti:
     ``last known value'' ``2001 - 2015'' ``2040''),
-\item delovanje sita z različnimi kombinaciji polj \verb|mrv|, \verb|gapfill|
+\item delovanje sita z različnimi kombinacijami polj \verb|mrv|, \verb|gapfill|
   in \verb|date| ni ustrezno opisano,
-\item v odgovoru poizvedbe po podatkih indikatorjev, ponekod manjkajo vrednosti
+\item v odgovoru poizvedbe po podatkih indikatorjev ponekod manjkajo vrednosti
   kot so koda države, ime države ali ime indikatorja.
 \item zgornja meja števila izbranih lokacij na 250 ni navedena in napaka 
   ki jo programski vmesnik vrne ni dokumentirana,
