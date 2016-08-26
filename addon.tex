@@ -10,7 +10,8 @@ Druga in tretja komponenti pa sta združeni v paketu
 
 Prva komponenta je programska knjižnica \verb|simple_wbd|, ki
 omogoča enostaven dostop do programskega vmesnika indikatorjev in podnebnih
-podatkov Svetovne banke. Ta knjižnica je narejena s čim manj odvisnosti in je 
+podatkov Svetovne banke. Knjižnico smo implementirali z uporabo čim manjšega
+števila odvisnosti in je 
 % TODO ali je python z veliko
 namenjena splošni uporabi v Python programih. Poudarka pri zasnovi knjižnice 
 \verb|simple_wbd| sta predvsem enostavnost razširitve in zanesljivost. Ta cilja
@@ -115,7 +116,7 @@ Glavne metode ki jih ponuja razred IndicatorAPI so:
       ki vsebuje podatkov indikatorjev.
 \end{description}
 
-Ena izmed lastnosti razreda \verb|IndicatorAPI| je ta da mu lahko ob
+Ena izmed lastnosti razreda \verb|IndicatorAPI| je, da mu lahko ob
 inicializaciji podamo razred v katerem želimo prejeti rezultat poizvedbe. Ta
 razred mora dedovati od osnovnega razreda \verb|IndicatorDataset|. Na ta
 način lahko enostavno razširimo funkcionalnost \verb|simple_wbd| knjižnice.
@@ -200,8 +201,8 @@ je določena z državo, vrsta podatkov, in časovno komponento. Poleg omenjenih
 načinov predstavitve podatkov lahko dostopamo tudi do neobdelanih podatkov 
 prejetih iz programskega vmesnika za vsako poizvedbo posebej.
 
-Časovna komponenta rezultata je sestavljena iz vrste meritvenega obdobja in 
-začetkom obdobja meritve. Sestavljajo časovno komponento uporabljamo, da se 
+Časovno komponento rezultata sestavljata vrsta meritvenega obdobja in 
+začetek obdobja meritve. Sestavljeno časovno komponento uporabljamo, da se 
 izognemo dvoumnim primerom vrednosti začetka obdobja za letni in desetletni 
 interval meritev. Primera takih dveh časovnih obdobij sta 
 \verb|'decade - 1990'| in \verb|'year - 1990'|.
