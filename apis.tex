@@ -21,12 +21,12 @@ indikatorje stopnje razvoja držav so:
 \end{itemize}  
 
 Podatkovni vir zbirke podnebnih meritev pa je osnovan na podatkih oddelka
-za podnebne raziskave (ang.\ Climatic Research Unit)~\cite{climate_data}.
+za podnebne raziskave \angl{Climatic Research Unit}~\cite{climate_data}.
 
-Svetovna banka omogoča dostop do podatkov preko programskega vmesnika REST, ki
+Svetovna banka omogoča dostop do podatkov preko programskega vmesnika REST \angl{Representational State Transfer}, ki
 ponuja veliko možnosti za iskanje in presejanje rezultatov. Pri vsaki 
 poizvedbi REST lahko določimo želeno obliko odgovora. Za poizvedbe o 
-informacijah indikatorjev sta na voljo obliki XML in JSON. Programski vmesnik 
+informacijah indikatorjev sta na voljo obliki XML \angl{Extensible Markup Language} in JSON \angl{JavaScript Object Notation}. Programski vmesnik 
 meteoroloških meritev pa ponuja samo obliko JSON. Za konsistentnost in lažjo
 berljivost smo na obeh programskih vmesnikih uporabili obliko JSON. To na
 programskem vmesniku indikatorjev dosežemo take da nastavimo parameter GET
@@ -46,17 +46,17 @@ do leta 1960. Poleg podatkov indikatorjev nam ta programski vmesnik omogoča
 tudi dostop do večine metapodatkov s katerimi lahko presejamo in natančneje
 določimo našo poizvedbo. Seznami metapodatkov so:
 \begin{itemize}
-\item viri podatkov in njihovi opisi (ang.\ Catalog Source Queries
+\item viri podatkov in njihovi opisi \angl{Catalog Source Queries}
 	\fnurl{http://api.worldbank.org/sources?format=json}),
-\item seznam držav, skupin držav in regij z identifikatorji (ang.\ Country Queries
+\item seznam držav, skupin držav in regij z identifikatorji \angl{Country Queries}
 	\fnurl{http://api.worldbank.org/countries?format=json}),
-\item razdelitev višin dohodkov z identifikatorji (ang.\ Income Level Queries
+\item razdelitev višin dohodkov z identifikatorji \angl{Income Level Queries}
 	\fnurl{http://api.worldbank.org/incomeLevels?format=json}),
-\item seznam indikatorjev (ang.\ Indicator Queries
+\item seznam indikatorjev \angl{Indicator Queries}
   \fnurl{http://api.worldbank.org/indicators?format=json}),
-\item seznam tipov posojil (ang.\ Lending Type Queries
+\item seznam tipov posojil \angl{Lending Type Queries}
 	\fnurl{http://api.worldbank.org/lendingTypes?format=json}),
-\item seznam tem (ang.\ Topics \fnurl{http://api.worldbank.org/topics}).
+\item seznam tem \angl{Topics \fnurl{http://api.worldbank.org/topics}}.
 \end{itemize}
 
 Za pridobitev podatkov indikatorjev potrebujemo metapodatke o indikatorjih in
