@@ -275,6 +275,7 @@ ciljnih razredov.} podatkov.
 
 
 \subsection{Raz"siritev razreda ClimateDataset}
+\label{razsiritev_razreda_climatedataset}
 
 Prav tako kot raz"siritev razreda \verb|IndicatorDatasets|, tudi ta raz"siritev
 doda metodi \verb|as_numpy_array| in \verb|to_orange_table|. Prav tako kot v
@@ -316,8 +317,13 @@ Climate'' (Slika \ref{co2_temp_climate}) in nam preko grafičnega vmesnika
 omogoča dostop do podnebnih podatkov Svetovne banke. Drugi gradnik pa se 
 imenuje ``WB Indicators'' (Slika \ref{co2_temp_indicator}) in nam
 preko grafičnega vmesnika omogoča dostop do podatkov indikatorjev razvoja.
- 
 
+Oba grafi"cna vmesnika sta narejen skladno z vodili grafi"cnih vmesnikov
+programa Orange. To smo dosegli tako da smo za ve"cino elementov grafi"cnega
+vmesinka, uporabili predpripravljene gradnike v paketu \verb|Orange.gui|. Pri
+gradnji teh vmesnikov pa smo bili pozorni na odzivnost grafi"cnega vmesnika, in
+smo po"casne operacije branja podatkov z interneta prestavili v lo"ceno nit.
+ 
 \begin{figure}
   \begin{center}
     \includegraphics[width=4cm]{pic/data_sets_group.png}
@@ -360,12 +366,16 @@ Implementirali pa smo tudi prikaz napredka prenosa podatkov, s "stevili vseh in
 
 
 
-\subsection{wb climate gradnik}
+\subsection{Gradnik WB Climate}
 
-dovoli izbiro posameznih drzav 
-
-moznost izbire tipa izhoda (countries in time series - opis)
-za razliko od indikator apija tukaj nismo dodali metapodatkov drzav 
+Gradnik za izbiro podnebnih podatkov podatkovnega vmesnika Svetovne banke, nam
+ponuja mo"znosti izbire dr"zav, vrste podatkov in vrste meritvenega obdobja.
+Prav tako kot gradnik WB Indicators, lahko tudi tukaj izberemo obliko izhodnih
+podatkov. Mo"zni izbiri oblike izhodnih podatkov sta "casovne vrste in podatki
+dr"zav, kot smo opisani v poglavju \ref{razsiritev_razreda_climatedataset}. 
+Kot dodatno mo"znost pa imamo v tem grafi"cnem vmesniku tudi zastavico, ki 
+dolo"ca ali bomo za dr"zave izpisovali imena ali pa kode. Tudi temu grafi"cnemu
+vmesniku smo dodali prikaz napredka prenosa podatkov.
 
 
 
