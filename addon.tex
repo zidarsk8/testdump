@@ -62,22 +62,8 @@ podatke. Ker se podatki na programskem vmesniku Svetovne banke redko
 posodabljajo, smo za čas veljavnosti začasnih datotek izbrali en teden.
 
 % NOTE: serailizacija je baje uredu beseda:
-% http://eprints.fri.uni-lj.si/2711/1/63100205-VALENTIN_KRAGELJ-Pregled_in_analiza_tehnologij_za_serializacijo_objektov.pdf
-
-% server query je ful omojen (retarded) mi mamo bolsiga v guiju 
-
-%% % moznost razsiritve z dedovanjem dataset razreda.
-%% % 
-%% 
-%% - omogoča pridobivanje vrednosti za filtre:
-%%     - indicator api: drzave in agregati, indikatorji
-%%     - climate api: drzave, tipi podatkov, meritveno obdobje 
-%% 
-%% - Zahteva za podatke vraca dataset objekt ki ponuja surove podatke, ali pa eno
-%%   drugo obliko. 2D array ali pa dict.
-%% 
-%% - Dataset razred lahko tudi poljubno razsirimo.
-
+% http://eprints.fri.uni-lj.si/2711/1/63100205-VALENTIN_KRAGELJ-\
+% Pregled_in_analiza_tehnologij_za_serializacijo_objektov.pdf
 
 
 \subsection{Razred IndicatorAPI}
@@ -184,22 +170,11 @@ Ko dostopamo do dvodimezionalnega polja ki predstavlja podatke držav, pa je v
 prvi vrstici kartezični produkt kod indikatorjev in časovne komponente. Prvi
 stolpec v tej predstavitvi vsebuje imena držav. Za razliko od predstavitve v 
 obliki časovnih vrst, v to polje vstavimo se dodatne stolpce ki vsebujejo
-metapodatke drzav iz primera \ref{country_response}: regija \verb|region|, administrativna regija
-\verb|adminregion|, višina dohodka \verb|incomeLevel|, vrsta posojil
-\verb|lendingType|, geografska širina \verb|latitude|, geografska dolžina
-\verb|longitude|. Tudi tukaj vsi ostali elementi določeni s časovno 
-komponento, državo in kodo indikatorja. 
-
-% \subsubsection{Primeri uporabe}
-% 
-% Razreda \verb|IndicatorAPI| in \verb|IndicatorDataset| 
-% 
-% 
-% import simple_wbd
-% api = simple_wbd.IndicatorAPI()
-% seznam_indikatorjev = api.get_indicators()
-% kode_indikatorjev = [indikator.get('id') for indikator in seznam_indikatorjev]
-% indicator_dataset = api.get_dataset(kode_indikatorjev[:3])
+metapodatke drzav iz primera \ref{country_response}: regija \verb|region|, 
+administrativna regija \verb|adminregion|, višina dohodka \verb|incomeLevel|, 
+vrsta posojil \verb|lendingType|, geografska širina \verb|latitude|, 
+geografska dolžina \verb|longitude|. Tudi tukaj vsi ostali elementi določeni s
+časovno komponento, državo in kodo indikatorja. 
 
 
 \subsection{Razred ClimateAPI}
@@ -331,70 +306,17 @@ obmo"cjih.
 
 
 
-% % doda as orange table in as numpy obema indikator apiju in climate apiju.
-% 
-% 
-% razširitev simple wbd vmesnikov z dedovanjem pravega dataset razreda.
-% 
-% 
-% - razsiri as\_list v as\_numpy\_array ki tudi odstrani vse stolpce ki nimajo 
-%   veljavne vrednosti.
-% 
-% - doda as orange table ki numpy array spremeni v orange tabelo.
-%   - za indikator api doda se metapodatke drzav ko ne prikazujemo v obliki casovne vrste.
-% 
-% 
-% api vrapper je tudi zelo uporaben za skriptno uporaba programa Orange 
-% (referenca http://www.jmlr.org/papers/volume14/demsar13a/demsar13a.pdf)
-% 
-% in tukaj si lahko vsak programer sam oblikuje podatke v katerokoli zeljeno obliko.
-% 
-% 
-% TODO: primer skripte
-% 
-% % from orangecontrib.wbd import api_wrapper
-% % api = api_wrapper.IndicatorAPI()
-% % seznam_indikatorjev = api.get_indicators()
-% % kode_indikatorjev = [indikator.get('id') for indikator in seznam_indikatorjev]
-% % indicator_dataset = api.get_dataset(kode_indikatorjev[:3])
-
-
-
-
-
 \section{Grafični vmesnik}
 
 Za namen tega diplomskega dela smo z dodatkom \verb|Orange3-DataSets|
 grafičnemu vmesniku programa Orange, dodali novo skupino gradnikov imenovano
 ``Data Sets'' (Slika \ref{data_sets_group}). V okviru te naloge smo za skupino
 ``Data Sets'' izdelali dva ločena gradnika. Prvi gradnik se imenuje ``WB
-Climate'' in nam preko grafičnega vmesnika omogoča dostop do podnebnih 
-podatkov Svetovne banke. Drugi gradnik pa se imenuje ``WB Indicators'' in nam
+Climate'' (Slika \ref{co2_temp_climate}) in nam preko grafičnega vmesnika 
+omogoča dostop do podnebnih podatkov Svetovne banke. Drugi gradnik pa se 
+imenuje ``WB Indicators'' (Slika \ref{co2_temp_indicator}) in nam
 preko grafičnega vmesnika omogoča dostop do podatkov indikatorjev razvoja.
  
-
-
-
-% 2 gradnika - wb indicators in wb climate
-% 
-% - lazja uporaba apija
-% - vecja preglednost
-% 
-% 
-% Za izdelavo grafi"cnih gradniko, smo naredili en osnovni razred, 
-% 
-% 
-% 
-% za oba gradniko smo razvili in uporabili base class - skupni podatki
-% 
-% - razvili smo tudi gradnik za gnezned prikaz urejenih slovarjev.
-%   ta se uporablja za prikaz drzav po kontinentih v climate gradniku,
-%   in za prikaz drzav in skupin drzav in drugih agregatov v gradniku
-%   indicators.
-% 
-% 
-% za te gradnike smo tudi napisali enotske teste.
-
 
 \begin{figure}
   \begin{center}
@@ -427,27 +349,6 @@ Implementirali pa smo tudi prikaz napredka prenosa podatkov, s "stevili vseh in
 "ze izvedenih poizveb, omenjeni v razdelku \ref{razered_indicator_api}.
 
 
-
-
-
-
-% za sestavo smo si pomagali z gradniki Orange.gui 
-% 
-% elementi gradnika
-% 
-% 2 osnovna filtra: 
-% 
-% - izbor indikatorjev ki se pokazejo v seznamu all/common/featured 
-%   ki ustreza seznamu indikatorjev na strani: 
-%   all - vse (tudi nekateri ki jih na strani ni nastetih)
-%   common - http://data.worldbank.org/indicator?tab=all
-%   featured - http://data.worldbank.org/indicator?tab=featured
-% - text filter
-% 
-% gradnik ima sistem za prikaz (progress bar?) 
-% 
-% moznost izbire tipa izhoda (countries in time series - opis)
-
 \begin{figure}
 \begin{center}
 \includegraphics[width=12cm]{pic/co2_temp_indicator_selection.png}
@@ -455,6 +356,7 @@ Implementirali pa smo tudi prikaz napredka prenosa podatkov, s "stevili vseh in
 \caption{Odločitveno drevo za izbor primerne metode.}
 \label{co2_temp_indicator}
 \end{figure} 
+
 
 
 
@@ -472,5 +374,5 @@ za razliko od indikator apija tukaj nismo dodali metapodatkov drzav
 \includegraphics[width=12cm]{pic/co2_temp_climate_selection.png}
 \end{center}
 \caption{Odločitveno drevo za izbor primerne metode.}
-\label{co2_temp_indicator}
+\label{co2_temp_climate}
 \end{figure} 
