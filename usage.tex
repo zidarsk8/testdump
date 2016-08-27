@@ -39,12 +39,10 @@ Rezultate primera \ref{scripting_example} lahko vidimo v tabeli
 \begin{center}
 
 \begin{tabular}{l|r|r}
-  Learner & RMSE & R2      \\ \hline
- 
+  Learner & RMSE & R2 \\ \hline
   rf & 9.74 & 0.79 \\
   ridge & 17.76 & 0.31 \\
   mean & 21.35 & -0.00
-
 \end{tabular}
 \end{center}
 \cprotect
@@ -60,11 +58,14 @@ Rezultate primera \ref{scripting_example} lahko vidimo v tabeli
 Podatke svetovne banke lahko uporabimo tudi kot časovne vrste z uporabo
 posebnih gradnikov za delo s časovnimi vrstami \cite{time_series}. Tukaj si
 bomo ogledali enostaven primer napovedi temperature v ZDA s pomočjo podatkov o
-izpustih. V tej napovedi smo uporabili podatke tako z gradnika WB Indicators
-(Slika \ref{var_indicator_select})
-kot tudi z gradnika WB Climate (Slika \ref{var_climate_select}), 
-kar prikazuje slika \ref{var_setup}. Podatke obeh gradnikov združimo v eno 
-tablo Orange in s pomočjo modela \verb|var| napovemo podatke za povprečno 
+izpustih $CO_2$. V tej napovedi smo uporabili podatke tako z gradnika 
+WB Indicators (Slika \ref{var_indicator_select})
+kot tudi z gradnika WB Climate (Slika \ref{var_climate_select}). Podatke obeh
+gradnikov smo zdru"zili z gradnikom ``Merge Data'' po obeh "casovnih
+komponentah. Nato smo odstranili vnose "casovnih obdobij za katere nimamo na
+voljo vseh podatkov. Sestavljeno tabelo prikazuje slika \ref{var_data_table}.
+Iz teh podatkov nato zgradimo "casovno vrsto in s pomočjo modela vektorske 
+autoregresije VAR \cite{var_model} napovemo podatke za povprečno 
 letno temperaturo za naslednjih nekaj let, kar je prikazano na sliki 
 \ref{var_forecast_graph}.
 
@@ -105,14 +106,15 @@ letno temperaturo za naslednjih nekaj let, kar je prikazano na sliki
 \begin{center}
 \includegraphics[width=12cm]{pic/var_forecast_graph.png}
 \end{center}
-\caption{Prikaz napovedi gibanja povprečnih letnih temperatur in $CO_2$ izpustov.}
+\caption{Prikaz napovedi gibanja povprečnih letnih temperatur ``USA - tas'' in
+  $CO_2$ izpustov ``United States''.}
 \label{var_forecast_graph}
 \end{figure} 
 
 
 
 
-\section{Clustering drzav }
+\section{Clustering dr"zav}
 
 
 
