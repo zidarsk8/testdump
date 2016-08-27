@@ -1,8 +1,6 @@
 \chapter{Primeri uporabe}
 
 
-
-
 \subsection{Primer uporabe modula api\_wrapper}
 
 Enostavno uporabo modula \verb|api_wrapper| s skriptnim delom programa Orange
@@ -114,34 +112,74 @@ letno temperaturo za naslednjih nekaj let, kar je prikazano na sliki
 
 
 
-\section{Clustering dr"zav}
+\section{Gru"cenje dr"zav}
 
+
+Podatke, ki jih dobimo z na"sm dodatkom, lahko v programu Orange uporabimo tudi
+za grafi"cni prikaz statistik in povezav med dr"zavami. Kot mo"zen primer
+uporabe (Slika \ref{clustering_setup}) smo prikazali gru"cenje dr"zav svetovnih regij, glede na naslednje
+indikatorje (Slika \ref{clustering_indicator_selection}):
+\begin{itemize}
+  \item odstotek ljudi ki "zivijo v urbanem okolju 
+    \angl{Urban population (\% of total)},
+  \item smrtnost na $1000$ "zivorojenih otrok
+    \angl{Mortality rate, infant (per 1,000 live births)},
+  \item "stevilo bolni"skih postelj na $1000$ prebivalcev
+    \angl{Hospital beds (per 1,000 people)},
+  \item odstotek BDP izdatkov za raziskave in razvoj
+    \angl{Research and development expenditure (\% of GDP)},
+  \item "stevilo prebivalstva pod pragom rev"s"cine pri meji $\$3.10$ na dan
+    \angl{Poverty gap at $\$3.10$ a day (2011 PPP) (\%)}.
+\end{itemize}
+Med temi indikatorji smo izra"cunali evklidsko razdaljo in za prikaz 
+uporabili "ze obstoje"ca gradnika programa Orange
+``MDS''\ref{clustering_mds} in
+``Hierarchical Clustering''\ref{clustering_hierarchical_countries}.
+
+
+
+\angl{multidimensional scaling}. 
+% ID: SP.URB.TOTL.IN.ZS 
+% Name:  
+% ID: SP.DYN.IMRT.IN 
+% Name:  
+% ID: SI.POV.GAP2 
+% Name: 
+% ID: SH.MED.BEDS.ZS 
+% Name: 
+% ID: GB.XPD.RSDV.GD.ZS 
+% Name: 
 
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=12cm]{pic/cluster_indicators.png}
+\includegraphics[width=5cm]{pic/clustering_setup.png}
 \end{center}
-\caption{Izbor indikatorjev za clustering.}
-\label{cluster_indicators}
+\caption{Postavitev okolja za prikaz gru"cenja.}
+\label{clustering_setup}
 \end{figure} 
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=5cm]{pic/cluster_setup.png}
+\includegraphics[width=12cm]{pic/clustering_indicator_selection.png}
 \end{center}
-\caption{Postavitev okalja za MDS clustering.}
-\label{cluster_indicators}
+\caption{Izbor indikatorjev za gru"cenje.}
+\label{}
 \end{figure} 
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=12cm]{pic/cluster_mds_result.png}
+\includegraphics[width=12cm]{pic/clustering_hierarchial_countries.png}
 \end{center}
-\caption{Rezutat MDS clusteringa.}
-\label{cluster_indicators}
+\caption{Prikaz hierarhi"cnega gru"cenja dr"zav.}
+\label{clustering_hierarchial_countries}
 \end{figure} 
 
-
-
+\begin{figure}
+\begin{center}
+\includegraphics[width=12cm]{pic/clustering_mds.png}
+\end{center}
+\caption{Prikaz gru"cenja MDS.}
+\label{clustering_mds}
+\end{figure} 
 
