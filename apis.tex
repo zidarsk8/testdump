@@ -74,21 +74,21 @@ programski vmesnik za dostop do podatkov indikatorjev implementirano
 paginacijo,
 % deljenje na strani,
 s katero je omejeno število podatkov, ki jih lahko dobimo z eno
-poizvedbo. Tako so podatki razdeljeni na skupine ki jih imenujemo strani.
+poizvedbo. Tako so podatki razdeljeni na skupine, ki jih imenujemo strani.
 
 Vsi odgovori na veljavne poizvedbe po podatkih in metapodatkih, ki so na voljo
 s programskim vmesnikom indikatorjev razvoja, imajo enako osnovno obliko. 
 Poizvedbe vračajo seznam z dvema elementoma, kjer ima prvi element 
 informacije o količini podatkov in trenutnem izboru podatkov, drugi element 
-pa vsebuje seznam izbranih podatkov (Primer \ref{basic_response}). Privzeta
+pa vsebuje seznam izbranih podatkov (primer \ref{basic_response}). Privzeta
 vrednost števila elementov na stran je $50$, kar lahko spremenimo tako, da
 poizvedbi nastavimo parameter GET \verb|per_page| na poljubno vrednost. Če
 želimo pridobiti podatke z več strani, moramo za vsako stran poslati novo
 poizvedbo, v kateri podamo številko želene strani s parametrom GET \verb|page|.
-Veljavne poizvedbe, s sitom ki ne vrača nobenih podatkov, imajo vrednost 
+Veljavne poizvedbe s sitom, ki ne vrača nobenih podatkov, imajo vrednost 
 drugega elementa osnovnega seznama \verb|null|.
 Za neveljavne poizvedbe pa programski vmesnik vrača seznam z enim elementom,
-ki vsebuje podatke o napaki poizvedbe (Primer \ref{error_response}).
+ki vsebuje podatke o napaki poizvedbe (primer \ref{error_response}).
 
 
 \begin{snippet}
@@ -130,7 +130,7 @@ veljavno poizvedbo indikatorjev.}
 ]
 \end{lstlisting}
 \end{center}
-\caption{Osnovna oblika odgovora programskega vmesnika Svetovne banke, za
+\caption{Osnovna oblika odgovora programskega vmesnika Svetovne banke za
 neveljavne poizvedbe.}
 \label{error_response}
 \end{snippet} 
@@ -140,7 +140,7 @@ neveljavne poizvedbe.}
 
 Programski vmesnik Svetovne banke za indikatorje razvoja nam ponuja seznam 
 vseh indikatorjev z imeni, opisi, kodami in drugimi metapodatki 
-(Primer \ref{indicator_response}). Programski vmesnik nam omogoča tudi dostop
+(primer \ref{indicator_response}). Programski vmesnik nam omogoča tudi dostop
 do podatkov posameznega indikatorja določenega s kodo in presejanje seznama 
 indikatorjev glede na vir podatkov \ref{indicator_queries}. V našem programu
 smo uporabili le poizvedbo za celoten seznam indikatorjev, da smo omogočili 
@@ -198,9 +198,9 @@ stopnja revščine pri dohodku 2,5 dolarja na dan.}
 
 Seznam držav na programskem vmesniku Svetovne banke vsebuje podatke o imenih, 
 opisih, ISO-3166-1 alpha kodah, regijah in druge metapodatke 
-(Primer \ref{country_response}). Programski
+(primer \ref{country_response}). Programski
 vmesnik nam omogoča tudi presejanje seznama držav po kodi države, regiji,
-višini dohodka in tipu posojil (Primer \ref{country_queries})
+višini dohodka in tipu posojil (primer \ref{country_queries})
 
 % \begin{description}
 % \item [id] koda države, regije ali skupine držav,
@@ -318,7 +318,7 @@ količino podatkov na stran. V našem programu smo se omejili na $1000$ podatkov
 na stran, kar se je izkazalo za uporabno razmerje med hitrostjo in 
 zanesljivostjo programskega vmesnika. Privzeto bo programski vmesnik vrnil 
 podatke za vse časovne vrednosti. V odgovoru API-ja dobimo seznam objektov 
-(Primer \ref{dataset_response}) z datumom, indikatorjem, državo in vrednostjo.
+(primer \ref{dataset_response}) z datumom, indikatorjem, državo in vrednostjo.
 
 \begin{snippet}
 \begin{center}
