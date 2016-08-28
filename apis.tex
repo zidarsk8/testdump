@@ -146,6 +146,7 @@ indikatorjev glede na vir podatkov \ref{indicator_queries}. V našem programu
 smo uporabili le poizvedbo za celoten seznam indikatorjev, da smo omogočili 
 iskanje in presejanje po vseh poljih indikatorjev.
 
+
 \begin{snippet}
 \begin{center}
 \begin{lstlisting}
@@ -194,6 +195,7 @@ stopnja revščine pri dohodku 2,5 dolarja na dan.}
 \label{indicator_response}
 \end{snippet} 
 
+
 \subsection{Opis seznama držav}
 
 Seznam držav na programskem vmesniku Svetovne banke vsebuje podatke o imenih, 
@@ -202,12 +204,7 @@ opisih, kodah dr"zav po standardu ISO-3166-1, regijah in druge metapodatke
 vmesnik nam omogoča tudi presejanje seznama držav po kodi države, regiji,
 višini dohodka in tipu posojil (primer \ref{country_queries})
 
-% \begin{description}
-% \item [id] koda države, regije ali skupine držav,
-% \item [region] regija,
-% \item [incomeLevel] višina dohodka,
-% \item [lendingType] tipov posojil. % TODO preveri prevod!
-% \end{description}
+
 
 \begin{snippet}
 \begin{center}
@@ -223,11 +220,13 @@ http://api.worldbank.org/countries?format=json&incomeLevel=HIC&region=ECS
 \label{country_queries}
 \end{snippet} 
 
-Ta seznam ne vsebuje zgolj samo držav, ampak tudi regije in skupine držav, 
-združenih glede na različne kriterije (višine dohodka, velikost, stopnja
-razvoja). Poleg tega zgornji seznam vsebuje tudi nekatere izjeme kot je trenutno
+
+Ta seznam ne vsebuje zgolj držav, ampak tudi regije in skupine držav, 
+združenih glede na različne kriterije, kot so višina dohodka, velikost, stopnja
+razvoja. Poleg tega zgornji seznam vsebuje tudi nekatere izjeme, kot je trenutno
 Kosovo. V nadaljevanju bomo za vse naštete tipe lokacijskih podatkov
 uporabljali besedo ``države''. 
+
 
 \begin{snippet}
 \begin{center}
@@ -267,32 +266,32 @@ uporabljali besedo ``države''.
 
 Za dostop do podatkov posameznega indikatorja potrebujemo kodo
 indikatorja s seznama vseh indikatorjev in kodo ene ali več držav. Namesto
-kode ene ali več držav, lahko uporabimo tudi ključno besedo ``all'', ki
+kode ene ali več držav, lahko uporabimo tudi ključno besedo {\tt all}, ki
 označuje vse kode držav. Pri večjih količinah podatkov lahko z dodatnimi
-parametri določimo število podatkov na stran, in želeno stran podatkov.
+parametri določimo število podatkov na stran in želeno stran podatkov.
 Primer \ref{indicator_dataset_request} prikazuje osnovno obliko poizvedbe,
 kjer so:
 \begin{description}
-\item [country] s podpičjem ločen seznam kod izbranih držav, ki jih 
-	  preberemo iz polja ``id'' ali ``iso2Code'', ki sta prikazana v Primeru 
-    \ref{country_response}, ali pa ključna beseda ``all'',
-\item [indicator\_id] polje ``id'' indikatorja ki je prikazano v Primeru 
+  \item [\tt country] s podpičjem ločen seznam kod izbranih držav, ki jih 
+    preberemo iz polja {\tt id} ali {\tt iso2Code}, ki sta prikazana v primeru 
+    \ref{country_response}, ali pa ključna beseda {\tt all},
+  \item [\tt indicator\_id] polje {\tt id} indikatorja ki je prikazano v primeru 
     \ref{indicator_response},
-\item [parametri] Dodatni parametri GET 
+\item [\tt parametri] Dodatni parametri GET 
 \end{description}
 Za poizvedbe do podatkov indikatorjev so poleg osnovnih parametrov GET 
 \verb|per_page|, \verb|page| in \verb|format|, opisanih v poglavju 
 \ref{sec:podatki_ind_razvoja}, na voljo tudi dodatni parametri za presejanje
 rezultatov poizvedbe:
 \begin{description}  
-\item [MRV] Številska vrednost, ki določi maksimalno število zadnjih meritev,
-    ki jih programski vmesnik vrne. Ko uporabljamo polje \verb|mrv| bo 
+\item [\tt mrv] Številska vrednost, ki določi maksimalno število zadnjih meritev,
+    ki jih programski vmesnik vrne. Ko uporabljamo polje \verb|mrv|, bo 
     programski vmesnik izpustil ničelne vrednosti za obdobja v katerih ni
     meritev.
-\item [gapfill] Zastavica \verb|'y'| ali \verb|'n'| za manjkajoče vrednosti meritev.
-    Vrednost \verb|'y'| kombinaciji s poljem \verb|mrv| poskrbi da programski 
+\item [\tt gapfill] Zastavica \verb|y| ali \verb|n| za manjkajoče vrednosti meritev.
+    Vrednost \verb|y| v kombinaciji s poljem \verb|mrv| poskrbi, da programski 
     vmesnik ne izpusti nobenega časovnega intervala.
-\item [date] Polje oblike \verb|'leto'| ali \verb|'leto:leto'| ki omeji rezultate poizvedbe
+\item [\tt date] Polje oblike \verb|'leto'| ali \verb|'leto:leto'| ki omeji rezultate poizvedbe
     na določeno leto ali interval med določenimi leti. 
 \end{description}
 
@@ -317,7 +316,7 @@ Ugotovili smo, da se zanesljivost programskega vmesnika manjša z večjo
 količino podatkov na stran. V našem programu smo se omejili na $1000$ podatkov
 na stran, kar se je izkazalo za uporabno razmerje med hitrostjo in 
 zanesljivostjo programskega vmesnika. Privzeto bo programski vmesnik vrnil 
-podatke za vse časovne vrednosti. V odgovoru API-ja dobimo seznam objektov 
+podatke za vse časovne vrednosti. V odgovoru programskega vmesnika dobimo seznam objektov 
 (primer \ref{dataset_response}) z datumom, indikatorjem, državo in vrednostjo.
 
 \begin{snippet}
@@ -345,7 +344,7 @@ podatke za vse časovne vrednosti. V odgovoru API-ja dobimo seznam objektov
 
 Slabosti programskega vmesnika indikatorjev Svetovne banke za uporabo v namene
 podatkovnega rudarjenja so v tem, da vmesnik ni namenjen prenosu večje 
-količine podatkov z eno samo poizvedbo. Zaradi ostranjevanja moramo za en sam 
+količine podatkov z eno samo poizvedbo. Zaradi paginacije moramo za en sam 
 indikator narediti več poizvedb, da prenesemo podatke z vseh strani. Prav 
 tako podatkovni vmesnik ne podpira poizvedb po več indikatorjih hkrati, kar
 potrebujemo za iskanje zakonitosti med posameznimi indikatorji.
@@ -359,8 +358,8 @@ saj si s temi podatki lahko uporabnik programa Orange sam sestavi svoje
 napovedne modele.
 
 Za razliko od uporabe programskega vmesnika indikatorjev, lahko pri tem
-programskem vmesniku uporabljamo veljavne ISO 3166-1 alpha-2 ali ISO 3166-1 
-alpha-3 kode držav, ali pa številski identifikator vodotočnega 
+programskem vmesniku uporabljamo veljavne kode držav ISO 3166-1 alpha-2 ali ISO 3166-1 
+alpha-3, ali pa številski identifikator vodotočnega 
 območja.
 
 Ta programski vmesnik nam omogoča dostop do podatkov o povprečnih 
@@ -371,20 +370,20 @@ nam omogoča dostop do mesečnih povprečij skozi vsa leta meritev.
 \subsection{Dostop do podatkov podnebnih meritev}
 
 Za dostop do podnebnih podatkov preko programskega vmesnika Svetovne banke
-potrebujemo ISO-3166-1 alpha-3 kodo države ali številski identifikator
-vodotočnega območja (Slika \ref{climate_data_api_basins}). Programski vmesnik
+potrebujemo kodo države ISO-3166-1 alpha-3 ali številski identifikator
+vodotočnega območja (slika \ref{climate_data_api_basins}). Programski vmesnik
 nam omogoča dostop do meritev povprečnih količin padavin in temperatur za 
-letno ali desetletno obdobje. Poleg letnega in desetletnega obdobja pa nam 
+letno ali desetletno obdobje. Poleg letnega in desetletnega obdobja nam 
 programski vmesnik ponuja tudi povprečno količino padavin in temperatur za 
 posamezne mesece skozi vsa leta meritev. Obliko poizvedbe prikazuje primer 
 \ref{climate_dataset_request}, kjer je:
 \begin{description}
-\item [loc\_type] vrsta identifikatorja območja (``basin'' za vodotočno območje, 
+\item [\tt loc\_type] vrsta identifikatorja območja (``basin'' za vodotočno območje, 
   ``country'' za države),
-\item [data\_type] vrsta meritev (``pr'' za padavine, ``tas'' za temperature),
-\item [interval] vrsta meritvenega obdobja (``month'' za mesečno, ``year'' za letno in
+\item [\tt data\_type] vrsta meritev (``pr'' za padavine, ``tas'' za temperature),
+\item [\tt interval] vrsta meritvenega obdobja (``month'' za mesečno, ``year'' za letno in
   ``decade'' za desetletno),
-\item [location] koda države ali številski identifikator vodotočnega območja.
+\item [\tt location] koda države ali številski identifikator vodotočnega območja.
 \end{description}
 Za razliko od programskega vmesnika indikatorjev, nam programski vmesnik
 podnebnih meritev z eno poizvedbo omogoča dostop do podatkov le za eno državo.
