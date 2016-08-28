@@ -3,11 +3,9 @@
 
 Na svetovnem spletu je dosegljivih vedno več prosto dostopnih programskih
 vmesnikov \angl{application programming interface}.
-% TODO: morda dodaj API v razlago zgoraj
 Ti vmesniki omogočajo dostop
 do zelo raznolikih zbirk podatkov. Primeri takih zbirk so
 seznam stopnje ogroženosti živali po državah~\fnurl{http://apiv3.iucnredlist.org/api/v3/docs},
-% TODO: 1 IUCN 2016. IUCN Red List of Threatened Species. Version 2016-1 <www.iucnredlist.org>
 podatki meritev in slike vesolja agencije NASA~\fnurl{https://api.nasa.gov/},
 seznam knjig z ocenami in povezavami med uporabniki~\fnurl{https://www.goodreads.com/api},
 zgodovina meteoroloških meritev~\fnurl{http://climatedataapi.worldbank.org/},
@@ -15,19 +13,15 @@ razni indikatorji stopenj razvoja držav~\fnurl{http://api.worldbank.org/}.
     
 
 Programski vmesniki so oblikovani tako, da je omogočena raznolika uporaba
-podatkov iz podatkovnih zbirk. To pa ima tudi slabost, ki je v tem, da je 
+vmesnika, s katerim dolo"cimo, katere podatke "zelimo pridobiti.
+Ta fleksibilnost pa ima tudi slabost, saj je 
 podatke potrebno predhodno obdelati za vsak namen posebej. Tako bi na primer 
-moral vsak uporabnik programa Orange podatke predhodno pretvoriti v obliko, 
-primerno za njegovo konkretno analizo.
+moral vsak uporabnik programa Orange, sicer splo"sno uporabnega okolja za 
+podatkovno analitiko, podatke predhodno pretvoriti v obliko, 
+primerno za dani problem in cilje zastavljene analize.
 
 
 \section{Motivacija}
-
-% TODO: tri motivacije: 
-% lazja uporaba laikom - gui klikanje,
-% lazje vzrdzevanje in posodobobitve, en codebase,
-% ne rabi usak delat iste stvari, rocno gradit tab separate fajle, manj napak,
-%   usak skrbeti za iste pomankljivosti apija (slabi podatki itd).
 
 Povezava programskega vmesnika za dostop do podatkov in orodja za analizo 
 podatkov je pogosto prezapletena za končnega uporabnika. Razviti želimo
@@ -49,6 +43,7 @@ Cilj diplomske naloge je izdelati knjižnico za uporabo programskega vmesnika
 Svetovne banke za programski jezik Python ter izdelati dodatek za program Orange, ki s pomočjo omenjene
 knjižnice omogoča uporabniku dostop do podatkov Svetovne banke preko
 grafičnega vmesnika.
+
 
 V diplomski nalogi najprej predstavimo spletna vira indikatorjev
 držav sveta in meritev podnebnih podatkov Svetovne banke ter
