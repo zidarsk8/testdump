@@ -1,8 +1,8 @@
 \chapter{Podatkovne zbirke Svetovne Banke}
 
 Pri diplomski nalogi smo se osredotočili na dva programska vmesnika za dostop 
-podatkov Svetovne banke, to sta ``ClimateAPI'' s katerim dostopamo do 
-podatkovne zbirke meteoroloških meritev in ``IndicatorAPI'' s katerim dostopamo do 
+podatkov Svetovne banke. To sta ``ClimateAPI'', s katerim dostopamo do 
+podatkovne zbirke meteoroloških meritev in ``IndicatorAPI'', s katerim dostopamo do 
 zbirke podatkov raznih indikatorjev stopenj razvoja držav.
 Za uporabo podatkovne zbirke Svetovne banke smo se odločili, ker združuje in na
 enovit način predstavi podatke iz več različnih virov. Podatkovni viri za 
@@ -16,7 +16,7 @@ indikatorje stopnje razvoja držav so:
   \item Razvojni cilji~\cite{mil_dev_goals}, 
   \item Statistike izobraževanja~\cite{edu_stat}, 
   \item Statistike spolov~\cite{gen_stat},
-  \item Statistike zdravja in prehranjevanja~\cite{health_pop_stat},
+  \item Statistike zdravja in prehranjevanja~\cite{health_pop_stat} in
   \item Rezultati meritev IDA~\cite{ida_res_mes_sys}.
 \end{itemize}  
 
@@ -26,7 +26,7 @@ za podnebne raziskave \angl{Climatic Research Unit}~\cite{climate_data}.
 Svetovna banka omogoča dostop do podatkov preko programskega vmesnika 
 predstavitvene arhitekture za prenos podatkov REST 
 \angl{Representational State Transfer}, ki
-ponuja veliko možnosti za iskanje in presejanje rezultatov. Pri vsaki 
+ponuja veliko možnosti za iskanje in izbor rezultatov programskih poizvedb. Pri vsaki 
 poizvedbi REST lahko določimo želeno obliko odgovora. Za poizvedbe o 
 informacijah indikatorjev sta na voljo obliki 
 razširljivega označevalnenga jezika XML \angl{Extensible Markup Language} 
@@ -48,19 +48,20 @@ mesečnem, četrtletnem ali letnem intervalu. Začetek meritev podatkov
 posameznega indikatorja je odvisna od vira podatkov. Najstarejši podatki segajo
 do leta 1960. Poleg podatkov indikatorjev nam ta programski vmesnik omogoča 
 tudi dostop do večine metapodatkov, s katerimi lahko presejamo in natančneje
-določimo našo poizvedbo. Seznami metapodatkov so:
+določimo našo poizvedbo in ki vklju"cujejo::
 \begin{itemize}
-\item viri podatkov in njihovi opisi \angl{Catalog Source Queries}
-	\fnurl{http://api.worldbank.org/sources?format=json}),
-\item seznam držav, skupin držav in regij z identifikatorji \angl{Country Queries}
-	\fnurl{http://api.worldbank.org/countries?format=json}),
-\item razdelitev višin dohodkov z identifikatorji \angl{Income Level Queries}
-	\fnurl{http://api.worldbank.org/incomeLevels?format=json}),
-\item seznam indikatorjev \angl{Indicator Queries}
-  \fnurl{http://api.worldbank.org/indicators?format=json}),
-\item seznam tipov posojil \angl{Lending Type Queries}
-	\fnurl{http://api.worldbank.org/lendingTypes?format=json}),
-\item seznam tem \angl{Topics \fnurl{http://api.worldbank.org/topics}}.
+\item viri podatkov in njihovi opisi 
+  \angl{Catalog Source Queries~\fnurl{http://api.worldbank.org/sources?format=json}},
+\item seznam držav, skupin držav in regij z identifikatorji 
+  \angl{Country Queries~\fnurl{http://api.worldbank.org/countries?format=json}},
+\item razdelitev višin dohodkov z identifikatorji 
+  \angl{Income Level Queries~\fnurl{http://api.worldbank.org/incomeLevels?format=json}},
+\item seznam indikatorjev 
+  \angl{Indicator Queries~\fnurl{http://api.worldbank.org/indicators?format=json}},
+\item seznam tipov posojil 
+  \angl{Lending Type Queries~\fnurl{http://api.worldbank.org/lendingTypes?format=json}},
+\item seznam tem 
+  \angl{Topics~\fnurl{http://api.worldbank.org/topics}}.
 \end{itemize}
 
 Za pridobitev podatkov indikatorjev potrebujemo metapodatke o indikatorjih in
