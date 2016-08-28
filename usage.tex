@@ -1,23 +1,23 @@
 \chapter{Primeri uporabe}
 
 
-\subsection{Primer uporabe modula api\_wrapper}
+\section{Uporaba modula api\_wrapper}
 
 Enostavno uporabo modula \verb|api_wrapper| s skriptnim delom programa Orange
-prikazuje primer \ref{scripting_example}. V temu primeru pogledamo kako
-učinkovito lahko napovemo smrtnost otrok iz raznih indikatorjev zdravja in
+prikazuje primer \ref{scripting_example}. V temu primeru pogledamo, kako
+učinkovito lahko napovemo smrtnost otrok iz raznih indikatorjev zdravja,
 okolja in infrastrukture. V vrsticah $5$ do $15$ naredimo poizvedbe po
 potrebnih podatkih s programskega vmesnika Svetovne banke. Nato v vrsticah $18$
-do $27$ odstranimo vrstice, ki nimajo ciljne vrednosti in naredimo novo tabelo z
+do $27$ odstranimo vrstice iz tabele, ki nimajo ciljne vrednosti in naredimo novo tabelo z
 razredom, ki ga želimo napovedovati. Vrednosti, ki jih želimo napovedovati, se
-nahajajo v stolpcu $55$ v tabeli \verb|class_data|. Ta vrstica vsebuje podatke
+nahajajo v stolpcu $55$ v tabeli \verb|class_data|. Ta stolpec vsebuje podatke
 o smrtnosti otrok mlajših od enega leta za leto 2015. V naslednjih vrsticah
-pa zgradimo štiri napovedne modele: naključni gozd z
+pa zgradimo tri napovedne modele: naključni gozd z
 regresijskimi drevesi \verb|rf|, linearna regresija z regularizacijo 
 \verb|ridge| in srednja vrednost \verb|mean|.
 Za ocene napovednih modelov smo uporabili oceni
-$RMSE$ \fnurl{https://en.wikipedia.org/wiki/Root-mean-square_deviation} in 
-$R^2$ \fnurl{https://en.wikipedia.org/wiki/Coefficient_of_determination}.
+$RMSE$~\fnurl{https://en.wikipedia.org/wiki/Root-mean-square\_deviation} in 
+$R^2$~\fnurl{https://en.wikipedia.org/wiki/Coefficient\_of\_determination}.
 Rezultate primera \ref{scripting_example} lahko vidimo v tabeli 
 \ref{rezultati_skripte}.
 
@@ -115,9 +115,9 @@ letno temperaturo za naslednjih nekaj let, kar je prikazano na sliki
 \section{Gru"cenje dr"zav}
 
 
-Podatke, ki jih dobimo z na"sm dodatkom, lahko v programu Orange uporabimo tudi
+Podatke, ki jih dobimo z na"sim dodatkom, lahko v programu Orange uporabimo tudi
 za grafi"cni prikaz statistik in povezav med dr"zavami. Kot mo"zen primer
-uporabe (Slika \ref{clustering_setup}) smo prikazali gru"cenje dr"zav svetovnih regij, glede na naslednje
+uporabe (Slika \ref{clustering_setup}) smo prikazali gru"cenje dr"zav svetovnih regij glede na naslednje
 indikatorje (Slika \ref{clustering_indicator_selection}):
 \begin{itemize}
   \item odstotek ljudi ki "zivijo v urbanem okolju 
@@ -128,13 +128,13 @@ indikatorje (Slika \ref{clustering_indicator_selection}):
     \angl{Hospital beds (per 1,000 people)},
   \item odstotek BDP izdatkov za raziskave in razvoj
     \angl{Research and development expenditure (\% of GDP)},
-  \item "stevilo prebivalstva pod pragom rev"s"cine pri meji $\$3.10$ na dan
+  \item "stevilo prebivalstva pod pragom rev"s"cine pri meji $3.10$ dolarjev na dan
     \angl{Poverty gap at $\$3.10$ a day (2011 PPP) (\%)}.
 \end{itemize}
 Med temi indikatorji smo izra"cunali evklidsko razdaljo in za prikaz 
 uporabili "ze obstoje"ca gradnika programa Orange
-``MDS''\ref{clustering_mds} in
-``Hierarchical Clustering''\ref{clustering_hierarchical_countries}.
+``MDS'' (slika \ref{clustering_mds}) in
+``Hierarchical Clustering'' (slika \ref{clustering_hierarchial_countries}).
 
 
 
@@ -164,7 +164,7 @@ uporabili "ze obstoje"ca gradnika programa Orange
 \includegraphics[width=12cm]{pic/clustering_indicator_selection.png}
 \end{center}
 \caption{Izbor indikatorjev za gru"cenje.}
-\label{}
+\label{clustering_indicator_selection}
 \end{figure} 
 
 \begin{figure}

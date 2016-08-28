@@ -275,9 +275,9 @@ stolpce, ki ne vsebujejo niti ene veljavne vrednosti. Druga metoda pa je
 \verb|to_orange_table|, ki podatke dobljene iz metode \verb|as_numpy_array|,
 pretvori v podatkovno tabelo Orange. To tabelo lahko oblikuje kot časovno
 vrsto ali pa kot seznam držav. %, kot je opisano v poglavju \ref{razred_indicatordatasets}.
-Obliko tabele Orange želimo izbrati,
+Obliko tabele Orange, ki jo želimo izbrati,
 določimo s parametrom \verb|time_series|. % TODO: (angl.\ Orange data table).
-Ta metoda tudi poskrbi za pravilno nastavljeno domeno\footnote{Domena
+Ta metoda tudi poskrbi za pravilno nastavljeno domeno~\footnote{Domena
 ``Domain'' je razred v orodju Orange, ki določa tipe in imena značilk in
 ciljnih razredov.} podatkov.
 
@@ -291,31 +291,31 @@ razširitvi razreda \verb|IndicatorDatasets|, lahko tudi tukaj s parametrom
 \verb|time_series| izberemo obliko tabele Orange. Pri vrednosti parametra 
 \verb|time_series = False| se nastavi privzeta oblika tabele, prikazana kot
 \verb|list1|, sicer pa kot \verb|list3|, iz primera \ref{list_configurations}.
-S tem parametrom pa izgubimo možnost poljubne oblike Orange tabele.
+S tem parametrom pa izgubimo možnost poljubne oblike tabele Orange.
 
 
 \section{Grafični vmesnik}
 
-Za namen tega diplomskega dela smo z dodatkom \verb|Orange3-DataSets|
-grafičnemu vmesniku programa Orange dodali novo skupino gradnikov imenovano
-``Data Sets'' (Slika \ref{data_sets_group}). V okviru te naloge smo za skupino
+Programski raz"siritvi \verb|Orange3-DataSets| za 
+grafični vmesnik programa Orange smo sedaj dodali novo skupino gradnikov imenovano
+``Data Sets'' (slika \ref{data_sets_group}). V okviru te naloge smo za skupino
 ``Data Sets'' izdelali dva ločena gradnika. Prvi gradnik se imenuje ``WB
-Climate'' (Slika \ref{co2_temp_climate}) in nam preko grafičnega vmesnika 
+Climate'' (slika \ref{co2_temp_climate}) in nam preko grafičnega vmesnika 
 omogoča dostop do podnebnih podatkov Svetovne banke, drugi gradnik pa se 
-imenuje ``WB Indicators'' (Slika \ref{co2_temp_indicator}), in nam
+imenuje ``WB Indicators'' (slika \ref{co2_temp_indicator}) in nam
 preko grafičnega vmesnika omogoča dostop do podatkov indikatorjev razvoja.
 
 Oba grafična vmesnika sta narejena skladno z vodili grafičnih vmesnikov
 programa Orange. To smo dosegli tako, da smo za večino elementov grafičnega
 vmesnika uporabili predpripravljene gradnike v paketu \verb|Orange.gui|. Pri
-gradnji teh vmesnikov pa smo bili pozorni na odzivnost grafičnega vmesnika,in
-smo počasne operacije branja podatkov z interneta prestavili v ločeno nit.
+gradnji vmesnikov smo bili pozorni na odzivnost grafičnega vmesnika.
+Počasne operacije branja podatkov z interneta smo zato prestavili v ločeno nit.
  
 \begin{figure}
   \begin{center}
     \includegraphics[width=4cm]{pic/data_sets_group.png}
   \end{center}
-  \caption{Skupina gradnikov data sets}
+  \caption{Skupina gradnikov Data Sets, ki smo jih razvili v pri"cujo"ci nalogi.}
   \label{data_sets_group}
 \end{figure} 
 
@@ -323,17 +323,17 @@ smo počasne operacije branja podatkov z interneta prestavili v ločeno nit.
 \subsection{Gradnik WB Indicators}
 
 \verb|WB Indicators| je gradnik programa Orange za dostop do podatkov
-programskega vmesnika indikatorjev. Ta gradnik nam omogoča enostavno izbiro
+programskega vmesnika indikatorjev. Omogoča nam enostavno izbiro
 enega ali več indikatorjev in ene ali več držav, za katere želimo dobiti
 podatke izbranih indikatorjev. Za lažje iskanje indikatorjev smo v grafičnem
 vmesniku dodali dve možnosti presejanja seznama indikatorjev. Pri prvem situ
 si lahko izberemo prikaz vseh indikatorjev, pogosto uporabljenih 
-indikatorjev\footnote{Seznam je na voljo na strani 
+indikatorjev~\footnote{Seznam je na voljo na strani 
 \url{http://data.worldbank.org/indicator?tab=all}}
-ali pa izpostavljenih indikatorjev\footnote{Seznam je na voljo na strani 
+ali pa izpostavljenih indikatorjev~\footnote{Seznam je na voljo na strani 
 \url{http://data.worldbank.org/indicator?tab=featured}}. Drugo sito pa je
-tekstovno presejanje po poljih: koda ``Id'', ime ``Name'', teme ``Topics'' in
-viri ``Sources''. 
+tekstovno presejanje po poljih: koda {\tt id}, ime {\tt name}, teme {\tt topics} in
+viri {\tt sources}. 
 % TODO: preveri ta stavek
 V grafičnem vmesniku si lahko tudi izberemo eno izmed oblik izhodnih podatkov
 kot časovne vrste \angl{Time Series} ali podatke držav \angl{Countries}, 
@@ -346,7 +346,7 @@ Implementirali pa smo tudi prikaz napredka prenosa podatkov s števili vseh in
 \begin{center}
 \includegraphics[width=12cm]{pic/co2_temp_indicator_selection.png}
 \end{center}
-\caption{Prikaz gradnika WB Indicators.}
+\caption{Gradnik WB Indicators.}
 \label{co2_temp_indicator}
 \end{figure} 
 
@@ -357,7 +357,7 @@ Implementirali pa smo tudi prikaz napredka prenosa podatkov s števili vseh in
 
 Gradnik za izbiro podnebnih podatkov podatkovnega vmesnika Svetovne banke nam
 ponuja možnosti izbire držav, vrste podatkov in vrste meritvenega obdobja.
-Prav tako kot gradnik WB Indicators, lahko tudi tukaj izberemo obliko izhodnih
+Prav tako kot v gradniku WB Indicators, lahko tudi tukaj izberemo obliko izhodnih
 podatkov. Možni izbiri oblike izhodnih podatkov sta časovne vrste in podatki
 držav, kot smo opisali v poglavju \ref{razsiritev_razreda_climatedataset}. 
 Kot dodatno možnost pa imamo v tem grafičnem vmesniku tudi zastavico, ki 
@@ -370,6 +370,6 @@ vmesniku smo dodali prikaz napredka prenosa podatkov.
 \begin{center}
 \includegraphics[width=12cm]{pic/co2_temp_climate_selection.png}
 \end{center}
-\caption{Prikaz gradnika WB Climate.}
+\caption{Gradnik WB Climate.}
 \label{co2_temp_climate}
 \end{figure} 
