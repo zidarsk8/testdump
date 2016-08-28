@@ -5,18 +5,14 @@ Na svetovnem spletu je dosegljivih vedno več prosto dostopnih programskih
 vmesnikov \angl{application programming interface}.
 % TODO: morda dodaj API v razlago zgoraj
 Ti vmesniki omogočajo dostop
-do zelo raznolikih zbirk podatkov. Nekaj primerov prosto dostopnih podatkovnih
-zbirk je seznam stopnje ogroženosti živali po državah 
-% 1 IUCN 2016. IUCN Red List of Threatened Species. Version 2016-1 <www.iucnredlist.org>
-    \fnurl{http://apiv3.iucnredlist.org/api/v3/docs},
-podatki meritev in slike vesolja agencije NASA
-    \fnurl{https://api.nasa.gov/},
-seznam knjig z ocenami in povezavami med uporabniki 
-    \fnurl{https://www.goodreads.com/api},
-zgodovina meteoroloških meritev 
-    \fnurl{http://climatedataapi.worldbank.org/},
-razni indikatorji stopenj razvoja držav
-    \fnurl{http://api.worldbank.org/}.
+do zelo raznolikih zbirk podatkov. Primeri takih zbirk so
+seznam stopnje ogroženosti živali po državah~\fnurl{http://apiv3.iucnredlist.org/api/v3/docs},
+% TODO: 1 IUCN 2016. IUCN Red List of Threatened Species. Version 2016-1 <www.iucnredlist.org>
+podatki meritev in slike vesolja agencije NASA~\fnurl{https://api.nasa.gov/},
+seznam knjig z ocenami in povezavami med uporabniki~\fnurl{https://www.goodreads.com/api},
+zgodovina meteoroloških meritev~\fnurl{http://climatedataapi.worldbank.org/},
+razni indikatorji stopenj razvoja držav~\fnurl{http://api.worldbank.org/}.
+    
 
 Programski vmesniki so oblikovani tako, da je omogočena raznolika uporaba
 podatkov iz podatkovnih zbirk. To pa ima tudi slabost, ki je v tem, da je 
@@ -35,8 +31,8 @@ primerno za njegovo konkretno analizo.
 
 Povezava programskega vmesnika za dostop do podatkov in orodja za analizo 
 podatkov je pogosto prezapletena za končnega uporabnika. Razviti želimo
-knjižnice in dodatke za program Orange s katerimi bi podatke s programskega
-vmesnika Svetovne banke spravili v  obliko, primerno za nadaljnjo
+knjižnice in dodatka za program Orange, s katerimi bi podatke s programskega
+vmesnika Svetovne banke pripravili v obliki primerni za nadaljnjo
 uporabo v orodju Orange in drugih programih za obdelavo podatkov. S tem bi
 dobili enostavnejši dostop do preko 16.000 indikatorjev in številnih podnebnih
 meritev, s čimer bomo lažje analizirali in iskali morebitne zakonitosti v
@@ -50,18 +46,18 @@ ampak se vmesnik posodobi enkrat in za vse uporabnike.
 \section{Cilji in struktura diplomske naloge}
 
 Cilj diplomske naloge je izdelati knjižnico za uporabo programskega vmesnika
-Svetovne banke ter izdelati dodatek za program Orange, ki s pomočjo omenjene
+Svetovne banke za programski jezik Python ter izdelati dodatek za program Orange, ki s pomočjo omenjene
 knjižnice omogoča uporabniku dostop do podatkov Svetovne banke preko
 grafičnega vmesnika.
 
 V diplomski nalogi najprej predstavimo spletna vira indikatorjev
-držav sveta in meritev podnebnih podatkov Svetovne banke, ter
+držav sveta in meritev podnebnih podatkov Svetovne banke ter
 opišemo delovanje njunih programskih vmesnikov.
 Nato podrobneje opišemo našo implementacijo knjižnice za dostop do
 programskega vmesnika Svetovne banke in gradnikov za program Orange, ki to
 knjižnico uporabljajo. V nadaljevanju prikažemo še nekaj praktičnih 
-primerov uporabe dodatka Orange data sets. Na koncu še popišemo opravljeno 
-delo, navedemo vire kode in omenimo možne načine za izboljšavo ali 
+primerov uporabe razvitih gradnikov. Na koncu še popišemo opravljeno 
+delo, navedemo vire programske kode in omenimo možne načine za izboljšavo ali 
 nadgradnjo našega dodatka.
 
 
