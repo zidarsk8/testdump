@@ -388,13 +388,13 @@ posamezne mesece skozi vsa leta meritev. Obliko poizvedbe prikazuje primer
 Za razliko od programskega vmesnika indikatorjev, nam programski vmesnik
 podnebnih meritev z eno poizvedbo omogoča dostop do podatkov le za eno državo.
 To pomeni, da je količina podatkov dovolj omejena, da nam programski vmesnik
-vedno vrne vse podatke brez ostranjevanja, kot prikazuje primer 
-\ref{climate_dataset_response},
+vedno vrne vse podatke brez paginacije, kot prikazuje primer 
+\ref{climate_dataset_response}.
 
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=13.75cm]{pic/climate_data_api_basins.pdf}
+\includegraphics[width=13.75cm]{pic/climate_data_api_basins.png}
 \end{center}
 \caption{Prikaz vodotočnih območij sveta.}
 \label{climate_data_api_basins}
@@ -462,8 +462,8 @@ so:
 \item v odgovoru poizvedbe po podatkih indikatorjev ponekod manjkajo vrednosti
   kot so koda države, ime države ali ime indikatorja,
 \item zgornja meja števila izbranih lokacij na $250$ ni navedena, prav tako pa ni
-  dokumentirana napaka, ki jo v tem primeru vrne programski vmesnik
-\item nemogoče je ugotoviti pogostost vzorčenja indikatorja \verb|frequency|, .
+  dokumentirana napaka, ki jo v tem primeru vrne programski vmesnik,
+\item nemogoče je ugotoviti pogostost vzorčenja indikatorja \verb|frequency|.
 \end{itemize}  
 
 
